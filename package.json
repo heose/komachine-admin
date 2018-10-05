@@ -1,0 +1,25 @@
+{
+  "name": "komachine-admin",
+  "version": "1.0.0",
+  "description": "Komachine Admin Site",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "next build && NODE_ENV=production node server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "next": "^7.0.1",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "styled-components": "^3.4.9"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.8.0",
+    "redux-devtools-extension": "^2.13.5"
+  }
+}
