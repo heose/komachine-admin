@@ -10,9 +10,7 @@ const Title = styled.h1`
 `;
 
 export default class extends React.Component {
-  static async getInitialProps({ reduxStore, req }) {
-    const isServer = !!req
-    reduxStore.dispatch(serverRenderClock(isServer))
+  static async getInitialProps({ req }) {
     const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
     return { userAgent }
   }
