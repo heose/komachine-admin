@@ -4,15 +4,18 @@ import Page from '../components/Page'
 
 
 export default class About extends React.Component {
-
-  static getInitialProps ({ store, isServer }) {
-    return { isServer }
+  static async getInitialProps(props) {
+    console.log('index page');
+    console.log(props);
+    return {a: 'aaaa'}
+    // const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
+    // return { userAgent }
   }
 
   render() {
     return (
       <div>
-        <p>Welcome to About!!!</p>
+        <p>Welcome to About!!!{this.props.a}</p>
         <Page title='About Page' linkTo='/other' />
         <Link href="/">
           <a>home</a>

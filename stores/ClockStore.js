@@ -2,7 +2,7 @@ import {action, observable} from 'mobx';
 
 let store = null;
 
-class Store {
+export default class ClockStore {
   @observable lastUpdate = 0;
   @observable light = false;
 
@@ -20,12 +20,12 @@ class Store {
   stop = () => clearInterval(this.timer);
 }
 
-export function initializeStore(isServer, lastUpdate = Date.now()) {
+export function initializeClockStore(isServer, lastUpdate = Date.now()) {
   if (isServer) {
-    return new Store(isServer, lastUpdate);
+    return new ClockStore(isServer, lastUpdate);
   } else {
-    if (store === null) {
-      store = new Store(isServer, lastUpdate);
+      if (store === null) {
+      store = new ClockStore(isServer, lastUpdate);
     }
     return store;
   }

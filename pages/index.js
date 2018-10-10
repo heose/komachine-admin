@@ -10,9 +10,12 @@ const Title = styled.h1`
 `;
 
 export default class extends React.Component {
-  static async getInitialProps({ req }) {
-    const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
-    return { userAgent }
+  static async getInitialProps(props) {
+    console.log('index page');
+    console.log(props);
+    return {}
+    // const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
+    // return { userAgent }
   }
 
   render() {
@@ -23,12 +26,12 @@ export default class extends React.Component {
         </Title>
         <Greeting />
         <div>
-          Click{' '}
-          <Link href={{pathname: '/about', query: {name: 'Zeit'}}}>
-            <a>here</a>
-          </Link>{' '}
-          to read more
-        </div>
+        Click{' '}
+        <Link href={{pathname: '/about', query: {name: 'Zeit'}}}>
+          <a>here</a>
+        </Link>{' '}
+        to read more
+      </div>
         <div>
           <Link scroll={false} href="/?counter=10"><a>Disables scrolling</a></Link>
         </div>

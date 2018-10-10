@@ -15,15 +15,15 @@ app.prepare()
     server.use(cookieParser());
     server.use((req, res, next) => {
       const baseUserName = req.cookies.user_name;
-      console.log('user name:', Buffer.from(encodeURIComponent(baseUserName), 'base64').toString('utf-8'));
+      // console.log('user name:', Buffer.from(encodeURIComponent(baseUserName), 'base64').toString('utf-8'));
       next();
     });
     server.get('/a', (req, res) => {
       return app.render(req, res, '/about', req.query);
     });
 
-    server.get('/b', (req, res) => {
-      return app.render(req, res, '/', req.query);
+    server.get('/companies', (req, res) => {
+      return app.render(req, res, '/companies', req.query);
     });
 
     server.get('/about/:id', (req, res) => {

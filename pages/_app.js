@@ -2,7 +2,7 @@ import App, {Container} from 'next/app';
 import Head from 'next/head';
 import React from 'react';
 import { Provider } from 'mobx-react'
-import withMobxStore from '../lib/with-mobx-store'
+import withStore from '../lib/with-mobx-store'
 
 
 class RootApp extends App {
@@ -17,13 +17,13 @@ class RootApp extends App {
   }
 
   render() {
-    const {Component, pageProps, mobxStore} = this.props;
+    const {Component, pageProps, rootStore} = this.props;
     return (
       <Container>
         <Head>
           <title>Komachine Admin</title>
         </Head>
-        <Provider store={mobxStore}>
+        <Provider store={rootStore}>
           <Component {...pageProps} />
         </Provider>
       </Container>
@@ -31,4 +31,4 @@ class RootApp extends App {
   }
 }
 
-export default withMobxStore(RootApp);
+export default withStore(RootApp);
