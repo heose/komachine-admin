@@ -6,8 +6,8 @@ export default class ClockStore {
   @observable lastUpdate = 0;
   @observable light = false;
 
-  constructor(isServer, lastUpdate) {
-    this.lastUpdate = lastUpdate;
+  constructor(initialState) {
+    this.lastUpdate = Date.now();
   }
 
   @action start = () => {

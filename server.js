@@ -27,7 +27,7 @@ app.prepare()
     });
 
     server.get('/about/:id', (req, res) => {
-      return app.render(req, res, '/about', {id: req.params.id});
+      return app.render(req, res, '/about', {...req.params, ...req.query});
     });
 
     server.get('*', (req, res) => {

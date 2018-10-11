@@ -1,8 +1,8 @@
-import React from 'react'
-import Link from 'next/link'
-import Router from 'next/router'
-import styled from 'styled-components'
-import Greeting from '../components/Greeting'
+import React from 'react';
+import Link from 'next/link';
+import Router from 'next/router';
+import styled from 'styled-components';
+import Greeting from '../components/Greeting';
 
 const Title = styled.h1`
   color: red;
@@ -10,12 +10,13 @@ const Title = styled.h1`
 `;
 
 export default class extends React.Component {
-  static async getInitialProps(props) {
-    console.log('index page');
-    console.log(props);
-    return {}
-    // const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
-    // return { userAgent }
+  static async getInitialProps({req, res, pathname, query}) {
+    // console.log('index page');
+    // console.log(req);
+    // console.log(res);
+    // console.log(pathname);
+    // console.log(query);
+    return {};
   }
 
   render() {
@@ -24,14 +25,19 @@ export default class extends React.Component {
         <Title>
           Hello World
         </Title>
-        <Greeting />
+        <Greeting/>
         <div>
-        Click{' '}
-        <Link href={{pathname: '/about', query: {name: 'Zeit'}}}>
-          <a>here</a>
-        </Link>{' '}
-        to read more
-      </div>
+          Click{' '}
+          <Link href={{pathname: '/about', query: {name: 'Zeit'}}}>
+            <a>here</a>
+          </Link>{' '}
+          to read more
+        </div>
+        <div>
+          <Link prefetch href="/companies" >
+            <a>Companies</a>
+          </Link>
+        </div>
         <div>
           <Link scroll={false} href="/?counter=10"><a>Disables scrolling</a></Link>
         </div>
@@ -42,6 +48,6 @@ export default class extends React.Component {
           Click <span onClick={() => Router.push('/about')}>here</span> to read more
         </div>
       </div>
-    )
+    );
   }
 }

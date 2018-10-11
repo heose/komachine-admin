@@ -1,23 +1,26 @@
-import ClockStore, {initializeClockStore} from './ClockStore';
-import CompanyStore from './CompanyStore';
+import ClockStore from './ClockStore';
+import CompanyStore, {initializeCompanyStore} from './CompanyStore';
 
 
 let rootStore = null;
 
 
 class RootStore {
-  constructor(isServer) {
-    this.clockStore = initializeClockStore(isServer);
-    this.companyStore = new CompanyStore(this);
+  constructor(initialState) {
+    this.clockStore = new ClockStore(initialState);
+    // this.companyStore = initializeCompanyStore(initialState);
+    this.companyStore = new CompanyStore(initialState, this);
   }
 }
 
-export function initializeStore(isServer) {
-  if (isServer) {
-    return new RootStore(isServer);
+export function initializeStore(initialState) {
+  console.log('rootStore', initialState);
+  if (initialState) {
+    return new RootStore(initialState);
   } else {
+    console.log('rootStore', rootStore);
     if (rootStore === null) {
-      rootStore = new RootStore(isServer);
+      rootStore = new RootStore(initialState);
     }
     return rootStore;
   }
