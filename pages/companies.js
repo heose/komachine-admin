@@ -2,14 +2,13 @@ import Link from 'next/link';
 import React from 'react';
 import CompanyList from '../components/CompanyList';
 
+
 export default class Companies extends React.Component {
 
   static async getInitialProps ({req, query, rootStore}) {
     const isServer = !!req;
     const { companyStore } = rootStore;
-    if (isServer) {
-      await companyStore.fetchCompanies({...query});
-    }
+    await companyStore.fetchCompanies(query);
     return { query }
   }
 

@@ -4,34 +4,38 @@ import axios from 'axios';
 let companyStore = null;
 
 export default class CompanyStore {
-  @observable companies = [];
+  @observable table = {};
+  @observable list = [];
   @observable state = '';
+  @observable page = 0;
 
-  constructor(initialState, rootStore) {
-    if (initialState) {
-      const { companyStore } = initialState;
-      console.log('CompanyStore constructor', initialState);
-      // this.companies = companyStore.companies;
-      // this.state = companyStore.state;
+  constructor(initialState) {
+    const { companyStore } = initialState || {};
+    console.log('Call CompanyStore constructor');
+    if (companyStore) {
+      console.log(companyStore.table);
+      this.table = companyStore.table;
+      this.list = companyStore.list;
+      this.state = companyStore.state;
+      this.page = companyStore.page;
     }
   }
 
   @action
-  async fetchCompanies({ page=1 }) {
-    console.log('fetching');
-    console.log('page', page);
+  async fetchCompanies(query) {
     this.state = 'pending';
     await axios
-      .get('http://localhost:8000/en/api/companies/')
-      .then(this.fetchCompaniesSuccess)
+      .get(`http://localhost:8000/ko/api/companies/?page=${query.page || 1}`)
+      .then(result => this.fetchCompaniesSuccess(result, query))
       .catch(this.fetchCompaniesError)
   }
 
   @action.bound
-  fetchCompaniesSuccess({ data }) {
-    this.companies = data.result;
+  fetchCompaniesSuccess({ data }, query) {
+    this.table = {...this.table, ...data.result.table};
+    this.list = data.result.list;
     this.state = 'complete';
-    console.log('complete');
+    this.page = query.page || 1;
   }
 
   @action.bound
@@ -42,12 +46,18 @@ export default class CompanyStore {
 }
 
 export function initializeCompanyStore(initialState) {
+  console.log('initializeCompanyStore');
   if (initialState) {
+    console.log('valid initialState');
     return new CompanyStore(initialState);
   } else {
+    console.log('invalid initialState');
     if (companyStore === null) {
+      console.log('But null companyStore, create new CompanyStore');
       companyStore = new CompanyStore(initialState);
     }
+    console.log('return exist companyStore');
+    console.log(initialState);
     return companyStore;
   }
 }
