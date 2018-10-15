@@ -3,7 +3,7 @@ node_*/*
 .next/*
 *.log
 .DS_Store
-**/__snanpshots__/**
+**/__snapshots__/**
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
