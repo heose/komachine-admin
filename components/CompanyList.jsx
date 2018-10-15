@@ -43,18 +43,17 @@ class CompanyList extends React.Component {
           Page: {companyStore.page}
         </div>
         <div>
-          {listComponent}
+          List: {listComponent}
+        </div>
+        <div>
+          <h3>Table</h3>
+          {tableComponent}
+          <br/>
         </div>
         <div>
           <Link href="/companies?page=1"><a>1</a></Link>
           <Link href="/companies?page=2"><a>2</a></Link>
           <Link href="/companies?page=3"><a>3</a></Link>
-          {/*<span onClick={() => this.handleClickPage(1)}> 1 </span>*/}
-          {/*<span onClick={() => this.handleClickPage(2)}> 2 </span>*/}
-          {/*<span onClick={() => this.handleClickPage(3)}> 3 </span>*/}
-        </div>
-        <div>
-          {tableComponent}
         </div>
       </div>
     );
