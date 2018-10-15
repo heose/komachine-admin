@@ -2,7 +2,7 @@ import React from 'react';
 import TestRenderer from 'react-test-renderer';
 import { mount, shallow } from 'enzyme';
 import CompanyList from '../components/CompanyList';
-import { initializeStore } from './RootStore';
+import { initializeStore } from './root-store';
 
 test('two plus two is four', () => {
   expect(2 + 2).toBe(4);

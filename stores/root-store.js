@@ -1,5 +1,5 @@
 import ClockStore from './ClockStore';
-import CompanyStore, { initializeCompanyStore } from './CompanyStore';
+import { initializeCompanyStore } from './company-store';
 
 
 let rootStore = null;
@@ -8,7 +8,6 @@ class RootStore {
   constructor(initialState) {
     console.log('Call RootStore constructor');
     this.clockStore = new ClockStore(initialState);
-    // this.companyStore = new CompanyStore(initialState);
     this.companyStore = initializeCompanyStore(initialState);
   }
 }
@@ -28,5 +27,4 @@ export function initializeStore(initialState) {
     console.log(initialState);
     return rootStore;
   }
-  // return new RootStore(initialState);
 }
