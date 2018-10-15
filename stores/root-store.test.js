@@ -30,7 +30,6 @@ it('renders without crashing', () => {
     state: '',
     page: 1,
   };
-  // const store = initializeStore(initialState);
   const wrapper = shallow(<CompanyList.wrappedComponent companyStore={mockStore} />);
   expect(wrapper).toMatchSnapshot();
 });
