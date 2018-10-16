@@ -4,7 +4,7 @@ const mock = jest.fn().mockImplementation(() => {
   return {
     fetchCompanies: query => {
       return new Promise((resolve, reject) => {
-        resolve(fetchCompaniesData);
+        resolve({status: 200, data: fetchCompaniesData});
         reject('error');
       });
     },

@@ -1,5 +1,4 @@
 import { initializeCompanyStore } from './company-store';
-import CompanyApi from '../apis/company-api';
 
 jest.mock('../apis/company-api');
 
@@ -19,9 +18,8 @@ describe('company store test', () => {
   it('initialize', () => {
     expect(companyStore).toMatchObject(expected);
   });
-  it('fetched', () => {
-    companyStore.fetchCompanies({});
+  it('fetched', async () => {
+    await companyStore.fetchCompanies({});
     expect(companyStore.list).toHaveLength(20);
   });
-
 });
