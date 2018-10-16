@@ -1,8 +1,12 @@
+import CompanyApi from './company-api';
 
+jest.mock('./company-api');
 
-describe('generate query string test', () => {
-  it('should be ok', () => {
-    jest.mock('./company-api');
-    console.log('asdf');
+describe('should fetch companies', () => {
+  it('should be ok', async () => {
+    const companyApi = new CompanyApi();
+    await companyApi.fetchCompanies({}).then(data =>{
+      expect(data.result.list.length).toEqual(20);
+    })
   });
 });

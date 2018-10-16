@@ -26,12 +26,15 @@ export default class CompanyStore {
   async fetchCompanies(query) {
     this.state = 'pending';
     await this.api.fetchCompanies(query)
-      .then(result => this.fetchCompaniesSuccess(result, query))
+      .then(({data}) => {
+        console.log(data);
+        this.fetchCompaniesSuccess(data, query)})
       .catch(this.fetchCompaniesError)
   }
 
   @action.bound
-  fetchCompaniesSuccess({ data }, query) {
+  fetchCompaniesSuccess(data, query) {
+    console.log(data.result.list);
     this.table = {...this.table, ...data.result.table};
     this.list = data.result.list;
     this.state = 'complete';
@@ -41,23 +44,24 @@ export default class CompanyStore {
   @action.bound
   fetchCompaniesError(error) {
     this.state = 'error';
-    console.log(error);
+    // console.log(error);
   }
 }
 
-export function initializeCompanyStore(initialState) {
-  console.log('initializeCompanyStore');
-  if (initialState.isServer) {
-    console.log('valid initialState');
-    return new CompanyStore(initialState, new CompanyApi());
-  } else {
-    console.log('invalid initialState');
-    if (companyStore === null) {
-      console.log('But null companyStore, create new CompanyStore');
-      companyStore = new CompanyStore(initialState, new CompanyApi());
-    }
-    console.log('return exist companyStore');
-    console.log(initialState);
-    return companyStore;
-  }
+export function initializeCompanyStore(initialState = {}) {
+  // console.log('initializeCompanyStore');
+  // if (initialState.isServer) {
+  //   console.log('valid initialState');
+  //   return new CompanyStore(initialState, new CompanyApi());
+  // } else {
+  //   console.log('invalid initialState');
+  //   if (companyStore === null) {
+  //     console.log('But null companyStore, create new CompanyStore');
+  //     companyStore = new CompanyStore(initialState, new CompanyApi());
+  //   }
+  //   console.log('return exist companyStore');
+  //   console.log(initialState);
+  //   return companyStore;
+  // }
+  return new CompanyStore(initialState, new CompanyApi());
 }

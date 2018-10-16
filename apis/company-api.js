@@ -12,6 +12,4 @@ class CompanyApi {
   }
 }
 
-
-
 export default CompanyApi;
