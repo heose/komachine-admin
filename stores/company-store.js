@@ -1,24 +1,26 @@
-import {action, observable} from 'mobx';
+import {action, observable, computed} from 'mobx';
 import CompanyApi from '../apis/company-api';
 
-let companyStore = null;
 
 export default class CompanyStore {
   @observable table = {};
   @observable list = [];
   @observable state = '';
   @observable page = 0;
+  @observable isActive = null;
+  @observable hasRelation = null;
 
   constructor(initialState, api) {
     const { companyStore } = initialState || {};
-    console.log('Call CompanyStore constructor');
     this.api = api;
     if (companyStore) {
-      console.log(companyStore.table);
+      console.log(companyStore);
       this.table = companyStore.table;
       this.list = companyStore.list;
       this.state = companyStore.state;
       this.page = companyStore.page;
+      this.isActive = companyStore.isActive;
+      this.hasRelation = companyStore.hasRelation;
     }
   }
 
@@ -26,42 +28,34 @@ export default class CompanyStore {
   async fetchCompanies(query) {
     this.state = 'pending';
     await this.api.fetchCompanies(query)
-      .then(({data}) => {
-        console.log(data);
-        this.fetchCompaniesSuccess(data, query)})
+      .then(({data}) => this.fetchCompaniesSuccess(data))
       .catch(this.fetchCompaniesError)
   }
 
   @action.bound
-  fetchCompaniesSuccess(data, query) {
-    console.log(data.result.list);
+  fetchCompaniesSuccess(data) {
     this.table = {...this.table, ...data.result.table};
     this.list = data.result.list;
     this.state = 'complete';
-    this.page = query.page || 1;
+    this.page = data.result.page || 1;
+    this.isActive = data.result.isActive || null;
+    this.hasRelation = data.result.hasRelation || null;
   }
 
   @action.bound
   fetchCompaniesError(error) {
     this.state = 'error';
-    // console.log(error);
   }
+
+  @computed
+  get queryString() {
+    const isActiveStr = this.isActive ? `&isActive=${this.isActive}` : '';
+    const hasRelationStr = this.hasRelation ? `&hasRelation=${this.hasRelation}` : '';
+    return `${isActiveStr}${hasRelationStr}`;
+  }
+
 }
 
 export function initializeCompanyStore(initialState = {}) {
-  // console.log('initializeCompanyStore');
-  // if (initialState.isServer) {
-  //   console.log('valid initialState');
-  //   return new CompanyStore(initialState, new CompanyApi());
-  // } else {
-  //   console.log('invalid initialState');
-  //   if (companyStore === null) {
-  //     console.log('But null companyStore, create new CompanyStore');
-  //     companyStore = new CompanyStore(initialState, new CompanyApi());
-  //   }
-  //   console.log('return exist companyStore');
-  //   console.log(initialState);
-  //   return companyStore;
-  // }
   return new CompanyStore(initialState, new CompanyApi());
 }

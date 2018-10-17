@@ -13,6 +13,7 @@ export default class KomachineDocument extends Document {
     return (
       <html>
       <Head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
         {this.props.styleTags}
       </Head>
       <body>
