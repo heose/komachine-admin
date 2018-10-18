@@ -1,4 +1,3 @@
-import ClockStore from './ClockStore';
 import { initializeCompanyStore } from './company-store';
 
 
@@ -6,7 +5,6 @@ let rootStore = null;
 
 class RootStore {
   constructor(initialState) {
-    this.clockStore = new ClockStore(initialState);
     this.companyStore = initializeCompanyStore(initialState);
   }
 }

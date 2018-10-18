@@ -1,8 +1,9 @@
 import App, {Container} from 'next/app';
 import Head from 'next/head';
 import React from 'react';
-import { Provider } from 'mobx-react'
-import withStore from '../lib/with-mobx-store'
+import { Provider } from 'mobx-react';
+import 'normalize.css';
+import withStore from '../lib/with-mobx-store';
 
 
 class RootApp extends App {

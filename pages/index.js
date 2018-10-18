@@ -1,31 +1,19 @@
 import React from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
-import styled from 'styled-components';
-import Greeting from '../components/Greeting';
 
-const Title = styled.h1`
-  color: red;
-  font-size: 50px;
-`;
 
 export default class extends React.Component {
   static async getInitialProps({req, res, pathname, query}) {
-    // console.log('index page');
-    // console.log(req);
-    // console.log(res);
-    // console.log(pathname);
-    // console.log(query);
     return {};
   }
 
   render() {
     return (
       <div style={{'height': '900px'}}>
-        <Title>
+        <h1 className="title">
           Hello World
-        </Title>
-        <Greeting/>
+        </h1>
         <div>
           Click{' '}
           <Link href={{pathname: '/about', query: {name: 'Zeit'}}}>
@@ -47,6 +35,15 @@ export default class extends React.Component {
         <div>
           Click <span onClick={() => Router.push('/about')}>here</span> to read more
         </div>
+        <style jsx>{`
+          .title {
+            color: red;
+            font-size: 50px;
+            /*&: hover {*/
+              /*color: black;*/
+            /*}*/
+          }
+        `}</style>
       </div>
     );
   }
