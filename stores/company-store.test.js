@@ -1,4 +1,5 @@
 import { initializeCompanyStore } from './company-store';
+import {sizePerPage} from "../apis/__mocks__/data/company-api-data";
 
 jest.mock('../apis/company-api');
 
@@ -35,7 +36,7 @@ describe('company store test', () => {
   });
   it('fetched', async () => {
     await companyStore.fetchCompanies({});
-    expect(companyStore.list).toHaveLength(20);
+    expect(companyStore.list).toHaveLength(sizePerPage);
     expect(companyStore.table[Object.keys(companyStore.table)[0]])
       .toEqual(expect.objectContaining(tableExpected));
   });

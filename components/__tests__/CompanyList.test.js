@@ -1,12 +1,18 @@
 import React from 'react';
-import {mount, shallow} from 'enzyme';
+import {shallow} from 'enzyme';
 import CompanyList from '../CompanyList';
-import {fetchedCompaniesData} from '../../apis/__mocks__/data/company-api-data';
+import {initializeCompanyStore} from "../../stores/company-store";
 
+jest.mock('../../apis/company-api');
+
+let companyStore;
 describe('CompanyList component test', () => {
-  it('renders without crashing', () => {
-    const { result: mockStore } = fetchedCompaniesData;
-    const wrapper = shallow(<CompanyList.wrappedComponent companyStore={mockStore}/>);
+  beforeEach(() => {
+    companyStore = initializeCompanyStore();
+  });
+  it('renders without crashing', async () => {
+    await companyStore.fetchCompanies({});
+    const wrapper = shallow(<CompanyList.wrappedComponent companyStore={companyStore}/>);
     expect(wrapper).toMatchSnapshot();
   });
 });
