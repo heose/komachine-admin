@@ -35,15 +35,15 @@ export default class extends React.Component {
         <div>
           Click <span onClick={() => Router.push('/about')}>here</span> to read more
         </div>
-        <style jsx>{`
-          .title {
-            color: red;
-            font-size: 50px;
-            /*&: hover {*/
-              /*color: black;*/
-            /*}*/
-          }
-        `}</style>
+        {/*<style jsx>{`*/}
+          {/*.title {*/}
+            {/*color: red;*/}
+            {/*font-size: 50px;*/}
+            {/*&:hover {*/}
+              {/*color: black;*/}
+            {/*}*/}
+          {/*}*/}
+        {/*`}</style>*/}
       </div>
     );
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link'
 import {inject, observer} from 'mobx-react';
 import CompanyListItem from './CompanyListItem';
+import IsActiveFilter from './IsActiveFilter';
 
 @inject(({store}) => {
   return {companyStore: store.companyStore};
@@ -12,6 +13,7 @@ class CompanyList extends React.Component {
   constructor(props) {
     super(props);
     this.handleClickPage = this.handleClickPage.bind(this);
+    this.handleClickFilter = this.handleClickFilter.bind(this);
   }
 
   componentDidMount() {
@@ -20,6 +22,11 @@ class CompanyList extends React.Component {
   handleClickPage = (page) => {
     const {companyStore} = this.props;
     companyStore.fetchCompanies({page});
+  };
+
+  handleClickFilter = (paramMap) => {
+    const {companyStore} = this.props;
+    companyStore.setFilter(paramMap);
   };
 
 
@@ -36,6 +43,11 @@ class CompanyList extends React.Component {
     ));
     return (
       <div>
+        <IsActiveFilter
+          isActive={companyStore.isActive}
+          handleClick={this.handleClickFilter}
+          queryString={companyStore.queryString}
+        />
         <div>
           isActive: {companyStore.isActive}
         </div>

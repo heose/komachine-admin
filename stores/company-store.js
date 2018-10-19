@@ -14,7 +14,6 @@ export default class CompanyStore {
     const { companyStore } = initialState || {};
     this.api = api;
     if (companyStore) {
-      console.log(companyStore);
       this.table = companyStore.table;
       this.list = companyStore.list;
       this.state = companyStore.state;
@@ -22,6 +21,12 @@ export default class CompanyStore {
       this.isActive = companyStore.isActive;
       this.hasRelation = companyStore.hasRelation;
     }
+  }
+
+  @action
+  setFilter({isActive = null, hasRelation = null}) {
+    this.isActive = isActive;
+    this.hasRelation = hasRelation;
   }
 
   @action
