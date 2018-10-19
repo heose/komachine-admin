@@ -47,6 +47,7 @@ class CompanyList extends React.Component {
           isActive={companyStore.isActive}
           handleClick={this.handleClickFilter}
           queryString={companyStore.queryString}
+          options={companyStore.options}
         />
         <div>
           isActive: {companyStore.isActive}

@@ -10,8 +10,9 @@ const Button = styled.button`
   `}
 `;
 
-const IsActiveFilter = ({router, isActive, handleClick, queryString}) => {
+const IsActiveFilter = ({router, isActive, handleClick, queryString, options}) => {
   console.log(isActive);
+  console.log(options.toString());
   const onClick = value => {
     handleClick({isActive: value});
     Router.push(`/companies?${queryString}`);
