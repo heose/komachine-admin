@@ -1,9 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
+import withLayout from '../lib/with-layout';
+import DefaultLayout from '../layouts/DefaultLayout';
+import { compose, withProps } from 'recompose';
 
 
-export default class extends React.Component {
+class Index extends React.Component {
   static async getInitialProps({req, res, pathname, query}) {
     return {};
   }
@@ -12,7 +15,7 @@ export default class extends React.Component {
     return (
       <div style={{'height': '900px'}}>
         <h1 className="title">
-          Hello World
+          Hello World {this.props.title}
         </h1>
         <div>
           Click{' '}
@@ -35,16 +38,9 @@ export default class extends React.Component {
         <div>
           Click <span onClick={() => Router.push('/about')}>here</span> to read more
         </div>
-        {/*<style jsx>{`*/}
-          {/*.title {*/}
-            {/*color: red;*/}
-            {/*font-size: 50px;*/}
-            {/*&:hover {*/}
-              {/*color: black;*/}
-            {/*}*/}
-          {/*}*/}
-        {/*`}</style>*/}
       </div>
     );
   }
 }
+const enhance = compose(withProps({title: '안녕하세요'}), withLayout(DefaultLayout));
+export default enhance(Index);
