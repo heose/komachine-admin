@@ -1,6 +1,5 @@
 import {action, observable, computed} from 'mobx';
 import CompanyApi from '../apis/company-api';
-import Option from '../utils/option';
 
 
 export default class CompanyStore {
@@ -10,12 +9,15 @@ export default class CompanyStore {
   @observable page = 0;
   @observable isActive = null;
   @observable hasRelation = null;
-  @observable options = null;
+  // @observable.object options = null;
 
   constructor(initialState, api) {
     const { companyStore } = initialState || {};
     this.api = api;
-    this.options = new Option();
+    this.options = observable.map({
+      isActive: null,
+      hasRelation: null,
+    });
     if (companyStore) {
       this.table = companyStore.table;
       this.list = companyStore.list;
@@ -23,7 +25,6 @@ export default class CompanyStore {
       this.page = companyStore.page;
       this.isActive = companyStore.isActive;
       this.hasRelation = companyStore.hasRelation;
-      this.options = companyStore.options;
     }
   }
 
@@ -49,12 +50,6 @@ export default class CompanyStore {
     this.page = data.result.page || 1;
     this.isActive = data.result.isActive || null;
     this.hasRelation = data.result.hasRelation || null;
-    this.options.update({
-      page: data.result.page,
-      isActive: data.result.isActive,
-      hasRelation: data.result.hasRelation,
-    });
-    console.log(this.options.toString());
   }
 
   @action.bound
@@ -63,12 +58,17 @@ export default class CompanyStore {
   }
 
   @computed
+  get queryMap() {
+    const {isActive, hasRelation, page} = this;
+    return {isActive, hasRelation, page};
+  }
+
+  @computed
   get queryString() {
     const isActiveStr = this.isActive ? `&isActive=${this.isActive}` : '';
     const hasRelationStr = this.hasRelation ? `&hasRelation=${this.hasRelation}` : '';
     return `${isActiveStr}${hasRelationStr}`;
   }
-
 }
 
 export function initializeCompanyStore(initialState = {}) {

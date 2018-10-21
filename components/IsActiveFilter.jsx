@@ -1,31 +1,39 @@
 import React from 'react';
-import Router from 'next/router';
 import Link from 'next/link'
 import styled from 'styled-components';
+import generateQueryStr, {updateQueryStr} from '../utils/query-string-generator';
 
-const Button = styled.button`
+
+const Span = styled.span`
+  cursor: pointer;
   border: 0;
   ${({active}) => active && `
     background-color: gray;
   `}
 `;
 
-const IsActiveFilter = ({router, isActive, handleClick, queryString, options}) => {
-  console.log(isActive);
-  console.log(options.toString());
-  const onClick = value => {
-    handleClick({isActive: value});
-    Router.push(`/companies?${queryString}`);
-  };
+const IsActiveFilter = ({isActive, queryString, queryMap}) => {
   return (
     <div>
       <h3>기업활성화필터</h3>
-      <Button active={isActive === null} onClick={() => onClick(null)}>모두</Button>
-      <Button active={isActive === 1} onClick={() => onClick(1)}>활성화</Button>
-      <Button active={isActive === 0} onClick={() => onClick(0)}>비활성화</Button>
-      {/*<Link href={'/companies?page=1'} active={isActive === null}><a>모두</a></Link>*/}
-      {/*<Link href={`/companies?page=1&isActive=1`} active={isActive === 1}><a>활성화</a></Link>*/}
-      {/*<Link href={`/companies?page=1&isActive=0`} active={isActive === 0}><a>비활성화</a></Link>*/}
+      {/*<Link href={`/companies?${updateQueryStr(queryString, {isActive: null})}&page=1`}>*/}
+        {/*<a><Span active={isActive === null}>모두</Span></a>*/}
+      {/*</Link>*/}
+      {/*<Link href={`/companies?${updateQueryStr(queryString, {isActive: '1'})}&page=1`}>*/}
+        {/*<a><Span active={isActive === '1'}>활성화</Span></a>*/}
+      {/*</Link>*/}
+      {/*<Link href={`/companies?${updateQueryStr(queryString, {isActive: '0'})}&page=1`}>*/}
+        {/*<a><Span active={isActive === '0'}>비활성화</Span></a>*/}
+      {/*</Link>*/}
+      <Link href={`/companies?${generateQueryStr({...queryMap, ...{isActive: null, page: 1}})}`}>
+        <a><Span active={isActive === null}>모두</Span></a>
+      </Link>
+      <Link href={`/companies?${generateQueryStr({...queryMap, ...{isActive: '1', page: 1}})}`}>
+        <a><Span active={isActive === '1'}>활성화</Span></a>
+      </Link>
+      <Link href={`/companies?${generateQueryStr({...queryMap, ...{isActive: '0', page: 1}})}`}>
+        <a><Span active={isActive === '0'}>비활성화</Span></a>
+      </Link>
     </div>
   )
 };

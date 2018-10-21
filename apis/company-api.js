@@ -8,7 +8,7 @@ class CompanyApi {
 
   fetchCompanies = query => {
     const queryStr = generateQueryStr(query);
-    return axios.get(`${this.host}/ko/api/companies/${queryStr}`)
+    return axios.get(`${this.host}/ko/api/companies/?${queryStr}`)
   }
 }
 
