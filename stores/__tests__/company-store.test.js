@@ -1,7 +1,7 @@
-import { initializeCompanyStore } from './company-store';
-import {sizePerPage} from "../apis/__mocks__/data/company-api-data";
+import { initializeCompanyStore } from '../company-store';
+import {sizePerPage} from "../../apis/__mocks__/data/company-api-data";
 
-jest.mock('../apis/company-api');
+jest.mock('../../apis/company-api');
 
 const initExpected = {
   table: {},

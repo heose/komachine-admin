@@ -42,5 +42,5 @@ class Index extends React.Component {
     );
   }
 }
-const enhance = compose(withProps({title: '안녕하세요'}), withLayout(DefaultLayout));
+const enhance = compose(withProps({}), withLayout(DefaultLayout));
 export default enhance(Index);

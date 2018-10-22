@@ -4,6 +4,7 @@ import React from 'react';
 import { Provider } from 'mobx-react';
 import 'normalize.css';
 import withStore from '../lib/with-mobx-store';
+import withGlobalStyle from '../lib/with-global-style';
 
 
 class RootApp extends App {
@@ -32,4 +33,8 @@ class RootApp extends App {
   }
 }
 
-export default withStore(RootApp);
+export default withGlobalStyle({
+  style: {
+    fontSize: '20px'
+  }
+})(withStore(RootApp));

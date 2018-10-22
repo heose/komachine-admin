@@ -1,4 +1,4 @@
-import generateQueryStr, {toMapFromQueryStr, excludeQueryStr, updateQueryStr} from './query-string-generator';
+import generateQueryStr, {toMapFromQueryStr, excludeQueryStr, updateQueryStr} from '../query-string-generator';
 
 
 describe('generate query string test', () => {

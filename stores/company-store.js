@@ -9,7 +9,6 @@ export default class CompanyStore {
   @observable page = 0;
   @observable isActive = null;
   @observable hasRelation = null;
-  // @observable.object options = null;
 
   constructor(initialState, api) {
     const { companyStore } = initialState || {};

@@ -1,7 +1,7 @@
-import CompanyApi from './company-api';
-import {sizePerPage} from "./__mocks__/data/company-api-data";
+import CompanyApi from '../company-api';
+import {sizePerPage} from "../__mocks__/data/company-api-data";
 
-jest.mock('./company-api');
+jest.mock('../company-api');
 
 describe('should fetch companies', () => {
   it('should be ok', async () => {
