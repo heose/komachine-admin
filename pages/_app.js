@@ -23,6 +23,7 @@ class RootApp extends App {
     return (
       <Container>
         <Head>
+          <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet" />
           <title>Komachine Admin</title>
         </Head>
         <Provider store={rootStore}>
@@ -35,6 +36,7 @@ class RootApp extends App {
 
 export default withGlobalStyle({
   style: {
-    fontSize: '20px'
+    fontSize: '20px',
+    fontFamily: 'Nanum Gothic, sans-serif'
   }
 })(withStore(RootApp));

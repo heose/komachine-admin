@@ -8,6 +8,10 @@ const Div = styled.div`
   height: 60px;
 `;
 
+const A = styled.a`
+
+`;
+
 const Header = () => {
   return (
     <Div>
