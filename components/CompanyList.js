@@ -65,14 +65,14 @@ class CompanyList extends React.Component {
           List: {listComponent}
         </div>
         <div>
-          <h3>Table</h3>
-          {tableComponent}
-          <br/>
-        </div>
-        <div>
           <Link href={`/companies?page=1${companyStore.queryString}`}><a>1</a></Link>
           <Link href={`/companies?page=2${companyStore.queryString}`}><a>2</a></Link>
           <Link href={`/companies?page=3${companyStore.queryString}`}><a>3</a></Link>
+        </div>
+        <div>
+          <h3>Table</h3>
+          {tableComponent}
+          <br/>
         </div>
       </div>
     );

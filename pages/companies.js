@@ -22,11 +22,7 @@ class Companies extends React.Component {
   render() {
     return (
       <div>
-        <p>Companies Page</p>
         <CompanyList query={this.props.query} />
-        <Link href="/">
-          <a>home</a>
-        </Link>
       </div>
     );
   }
