@@ -8,17 +8,17 @@ const Div = styled.div`
   height: 60px;
 `;
 
-const A = styled.a`
-
+const HomeLink = styled.a`
+  text-decoration: none;
 `;
 
 const Header = () => {
   return (
     <Div>
-      <Link href="/">
-        <a>
+      <Link href="/" passHref>
+        <HomeLink>
           KOMACHINE
-        </a>
+        </HomeLink>
       </Link>
     </Div>
   )
