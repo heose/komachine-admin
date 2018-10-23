@@ -3,8 +3,14 @@ import Head from 'next/head';
 import React from 'react';
 import { Provider } from 'mobx-react';
 import 'normalize.css';
+import '@fortawesome/fontawesome-free/css/all.css';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
 import withStore from '../lib/with-mobx-store';
 
+
+library.add(fab, faCheckSquare, faCoffee);
 
 class RootApp extends App {
   static async getInitialProps({Component, router, ctx}) {

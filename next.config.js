@@ -9,6 +9,21 @@ module.exports = withCSS({
     const extendAlias = {
       components: path.resolve(__dirname, 'components/')
     };
+
+    config.module.rules.push({
+      test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+      use: [
+        {
+          loader: "file-loader",
+          options: {
+            publicPath: "/_next/static/fonts/",
+            outputPath: "static/fonts/",
+            name: "[name]-[hash].[ext]"
+          }
+        }
+      ]
+    });
+
     config.resolve.alias = { ...config.resolve.alias, ...extendAlias};
     return config;
   }
