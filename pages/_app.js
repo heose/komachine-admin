@@ -4,13 +4,13 @@ import React from 'react';
 import { Provider } from 'mobx-react';
 import 'normalize.css';
 import '@fortawesome/fontawesome-free/css/all.css';
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { library, dom } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faAlignLeft, faLanguage, faCogs, faListAlt, faSitemap } from '@fortawesome/free-solid-svg-icons'
 import withStore from '../lib/with-mobx-store';
 
 
-library.add(fab, faCheckSquare, faCoffee);
+library.add(fab, faAlignLeft, faLanguage, faCogs, faListAlt, faSitemap);
 
 class RootApp extends App {
   static async getInitialProps({Component, router, ctx}) {
@@ -29,6 +29,9 @@ class RootApp extends App {
       <Container>
         <Head>
           <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet" />
+          <style>
+            {dom.css()}
+          </style>
           <title>Komachine Admin</title>
         </Head>
         <Provider store={rootStore}>

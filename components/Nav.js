@@ -17,11 +17,11 @@ const Nav = () => {
   return (
     <Div>
       <NavWrap>
-        <NavItem href="/companies" title="기업" icon={'coffee'} />
-        <NavItem href="/categories" title="카테고리" icon={'coffee'} />
-        <NavItem href="/terms" title="용어" icon={'coffee'} />
-        <NavItem href="/translations" title="번역" icon={'coffee'} />
-        <NavItem href="/settings" title="설정" icon={'coffee'} />
+        <NavItem href="/companies" title="기업" icon={'align-left'} rotation={270} />
+        <NavItem href="/categories" title="카테고리" icon={'sitemap'} />
+        <NavItem href="/terms" title="용어" icon={'list-alt'} />
+        <NavItem href="/translations" title="번역" icon={'language'} />
+        <NavItem href="/settings" title="설정" icon={'cogs'} />
       </NavWrap>
     </Div>
   );

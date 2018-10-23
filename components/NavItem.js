@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Link from 'next/link';
 import { withRouter } from "next/router";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCoffee} from "@fortawesome/free-solid-svg-icons";
 
 
 const A = styled.a`
@@ -12,9 +11,6 @@ const A = styled.a`
   flex-flow: row nowrap;
   align-items: center;
   height: 50px;
-  & > svg {
-    padding-left: 20px;
-  }
   & span {
     color: #ededf0;
     padding-left: 10px;
@@ -40,12 +36,18 @@ const A = styled.a`
     }
   `}
 `;
+const Icon = styled.div`
+  padding-left: 20px;
+  font-size: 1.6rem;
+`;
 
-const NavItem = ({router, href, title, icon}) => {
+const NavItem = ({router, href, title, icon, ...props}) => {
   return (
     <Link href={href} passHref>
       <A active={router.pathname === href}>
-        <FontAwesomeIcon icon={icon} fixedWidth />
+        <Icon>
+          <FontAwesomeIcon icon={icon} fixedWidth {...props}/>
+        </Icon>
         <span>{title}</span>
       </A>
     </Link>
