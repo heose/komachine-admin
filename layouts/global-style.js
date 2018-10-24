@@ -10,9 +10,9 @@ const GlobalStyle = createGlobalStyle`
   body {
     height: 100%;
     overflow: scroll;
-    font-size: 1.4rem;
-    //font-family: Arial, serif;
-    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 1.5rem;
+    font-family: Arial, serif;
+    //font-family: 'Nanum Gothic', sans-serif;
     & > div {
       height: 100%;
     }
@@ -20,7 +20,8 @@ const GlobalStyle = createGlobalStyle`
   
   .fonts-loaded {
     body {
-      font-family: 'Nanum Gothic', serif;
+      font-family: 'Nanum Gothic', sans-serif;
+      font-size: 1.4rem;
     }
   }
   
