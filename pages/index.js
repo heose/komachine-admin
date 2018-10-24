@@ -13,31 +13,13 @@ class Index extends React.Component {
 
   render() {
     return (
-      <div style={{'height': '900px'}}>
+      <div>
         <h1 className="title">
-          Hello World {this.props.title}
+          Komachine Admin Home{this.props.title}
         </h1>
-        <div>
-          Click{' '}
-          <Link href={{pathname: '/about', query: {name: 'Zeit'}}}>
-            <a>here</a>
-          </Link>{' '}
-          to read more
-        </div>
-        <div>
-          <Link prefetch href="/companies" >
-            <a>Companies</a>
-          </Link>
-        </div>
-        <div>
-          <Link scroll={false} href="/?counter=10"><a>Disables scrolling</a></Link>
-        </div>
-        <div>
-          <Link href="/?counter=10"><a>Changes with scrolling to top</a></Link>
-        </div>
-        <div>
-          Click <span onClick={() => Router.push('/about')}>here</span> to read more
-        </div>
+        <h3>
+          May be placing dashboard
+        </h3>
       </div>
     );
   }

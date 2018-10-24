@@ -1,29 +1,12 @@
 import React from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import Header from 'components/Header';
 import Nav from 'components/Nav';
-import Footer from '../components/Footer';
+import Footer from 'components/Footer';
+import NormalizeCSS from './normalize.css';
+import GlobalStyle from './global-style';
+import '../lib/fonts';
 
-
-const GlobalStyle = createGlobalStyle`
-  html {
-    font-size: 62.5%;
-    height: 100%;
-  }
-  body {
-    height: 100%;
-    overflow: scroll;
-    font-size: 1.4rem;
-    font-family: 'Nanum Gothic', sans-serif;
-    & > div {
-      height: 100%;
-    }
-  }
-  a, a:visited, a:hover, a:active {
-    text-decoration: none;
-    color: inherit;
-  }
-`;
 
 const Div = styled.div`
   position: relative;
@@ -50,6 +33,7 @@ const Page = styled.div`
 const DefaultLayout = ({children}) => {
   return (
     <Div>
+      <NormalizeCSS />
       <GlobalStyle />
       <Header />
       <Central>
