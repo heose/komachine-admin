@@ -5,7 +5,6 @@ import Nav from 'components/Nav';
 import Footer from 'components/Footer';
 import NormalizeCSS from './normalize.css';
 import GlobalStyle from './global-style';
-import '../lib/fonts';
 
 
 const Div = styled.div`
@@ -33,16 +32,16 @@ const Page = styled.div`
 const DefaultLayout = ({children}) => {
   return (
     <Div>
-      <NormalizeCSS />
-      <GlobalStyle />
-      <Header />
+      <NormalizeCSS/>
+      <GlobalStyle/>
+      <Header/>
       <Central>
-        <Nav />
+        <Nav/>
         <Page>
           {children}
         </Page>
       </Central>
-      <Footer />
+      <Footer/>
     </Div>
   )
 };

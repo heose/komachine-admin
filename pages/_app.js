@@ -2,8 +2,9 @@ import App, {Container} from 'next/app';
 import Head from 'next/head';
 import React from 'react';
 import { Provider } from 'mobx-react';
-import { dom } from '@fortawesome/fontawesome-svg-core'
+import { dom } from '@fortawesome/fontawesome-svg-core';
 import '../lib/font-awesome';
+import '../lib/fonts';
 import withStore from '../lib/with-mobx-store';
 
 class RootApp extends App {

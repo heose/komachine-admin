@@ -11,17 +11,15 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     overflow: scroll;
     font-size: 1.4rem;
-    font-family: Arial, serif;
-    //font-family: 'Nanum Gothic', sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     & > div {
       height: 100%;
     }
   }
-  
+   
   .fonts-loaded {
     body {
-      font-family: 'Nanum Gothic', sans-serif;
-      //font-size: 1.4rem;
+      font-family: 'Nanum Gothic', Helvetica, Arial, sans-serif;
     }
   }
   
