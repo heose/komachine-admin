@@ -1,6 +1,5 @@
 import React from 'react';
-import CompanyList from '../components/CompanyList';
-import {compose, withProps} from 'recompose';
+import CompanyList from 'components/CompanyList';
 import withLayout from '../lib/with-layout';
 import DefaultLayout from '../layouts/DefaultLayout';
 
@@ -27,5 +26,4 @@ class Companies extends React.Component {
   }
 }
 
-// const enhance = compose(withProps({title: 'aa'}), withLayout(DefaultLayout));
 export default withLayout(DefaultLayout)(Companies);

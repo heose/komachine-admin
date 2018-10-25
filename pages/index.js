@@ -1,9 +1,6 @@
 import React from 'react';
-import Link from 'next/link';
-import Router from 'next/router';
 import withLayout from '../lib/with-layout';
 import DefaultLayout from '../layouts/DefaultLayout';
-import { compose, withProps } from 'recompose';
 
 
 class Index extends React.Component {
@@ -25,5 +22,4 @@ class Index extends React.Component {
   }
 }
 
-const enhance = compose(withProps({}), withLayout(DefaultLayout));
-export default enhance(Index);
+export default withLayout(DefaultLayout)(Index);

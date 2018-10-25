@@ -1,9 +1,9 @@
 import React from 'react';
-import Link from 'next/link'
+import Link from 'components/Link';
 import {inject, observer} from 'mobx-react';
 import CompanyListItem from './CompanyListItem';
-import IsActiveFilter from './IsActiveFilter';
-import HasRelationFilter from "./HasRelationFilter";
+import YesOrNoFilter from './YesOrNoFilter';
+
 
 @inject(({store}) => {
   return {companyStore: store.companyStore};
@@ -37,43 +37,29 @@ class CompanyList extends React.Component {
     ));
     return (
       <div>
-        <IsActiveFilter
-          isActive={companyStore.isActive}
-          queryString={companyStore.queryString}
+        <YesOrNoFilter
+          label={'기업활성화여부'}
           queryMap={companyStore.queryMap}
+          checkKey={'isActive'}
         />
-        <HasRelationFilter
-          hasRelation={companyStore.hasRelation}
-          queryString={companyStore.queryString}
+        <YesOrNoFilter
+          label={'기업연동여부'}
+          queryMap={companyStore.queryMap}
+          checkKey={'hasRelation'}
         />
         <div>
-          isActive: {companyStore.isActive}
+          {listComponent}
         </div>
         <div>
-          hasRelation: {companyStore.hasRelation}
+          <Link href={`?page=1${companyStore.queryString}`}>1</Link>
+          <Link href={`?page=2${companyStore.queryString}`}>2</Link>
+          <Link href={`?page=3${companyStore.queryString}`}>3</Link>
         </div>
-        <div>
-          queryString: {companyStore.queryString}
-        </div>
-        <div>
-          {companyStore.state}
-        </div>
-        <div>
-          Page: {companyStore.page}
-        </div>
-        <div>
-          List: {listComponent}
-        </div>
-        <div>
-          <Link href={`/companies?page=1${companyStore.queryString}`}><a>1</a></Link>
-          <Link href={`/companies?page=2${companyStore.queryString}`}><a>2</a></Link>
-          <Link href={`/companies?page=3${companyStore.queryString}`}><a>3</a></Link>
-        </div>
-        <div>
-          <h3>Table</h3>
-          {tableComponent}
-          <br/>
-        </div>
+        {/*<div>*/}
+          {/*<h3>Table</h3>*/}
+          {/*{tableComponent}*/}
+          {/*<br/>*/}
+        {/*</div>*/}
       </div>
     );
   }
