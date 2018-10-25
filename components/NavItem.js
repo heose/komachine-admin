@@ -39,6 +39,7 @@ const A = styled.a`
 const Icon = styled.div`
   padding-left: 20px;
   font-size: 1.6rem;
+  color: #ededf0;
 `;
 
 const NavItem = ({router, href, title, icon, ...props}) => {

@@ -48,7 +48,7 @@ const YesOrNoFilter = ({
     <Div>
       <Title>{title}</Title>
       <Filters>
-        <Link href={`?${getQueryStr()}`} active={isAll ? 1 : 0} component={Button}>모두</Link>
+        <Link href={`?${getQueryStr()}`} active={isAll} component={Button}>모두</Link>
         <Link href={`?${getQueryStr(yes)}`} active={String(value) === String(yes) ? 1 : 0} component={Button}>네</Link>
         <Link href={`?${getQueryStr(no)}`} active={String(value) === String(no) ? 1 : 0} component={Button}>아니오</Link>
       </Filters>

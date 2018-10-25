@@ -28,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
   
   a, a:visited, a:hover, a:active {
     text-decoration: none;
-    color: inherit;
+    //color: inherit;
   }
   
 `;
