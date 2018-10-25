@@ -7,6 +7,7 @@ import '../lib/font-awesome';
 import '../lib/fonts';
 import withStore from '../lib/with-mobx-store';
 
+
 class RootApp extends App {
   static async getInitialProps({Component, router, ctx}) {
     let pageProps = {};
