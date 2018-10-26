@@ -41,14 +41,11 @@ const YesOrNoFilter = ({
     return generateQueryStr(updatedMap);
   };
   const title = label ? <Span>{label}</Span> : {};
-  // const filters = [isAll, yes, no].map(v => (
-  //   <Link href={`?${getQueryStr(v)}`} active={String(value) === String(v)}>네</Link>
-  // ));
   return (
     <Div>
       <Title>{title}</Title>
       <Filters>
-        <Link href={`?${getQueryStr()}`} active={isAll} component={Button}>모두</Link>
+        <Link href={`?${getQueryStr()}`} active={isAll} component={Button} as={'a'}>모두</Link>
         <Link href={`?${getQueryStr(yes)}`} active={String(value) === String(yes) ? 1 : 0} component={Button}>네</Link>
         <Link href={`?${getQueryStr(no)}`} active={String(value) === String(no) ? 1 : 0} component={Button}>아니오</Link>
       </Filters>
