@@ -2,10 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const Button = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const Button = styled.button`
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 3.9rem;
+  text-align: center;
   border: 1px solid #029688;
   background-color: white;
   color: #029688;
@@ -24,4 +25,6 @@ const Button = styled.button`
   `}
 `;
 
-export default Button;
+export const SquareButton = styled(Button)`
+  border-radius: 0;
+`;

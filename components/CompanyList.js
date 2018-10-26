@@ -3,6 +3,7 @@ import Link from 'components/Link';
 import {inject, observer} from 'mobx-react';
 import CompanyListItem from './CompanyListItem';
 import YesOrNoFilter from './YesOrNoFilter';
+import {SquareButton} from './form/button/Button';
 
 
 @inject(({store}) => {
@@ -51,9 +52,9 @@ class CompanyList extends React.Component {
           {listComponent}
         </div>
         <div>
-          <Link href={`?page=1${companyStore.queryString}`}>1</Link>
-          <Link href={`?page=2${companyStore.queryString}`}>2</Link>
-          <Link href={`?page=3${companyStore.queryString}`}>3</Link>
+          <Link href={`?page=1${companyStore.queryString}`} component={SquareButton} as={'a'}>1</Link>
+          <Link href={`?page=2${companyStore.queryString}`} component={SquareButton} as={'a'}>2</Link>
+          <Link href={`?page=3${companyStore.queryString}`} component={SquareButton} as={'a'}>3</Link>
         </div>
         {/*<div>*/}
           {/*<h3>Table</h3>*/}
