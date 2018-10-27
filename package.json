@@ -24,10 +24,12 @@
     "mobx-react": "^5.2.8",
     "next": "^7.0.1",
     "normalize.css": "^8.0.0",
+    "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "recompose": "^0.30.0",
-    "styled-components": "^4.0.2"
+    "styled-components": "^4.0.2",
+    "styled-theming": "^2.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

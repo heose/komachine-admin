@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {ThemeProvider} from 'styled-components';
 import Link from 'components/Link';
 import generateQueryStr from '../utils/query-string-generator';
 import {Button} from 'components/form/button/Button';
@@ -27,27 +27,29 @@ const Filters = styled.div`
   //flex-flow: row nowrap;
 `;
 
-const YesOrNoFilter = ({
-  label,
-  yes = '1',
-  no = '0',
-  queryMap = {},
-  checkKey = '',
-}) => {
+const YesOrNoFilter = ({label, yes = '1', no = '0', queryMap = {}, checkKey = ''}) => {
   const value = queryMap[checkKey] || null;
-  const isAll = value !== yes && value !== no;
-  const getQueryStr = (toBe) => {
+  const getQueryStr = toBe => {
     const updatedMap = {...queryMap, ...{[checkKey]: toBe, page: 1}};
     return generateQueryStr(updatedMap);
   };
+  const valueStrings = {null: '모두', 1: '네', 0: '아니오'};
   const title = label ? <Span>{label}</Span> : {};
+  const filters = [null, yes, no].map(v => {
+    const isActive = String(v) === String(value);
+    const href = `?${getQueryStr(v)}`;
+    const theme = {shape: 'round', size: 'medium'};
+    return (
+      <Link key={v} href={href} active={isActive} component={Button} as={'a'} theme={theme}>
+        {valueStrings[v]}
+      </Link>
+    )
+  });
   return (
     <Div>
       <Title>{title}</Title>
       <Filters>
-        <Link href={`?${getQueryStr()}`} active={isAll} component={Button} as={'a'}>모두</Link>
-        <Link href={`?${getQueryStr(yes)}`} active={String(value) === String(yes) ? 1 : 0} component={Button} as={'a'}>네</Link>
-        <Link href={`?${getQueryStr(no)}`} active={String(value) === String(no) ? 1 : 0} component={Button} as={'a'}>아니오</Link>
+        {filters}
       </Filters>
     </Div>
   );

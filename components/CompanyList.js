@@ -27,7 +27,9 @@ class CompanyList extends React.Component {
 
   render() {
     const {query, companyStore} = this.props;
-    const {list, table} = companyStore;
+    const {list, table, page} = companyStore;
+    const prevPage = Number(page) - 1 || 1;
+    const nextPage = Number(page) + 1;
     const listComponent = list.map(id => (
       <CompanyListItem key={id} {...table[id]} />
     ));
@@ -52,9 +54,22 @@ class CompanyList extends React.Component {
           {listComponent}
         </div>
         <div>
-          <Link href={`?page=1${companyStore.queryString}`} component={SquareButton} as={'a'}>1</Link>
-          <Link href={`?page=2${companyStore.queryString}`} component={SquareButton} as={'a'}>2</Link>
-          <Link href={`?page=3${companyStore.queryString}`} component={SquareButton} as={'a'}>3</Link>
+          <Link
+            href={`?page=${prevPage}${companyStore.queryString}`}
+            component={SquareButton}
+            as={'a'}
+            theme={{size: 'small', shape: 'square'}}
+          >
+            이전
+          </Link>
+          <Link
+            href={`?page=${nextPage}${companyStore.queryString}`}
+            component={SquareButton}
+            as={'a'}
+            theme={{size: 'small', shape: 'square'}}
+          >
+            다음
+          </Link>
         </div>
         {/*<div>*/}
           {/*<h3>Table</h3>*/}
