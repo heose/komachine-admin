@@ -38,7 +38,7 @@ const YesOrNoFilter = ({label, yes = '1', no = '0', queryMap = {}, checkKey = ''
   const filters = [null, yes, no].map(v => {
     const isActive = String(v) === String(value);
     const href = `?${getQueryStr(v)}`;
-    const theme = {shape: 'round', size: 'medium'};
+    const theme = {...Button.defaultProps.theme, shape: 'round'};
     return (
       <Link key={v} href={href} active={isActive} component={Button} as={'a'} theme={theme}>
         {valueStrings[v]}

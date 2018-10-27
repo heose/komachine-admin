@@ -7,6 +7,8 @@ export default class CompanyStore {
   @observable list = [];
   @observable state = '';
   @observable page = 0;
+  @observable hasPrev = false;
+  @observable hasNext = false;
   @observable isActive = null;
   @observable hasRelation = null;
 
@@ -47,6 +49,9 @@ export default class CompanyStore {
     this.list = data.result.list;
     this.state = 'complete';
     this.page = data.result.page || 1;
+    this.hasPrev = data.result.hasPrev;
+    this.hasNext = data.result.hasNext;
+    console.log('this.hasNext', this.hasNext);
     this.isActive = data.result.isActive || null;
     this.hasRelation = data.result.hasRelation || null;
   }

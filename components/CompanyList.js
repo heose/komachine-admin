@@ -3,7 +3,7 @@ import Link from 'components/Link';
 import {inject, observer} from 'mobx-react';
 import CompanyListItem from './CompanyListItem';
 import YesOrNoFilter from './YesOrNoFilter';
-import {SquareButton} from './form/button/Button';
+import {Button} from './form/button/Button';
 
 
 @inject(({store}) => {
@@ -27,9 +27,15 @@ class CompanyList extends React.Component {
 
   render() {
     const {query, companyStore} = this.props;
-    const {list, table, page} = companyStore;
-    const prevPage = Number(page) - 1 || 1;
-    const nextPage = Number(page) + 1;
+    const {list, table, page, hasPrev, hasNext} = companyStore;
+    console.log('0', hasNext);
+    const prevEnabled = hasPrev ? 'enabled' : 'disabled';
+    const nextEnabled = hasNext ? 'enabled' : 'disabled';
+    console.log('prev', prevEnabled);
+    console.log('next', nextEnabled);
+    const prevPage = hasPrev ? Number(page) - 1 : Number(page);
+    const nextPage = hasNext ? Number(page) + 1 : Number(page);
+    console.log('1', hasNext);
     const listComponent = list.map(id => (
       <CompanyListItem key={id} {...table[id]} />
     ));
@@ -55,18 +61,20 @@ class CompanyList extends React.Component {
         </div>
         <div>
           <Link
+            enabled={prevEnabled}
             href={`?page=${prevPage}${companyStore.queryString}`}
-            component={SquareButton}
+            component={Button}
             as={'a'}
-            theme={{size: 'small', shape: 'square'}}
+            theme={{size: 'small', shape: 'square', enabled: prevEnabled}}
           >
             이전
           </Link>
           <Link
-            href={`?page=${nextPage}${companyStore.queryString}`}
-            component={SquareButton}
+            enabled={nextEnabled}
+            href={`?page=${nextPage}${companyStore.queryString}`}u
+            component={Button}
             as={'a'}
-            theme={{size: 'small', shape: 'square'}}
+            theme={{size: 'small', shape: 'square', enabled: nextEnabled}}
           >
             다음
           </Link>

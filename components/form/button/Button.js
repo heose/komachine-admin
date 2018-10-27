@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import styled, {css} from 'styled-components';
 import theme from 'styled-theming';
 
@@ -14,6 +13,21 @@ const size = theme('size', {
   small: '50px',
   medium: '100px',
   large: '150px',
+});
+
+const enabled = theme('enabled', {
+  enabled: css``,
+  disabled: css`
+    background-color: gray;
+    border-color: gray;
+    color: white;
+    cursor: not-allowed;
+    opacity: 0.5;
+    &:hover {
+      color: white;
+      background-color: gray;
+    }
+  `
 });
 
 export const Button = styled.button`
@@ -37,6 +51,7 @@ export const Button = styled.button`
     color: white;
     background-color: #029688;
   `}
+  ${enabled}
 `;
 
 Button.propTypes = {
