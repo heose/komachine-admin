@@ -67,7 +67,7 @@ class CompanyList extends React.Component {
           </Link>
           <Link
             enabled={nextEnabled}
-            href={`?page=${nextPage}${companyStore.queryString}`}u
+            href={`?page=${nextPage}${companyStore.queryString}`}
             component={Button}
             as={'a'}
             theme={{size: 'small', shape: 'square', enabled: nextEnabled}}
