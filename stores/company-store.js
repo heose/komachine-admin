@@ -24,6 +24,8 @@ export default class CompanyStore {
       this.list = companyStore.list;
       this.state = companyStore.state;
       this.page = companyStore.page;
+      this.hasPrev = companyStore.hasPrev;
+      this.hasNext = companyStore.hasNext;
       this.isActive = companyStore.isActive;
       this.hasRelation = companyStore.hasRelation;
     }
@@ -51,7 +53,6 @@ export default class CompanyStore {
     this.page = data.result.page || 1;
     this.hasPrev = data.result.hasPrev;
     this.hasNext = data.result.hasNext;
-    console.log('this.hasNext', this.hasNext);
     this.isActive = data.result.isActive || null;
     this.hasRelation = data.result.hasRelation || null;
   }

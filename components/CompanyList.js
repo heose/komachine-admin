@@ -28,14 +28,10 @@ class CompanyList extends React.Component {
   render() {
     const {query, companyStore} = this.props;
     const {list, table, page, hasPrev, hasNext} = companyStore;
-    console.log('0', hasNext);
     const prevEnabled = hasPrev ? 'enabled' : 'disabled';
     const nextEnabled = hasNext ? 'enabled' : 'disabled';
-    console.log('prev', prevEnabled);
-    console.log('next', nextEnabled);
     const prevPage = hasPrev ? Number(page) - 1 : Number(page);
     const nextPage = hasNext ? Number(page) + 1 : Number(page);
-    console.log('1', hasNext);
     const listComponent = list.map(id => (
       <CompanyListItem key={id} {...table[id]} />
     ));
