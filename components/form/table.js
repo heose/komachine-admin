@@ -44,7 +44,6 @@ const Cell = styled.div`
   vertical-align: middle;
   text-align: ${({align}) => align || 'center'};
   width: ${({width}) => width};
-  color: ${({color}) => color || 'black'};
 `;
 
 const Footer = styled.div`
