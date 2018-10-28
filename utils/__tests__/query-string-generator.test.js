@@ -2,9 +2,17 @@ import generateQueryStr, {toMapFromQueryStr, excludeQueryStr, updateQueryStr} fr
 
 
 describe('generate query string test', () => {
+  it('empty', () => {
+    const genrated = generateQueryStr({});
+    expect(genrated).toBe('');
+  });
   it('valid', () => {
     const genrated = generateQueryStr({page: 1, b: 'B'});
     expect(genrated).toBe('page=1&b=B');
+  });
+  it('invalid', () => {
+    const genrated = generateQueryStr({page:null, b: 'B'});
+    expect(genrated).toBe('b=B');
   });
   it('should be ok', () => {
     const genrated = generateQueryStr({page: undefined, b: 'B', c: null});

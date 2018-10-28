@@ -25,6 +25,8 @@ const makeResult = ({ page = 1, isActive, hasRelation }) => {
   });
   const start = (page - 1) * sizePerPage;
   const end = start + sizePerPage;
+  const hasPrev = page > 1;
+  const hasNext = Object.keys(companies).length >= end;
   let table = {};
   let list = [];
   Object.keys(validData).slice(start, end).forEach(id => {
@@ -38,7 +40,7 @@ const makeResult = ({ page = 1, isActive, hasRelation }) => {
   if (validFilterValue.hasRelation.includes(hasRelation)) {
     validFilter['hasRelation'] = hasRelation;
   }
-  const result = {table, list, page, ...validFilter};
+  const result = {table, list, page, hasPrev, hasNext, ...validFilter};
   return { result }
 };
 

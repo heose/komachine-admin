@@ -47,7 +47,7 @@ const NavItem = ({router, href, title, icon, ...props}) => {
     <Link href={href} passHref>
       <A active={router.pathname === href}>
         <Icon>
-          <FontAwesomeIcon icon={icon} fixedWidth {...props}/>
+          <FontAwesomeIcon icon={icon} fixedWidth {...props} />
         </Icon>
         <span>{title}</span>
       </A>

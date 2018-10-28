@@ -5,6 +5,7 @@ import NavItem from 'components/NavItem';
 
 const Div = styled.div`
   width: 200px;
+  min-width: 200px;
   background-color: #43425d;
   color: #ededf0;
 `;

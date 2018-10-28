@@ -21,10 +21,11 @@ const Central = styled.div`
   flex-flow: row nowrap;
   flex: 1 0 auto;
   min-height: 500px;
+  overflow: scroll;
 `;
 
 const Page = styled.div`
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   background-color: #f0f0f7;
   padding: 10px 0 20px 20px;
 `;

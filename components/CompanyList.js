@@ -3,6 +3,8 @@ import Link from 'components/Link';
 import {inject, observer} from 'mobx-react';
 import CompanyListItem from './CompanyListItem';
 import YesOrNoFilter from './YesOrNoFilter';
+import Table from 'components/form/table';
+
 import {Button} from './form/button/Button';
 
 
@@ -52,9 +54,7 @@ class CompanyList extends React.Component {
           queryMap={companyStore.queryMap}
           checkKey={'hasRelation'}
         />
-        <div>
-          {listComponent}
-        </div>
+        <Table list={list} table={table} />
         <div>
           <Link
             enabled={prevEnabled}
@@ -75,11 +75,6 @@ class CompanyList extends React.Component {
             다음
           </Link>
         </div>
-        {/*<div>*/}
-          {/*<h3>Table</h3>*/}
-          {/*{tableComponent}*/}
-          {/*<br/>*/}
-        {/*</div>*/}
       </div>
     );
   }

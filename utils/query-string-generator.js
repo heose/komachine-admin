@@ -1,8 +1,7 @@
 const generateQueryStr = (paramMap) => {
   return Object.keys(paramMap).reduce((accum, key, index) => {
     if (paramMap[key]) {
-      const value = paramMap[key] || '';
-      accum.push(`${key}=${value}`);
+      accum.push(`${key}=${paramMap[key]}`);
     }
     return accum;
   }, []).join('&');
