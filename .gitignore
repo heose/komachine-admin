@@ -4,6 +4,7 @@ node_*/*
 *.log
 .DS_Store
 **/__snapshots__/**
+coverage/*
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
