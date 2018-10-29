@@ -7,7 +7,7 @@ import NormalizeCSS from './normalize.css';
 import GlobalStyle from './global-style';
 
 
-const Div = styled.div`
+export const Div = styled.div`
   position: relative;
   display: flex;
   flex-flow: column nowrap;
@@ -16,7 +16,7 @@ const Div = styled.div`
   height: auto;
 `;
 
-const Central = styled.div`
+export const Central = styled.div`
   display: flex;
   flex-flow: row nowrap;
   flex: 1 0 auto;
@@ -24,7 +24,7 @@ const Central = styled.div`
   overflow: scroll;
 `;
 
-const Page = styled.div`
+export const Page = styled.div`
   flex: 1 1 auto;
   background-color: #f0f0f7;
   padding: 10px 0 20px 20px;

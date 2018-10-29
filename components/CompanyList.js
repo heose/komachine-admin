@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'components/Link';
 import {inject, observer} from 'mobx-react';
-import CompanyListItem from './CompanyListItem';
 import YesOrNoFilter from './YesOrNoFilter';
 import Table from 'components/form/table';
 
@@ -16,27 +15,15 @@ class CompanyList extends React.Component {
 
   constructor(props) {
     super(props);
-    this.handleClickPage = this.handleClickPage.bind(this);
   }
-
-  componentDidMount() {
-  }
-
-  handleClickPage = (page) => {
-    const {companyStore} = this.props;
-    companyStore.fetchCompanies({page});
-  };
 
   render() {
     const {query, companyStore} = this.props;
-    const {list, table, page, hasPrev, hasNext} = companyStore;
+    const {list, table, page, hasPrev, hasNext, queryMap} = companyStore;
     const prevEnabled = hasPrev ? 'enabled' : 'disabled';
     const nextEnabled = hasNext ? 'enabled' : 'disabled';
     const prevPage = hasPrev ? Number(page) - 1 : Number(page);
     const nextPage = hasNext ? Number(page) + 1 : Number(page);
-    const listComponent = list.map(id => (
-      <CompanyListItem key={id} {...table[id]} />
-    ));
     const tableComponent = Object.keys(table).map((key) => (
       <div key={key}>
         {key}, {table[key].slug}
@@ -46,12 +33,12 @@ class CompanyList extends React.Component {
       <div>
         <YesOrNoFilter
           label={'기업활성화여부'}
-          queryMap={companyStore.queryMap}
+          queryMap={queryMap}
           checkKey={'isActive'}
         />
         <YesOrNoFilter
           label={'기업연동여부'}
-          queryMap={companyStore.queryMap}
+          queryMap={queryMap}
           checkKey={'hasRelation'}
         />
         <Table list={list} table={table} />

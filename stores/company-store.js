@@ -6,7 +6,7 @@ export default class CompanyStore {
   @observable table = {};
   @observable list = [];
   @observable state = '';
-  @observable page = 0;
+  @observable page = '1';
   @observable hasPrev = false;
   @observable hasNext = false;
   @observable isActive = null;
@@ -15,10 +15,6 @@ export default class CompanyStore {
   constructor(initialState, api) {
     const { companyStore } = initialState || {};
     this.api = api;
-    this.options = observable.map({
-      isActive: null,
-      hasRelation: null,
-    });
     if (companyStore) {
       this.table = companyStore.table;
       this.list = companyStore.list;
@@ -29,12 +25,6 @@ export default class CompanyStore {
       this.isActive = companyStore.isActive;
       this.hasRelation = companyStore.hasRelation;
     }
-  }
-
-  @action
-  setFilter({isActive = null, hasRelation = null}) {
-    this.isActive = isActive;
-    this.hasRelation = hasRelation;
   }
 
   @action
@@ -50,7 +40,7 @@ export default class CompanyStore {
     this.table = {...this.table, ...data.result.table};
     this.list = data.result.list;
     this.state = 'complete';
-    this.page = data.result.page || 1;
+    this.page = data.result.page;
     this.hasPrev = data.result.hasPrev;
     this.hasNext = data.result.hasNext;
     this.isActive = data.result.isActive || null;

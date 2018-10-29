@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, {ThemeProvider} from 'styled-components';
+import PropTypes from 'prop-types';
 import Link from 'components/Link';
 import generateQueryStr from '../utils/query-string-generator';
 import {Button} from 'components/form/button/Button';
@@ -27,14 +28,12 @@ const Filters = styled.div`
   //flex-flow: row nowrap;
 `;
 
-const YesOrNoFilter = ({label, yes = '1', no = '0', queryMap = {}, checkKey = ''}) => {
+const YesOrNoFilter = ({label, yes, no, queryMap, checkKey, valueStrings}) => {
   const value = queryMap[checkKey] || null;
   const getQueryStr = toBe => {
-    const updatedMap = {...queryMap, ...{[checkKey]: toBe, page: 1}};
+    const updatedMap = {...queryMap, ...{[checkKey]: toBe, page: '1'}};
     return generateQueryStr(updatedMap);
   };
-  const valueStrings = {null: '모두', 1: '네', 0: '아니오'};
-  const title = label ? <Span>{label}</Span> : {};
   const filters = [null, yes, no].map(v => {
     const isActive = String(v) === String(value);
     const href = `?${getQueryStr(v)}`;
@@ -43,16 +42,34 @@ const YesOrNoFilter = ({label, yes = '1', no = '0', queryMap = {}, checkKey = ''
       <Link key={v} href={href} active={isActive} component={Button} as={'a'} theme={theme}>
         {valueStrings[v]}
       </Link>
-    )
+    );
   });
   return (
     <Div>
-      <Title>{title}</Title>
+      <Title><Span>{label}</Span></Title>
       <Filters>
         {filters}
       </Filters>
     </Div>
   );
+};
+
+YesOrNoFilter.propTypes = {
+  label: PropTypes.string,
+  yes: PropTypes.string,
+  no: PropTypes.string,
+  queryMap: PropTypes.objectOf(PropTypes.any),
+  checkKey: PropTypes.string,
+  valueStrings: PropTypes.objectOf(PropTypes.string),
+};
+
+YesOrNoFilter.defaultProps = {
+  label: '',
+  yes: '1',
+  no: '0',
+  queryMap: {},
+  checkKey: '',
+  valueStrings: {null: '모두', 1: '네', 0: '아니오'},
 };
 
 export default YesOrNoFilter;

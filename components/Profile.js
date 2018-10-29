@@ -15,7 +15,7 @@ const Div = styled.div`
 const Profile = () => {
   return (
     <Div>
-      UserName
+      Name
     </Div>
   )
 };

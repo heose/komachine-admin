@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import CompanyListItem from '../CompanyListItem';
 import Logo from '../Logo';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
