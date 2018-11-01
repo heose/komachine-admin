@@ -1,8 +1,7 @@
 import React from 'react';
 
-
 export default class About extends React.Component {
-  static async getInitialProps({req, res, pathname, query}) {
+  static async getInitialProps() {
     console.log('About page');
   }
 

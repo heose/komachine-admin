@@ -1,23 +1,23 @@
-import Document, {Head, Main, NextScript} from 'next/document';
-import {ServerStyleSheet} from 'styled-components';
+/* eslint-disable jsx-a11y/html-has-lang */
+import React from 'react';
+import Document, { Head, Main, NextScript } from 'next/document';
+import { ServerStyleSheet } from 'styled-components';
 
 export default class extends Document {
-  static getInitialProps({renderPage}) {
+  static getInitialProps({ renderPage }) {
     const sheet = new ServerStyleSheet();
     const page = renderPage(App => props => sheet.collectStyles(<App {...props} />));
     const styleTags = sheet.getStyleElement();
-    return {...page, styleTags};
+    return { ...page, styleTags };
   }
 
   render() {
     return (
       <html>
-        <Head>
-          {this.props.styleTags}
-        </Head>
+        <Head>{this.props.styleTags}</Head>
         <body>
-          <Main/>
-          <NextScript/>
+          <Main />
+          <NextScript />
         </body>
       </html>
     );

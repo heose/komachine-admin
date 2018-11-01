@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
 const Div = styled.div`
   display: flex;
   align-items: center;
@@ -13,11 +12,7 @@ const Div = styled.div`
 `;
 
 const Profile = () => {
-  return (
-    <Div>
-      Name
-    </Div>
-  )
+  return <Div>Name</Div>;
 };
 
 export default Profile;

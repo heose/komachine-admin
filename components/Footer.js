@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
 const Div = styled.div`
   flex: 0 0 auto;
   display: flex;
@@ -13,11 +12,7 @@ const Div = styled.div`
 `;
 
 const Footer = () => {
-  return (
-    <Div>
-      Footer
-    </Div>
-  )
+  return <Div>Footer</Div>;
 };
 
 export default Footer;

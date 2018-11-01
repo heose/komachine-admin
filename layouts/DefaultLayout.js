@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Header from 'components/Header';
 import Nav from 'components/Nav';
 import Footer from 'components/Footer';
 import NormalizeCSS from './normalize.css';
 import GlobalStyle from './global-style';
-
 
 export const Div = styled.div`
   position: relative;
@@ -30,21 +30,30 @@ export const Page = styled.div`
   padding: 10px 0 20px 20px;
 `;
 
-const DefaultLayout = ({children}) => {
+const DefaultLayout = ({ children }) => {
   return (
     <Div>
-      <NormalizeCSS/>
-      <GlobalStyle/>
-      <Header/>
+      <NormalizeCSS />
+      <GlobalStyle />
+      <Header />
       <Central>
-        <Nav/>
-        <Page>
-          {children}
-        </Page>
+        <Nav />
+        <Page>{children}</Page>
       </Central>
-      <Footer/>
+      <Footer />
     </Div>
-  )
+  );
+};
+
+DefaultLayout.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ])
+};
+
+DefaultLayout.defaultProps = {
+  children: null,
 };
 
 export default DefaultLayout;

@@ -1,11 +1,9 @@
 import React from 'react';
-import {shallow} from 'enzyme';
-import DefaultLayout, {Div, Central, Page} from '../DefaultLayout';
+import { shallow } from 'enzyme';
 import Nav from 'components/Nav';
-
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-
+import DefaultLayout, { Div, Central, Page } from '../DefaultLayout';
 
 describe('defaultLayout test', () => {
   it('should have default area', () => {

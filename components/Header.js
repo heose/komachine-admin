@@ -38,7 +38,7 @@ const Header = () => {
       <ViewType />
       <Profile />
     </Div>
-  )
+  );
 };
 
 export default Header;

@@ -48,7 +48,7 @@ export default class CompanyStore {
   }
 
   @action.bound
-  fetchCompaniesError(error) {
+  fetchCompaniesError() {
     this.state = 'error';
   }
 
