@@ -1,6 +1,7 @@
 node_*/*
 .idea/*
 .next/*
+.vscode/*
 *.log
 .DS_Store
 **/__snapshots__/**

@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Logo from '../Logo';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-
 
 const Table = styled.div`
   display: table;
@@ -40,22 +39,24 @@ const Row = styled.div`
 const Cell = styled.div`
   display: table-cell;
   vertical-align: middle;
-  text-align: ${({align}) => align || 'center'};
-  width: ${({width}) => width};
+  text-align: ${({ align }) => align || 'center'};
+  width: ${({ width }) => width};
 `;
 
 const Footer = styled.div`
   display: table-footer-group;
 `;
 
-const CompanyListTable = ({table, list}) => {
+const CompanyListTable = ({ table, list }) => {
   const listComponent = list.map(id => (
     <Row key={id}>
       <Cell>{table[id].title}</Cell>
-      <Cell><Logo src={table[id].logo} height="30px" /></Cell>
       <Cell>
-        <a href={table[id].homepage} target="_blank" style={{color: 'black'}}>
-          <FontAwesomeIcon icon={'home'} fixedWidth />
+        <Logo src={table[id].logo} height="30px" />
+      </Cell>
+      <Cell>
+        <a href={table[id].homepage} target="_blank" rel="noopener noreferrer" style={{ color: 'black' }}>
+          <FontAwesomeIcon icon="home" fixedWidth />
         </a>
       </Cell>
       <Cell>{table[id].isActive}</Cell>
@@ -77,12 +78,10 @@ const CompanyListTable = ({table, list}) => {
           <Cell width="15%">등록일</Cell>
         </Row>
       </Header>
-      <Body>
-      {listComponent}
-      </Body>
+      <Body>{listComponent}</Body>
+      <Footer />
     </Table>
   );
 };
 
 export default CompanyListTable;
-
