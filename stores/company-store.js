@@ -1,16 +1,23 @@
-import {action, observable, computed} from 'mobx';
+import { action, observable, computed } from 'mobx';
 import CompanyApi from '../apis/company-api';
 
-
 export default class CompanyStore {
-  @observable table = {};
-  @observable list = [];
-  @observable state = '';
-  @observable page = '1';
-  @observable hasPrev = false;
-  @observable hasNext = false;
-  @observable isActive = null;
-  @observable hasRelation = null;
+  @observable
+  table = {};
+  @observable
+  list = [];
+  @observable
+  state = '';
+  @observable
+  page = '1';
+  @observable
+  hasPrev = false;
+  @observable
+  hasNext = false;
+  @observable
+  isActive = null;
+  @observable
+  hasRelation = null;
 
   constructor(initialState, api) {
     const { companyStore } = initialState || {};
@@ -30,14 +37,15 @@ export default class CompanyStore {
   @action
   async fetchCompanies(query) {
     this.state = 'pending';
-    await this.api.fetchCompanies(query)
-      .then(({data}) => this.fetchCompaniesSuccess(data))
-      .catch(this.fetchCompaniesError)
+    await this.api
+      .fetchCompanies(query)
+      .then(({ data }) => this.fetchCompaniesSuccess(data))
+      .catch(this.fetchCompaniesError);
   }
 
   @action.bound
   fetchCompaniesSuccess(data) {
-    this.table = {...this.table, ...data.result.table};
+    this.table = { ...this.table, ...data.result.table };
     this.list = data.result.list;
     this.state = 'complete';
     this.page = data.result.page;
@@ -54,8 +62,8 @@ export default class CompanyStore {
 
   @computed
   get queryMap() {
-    const {isActive, hasRelation, page} = this;
-    return {isActive, hasRelation, page};
+    const { isActive, hasRelation, page } = this;
+    return { isActive, hasRelation, page };
   }
 
   @computed
