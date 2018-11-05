@@ -27,18 +27,16 @@ const HomeLink = styled.a`
   }
 `;
 
-const Header = () => {
-  return (
-    <Div>
-      <Link href="/" passHref>
-        <HomeLink>
-          <span>KOMACHINE</span>
-        </HomeLink>
-      </Link>
-      <ViewType />
-      <Profile />
-    </Div>
-  );
-};
+const Header = () => (
+  <Div>
+    <Link href="/" passHref>
+      <HomeLink>
+        <span>KOMACHINE</span>
+      </HomeLink>
+    </Link>
+    <ViewType />
+    <Profile />
+  </Div>
+);
 
 export default Header;

@@ -30,26 +30,21 @@ export const Page = styled.div`
   padding: 10px 0 20px 20px;
 `;
 
-const DefaultLayout = ({ children }) => {
-  return (
-    <Div>
-      <NormalizeCSS />
-      <GlobalStyle />
-      <Header />
-      <Central>
-        <Nav />
-        <Page>{children}</Page>
-      </Central>
-      <Footer />
-    </Div>
-  );
-};
+const DefaultLayout = ({ children }) => (
+  <Div>
+    <NormalizeCSS />
+    <GlobalStyle />
+    <Header />
+    <Central>
+      <Nav />
+      <Page>{children}</Page>
+    </Central>
+    <Footer />
+  </Div>
+);
 
 DefaultLayout.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ])
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 };
 
 DefaultLayout.defaultProps = {

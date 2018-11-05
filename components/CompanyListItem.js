@@ -8,6 +8,8 @@ const Div = styled.div`
 `;
 const CompanyListItem = ({ id, title, logo, homepage, isActive, hasRelation, productCount }) => {
   console.log('asdf');
+  console.log('aa');
+  console.log('qq');
   return (
     <Div>
       id : {id}
@@ -26,9 +28,9 @@ CompanyListItem.propTypes = {
   title: PropTypes.string.isRequired,
   logo: PropTypes.string.isRequired,
   homepage: PropTypes.string.isRequired,
-  isActive: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
-  hasRelation: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
-  productCount: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
+  isActive: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  hasRelation: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  productCount: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 CompanyListItem.defaultProps = {
   id: '',

@@ -11,8 +11,6 @@ const Div = styled.div`
   color: darkblue;
 `;
 
-const Footer = () => {
-  return <Div>Footer</Div>;
-};
+const Footer = () => <Div>Footer</Div>;
 
 export default Footer;

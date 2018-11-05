@@ -17,14 +17,13 @@ class CompanyList extends React.Component {
     const nextEnabled = hasNext ? 'enabled' : 'disabled';
     const prevPage = hasPrev ? Number(page) - 1 : Number(page);
     const nextPage = hasNext ? Number(page) + 1 : Number(page);
-    const companyListItem = list.map(id => <CompanyListItem {...table[id]} />);
+    const companyListItem = list.map(id => <CompanyListItem key={id} {...table[id]} />);
     return (
       <div>
-        <YesOrNoFilter label="기업활성화여부1" queryMap={queryMap} checkKey="isActive" />
+        <YesOrNoFilter label="기업활성화여부" queryMap={queryMap} checkKey="isActive" />
         <YesOrNoFilter label="기업연동여부" queryMap={queryMap} checkKey="hasRelation" />
         {companyListItem}
         <Table list={list} table={table} />
-
         <div>
           <Link
             enabled={prevEnabled}
