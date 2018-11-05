@@ -4,4 +4,5 @@ module.exports = {
   moduleNameMapper: {
     'components/(.*)': '<rootDir>/components/$1',
   },
+  collectCoverage: true,
 };

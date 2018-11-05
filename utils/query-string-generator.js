@@ -1,11 +1,12 @@
-const generateQueryStr = (paramMap) => {
-  return Object.keys(paramMap).reduce((accum, key, index) => {
-    if (paramMap[key]) {
-      accum.push(`${key}=${paramMap[key]}`);
-    }
-    return accum;
-  }, []).join('&');
-};
+const generateQueryStr = paramMap =>
+  Object.keys(paramMap)
+    .reduce((accum, key) => {
+      if (paramMap[key]) {
+        accum.push(`${key}=${paramMap[key]}`);
+      }
+      return accum;
+    }, [])
+    .join('&');
 
 export const toMapFromQueryStr = (queryStr, excludes = []) => {
   const toMap = {};
@@ -21,12 +22,9 @@ export const toMapFromQueryStr = (queryStr, excludes = []) => {
   return toMap;
 };
 
-export const excludeQueryStr = (queryStr, excludes = []) => {
-  return generateQueryStr(toMapFromQueryStr(queryStr, excludes));
-};
+export const excludeQueryStr = (queryStr, excludes = []) => generateQueryStr(toMapFromQueryStr(queryStr, excludes));
 
-export const updateQueryStr = (queryStr, update = {}) => {
-  return generateQueryStr({...toMapFromQueryStr(queryStr), ...update});
-};
+export const updateQueryStr = (queryStr, update = {}) =>
+  generateQueryStr({ ...toMapFromQueryStr(queryStr), ...update });
 
 export default generateQueryStr;

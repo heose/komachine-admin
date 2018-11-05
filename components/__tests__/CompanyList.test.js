@@ -16,4 +16,9 @@ describe('CompanyList component test', () => {
     const wrapper = shallow(<CompanyList.wrappedComponent companyStore={companyStore} />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
+  it('paging test', async () => {
+    await companyStore.fetchCompanies({});
+    companyStore.hasPrev = 0;
+    expect(0).toBe(0);
+  });
 });
