@@ -22,7 +22,7 @@ class Companies extends React.Component {
 }
 
 Companies.propTypes = {
-  query: PropTypes.string.isRequired,
+  query: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default withLayout(DefaultLayout)(Companies);
