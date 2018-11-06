@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import moment from 'moment-timezone';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Logo from 'components/Logo';
 
@@ -29,11 +30,12 @@ const Cell = styled.div`
   `};
 `;
 const CompanyListItem = ({ id, title, logo, homepage, isActive, hasRelation, productsCount, createdDate }) => {
-  console.log('qq');
+  const localDate = moment(createdDate)
+    .tz('Asia/Seoul')
+    .format();
   return (
     <div>
-      <Header />
-      <Row>
+      <Row id={id}>
         <Cell w="auto">{title}</Cell>
         <Cell w="15%">
           <Logo src={logo} height="30px" />
@@ -46,7 +48,7 @@ const CompanyListItem = ({ id, title, logo, homepage, isActive, hasRelation, pro
         <Cell w="10%">{isActive}</Cell>
         <Cell w="10%">{hasRelation}</Cell>
         <Cell w="10%">{productsCount}</Cell>
-        <Cell w="15%">{createdDate}</Cell>
+        <Cell w="15%">{localDate}</Cell>
       </Row>
     </div>
   );
