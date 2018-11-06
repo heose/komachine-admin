@@ -18,7 +18,8 @@ describe('CompanyList component test', () => {
   });
   it('paging test', async () => {
     await companyStore.fetchCompanies({});
-    companyStore.hasPrev = 0;
-    expect(0).toBe(0);
+    companyStore.hasPrev = '';
+    companyStore.hasNext = '';
+    shallow(<CompanyList.wrappedComponent companyStore={companyStore} />);
   });
 });

@@ -4,7 +4,7 @@
   "description": "Komachine Admin Site",
   "main": "index.js",
   "scripts": {
-    "test": "jest -o",
+    "test": "jest",
     "dev": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js"
