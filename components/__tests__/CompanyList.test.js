@@ -1,7 +1,6 @@
 import React from 'react';
 import { Provider } from 'mobx-react';
 import { shallow, mount } from 'enzyme';
-import Renderer from 'react-test-renderer';
 import toJson from 'enzyme-to-json';
 import Link from 'components/Link';
 import CompanyList from '../CompanyList';
@@ -31,6 +30,10 @@ describe('CompanyList component test', () => {
         .first()
         .prop('enabled'),
     ).toBe('enabled');
+    const PrevLink = wrapper.find(Link).first();
+    expect(PrevLink).toEqual(wrapper.find(Link).first());
+    expect(PrevLink.prop('enabled')).toEqual('enabled');
+    expect(PrevLink.prop('enabled')).toBe('enabled');
     companyStore.hasPrev = false;
     expect(
       wrapper
@@ -49,7 +52,7 @@ describe('CompanyList component test', () => {
     expect(
       wrapper
         .find(Link)
-        .first()
+        .at(1)
         .prop('enabled'),
     ).toBe('disabled');
   });
