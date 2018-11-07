@@ -14,10 +14,6 @@ const Row = styled.div`
   border-bottom: 1px solid black;
 `;
 
-const Header = styled(Row)`
-  background-color: #e0e0e0;
-`;
-
 const Cell = styled.div`
   display: flex;
   justify-content: center;

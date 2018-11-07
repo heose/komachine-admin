@@ -22,39 +22,13 @@ describe('CompanyList component test', () => {
 
   it('paging test', async () => {
     await companyStore.fetchCompanies({});
-    const wrapper = shallow(<CompanyList.wrappedComponent companyStore={companyStore} />);
     companyStore.hasPrev = true;
-    expect(
-      wrapper
-        .find(Link)
-        .first()
-        .prop('enabled'),
-    ).toBe('enabled');
-    const PrevLink = wrapper.find(Link).first();
-    expect(PrevLink).toEqual(wrapper.find(Link).first());
-    expect(PrevLink.prop('enabled')).toEqual('enabled');
-    expect(PrevLink.prop('enabled')).toBe('enabled');
-    companyStore.hasPrev = false;
-    expect(
-      wrapper
-        .find(Link)
-        .first()
-        .prop('enabled'),
-    ).toBe('disabled');
-    companyStore.hasNext = true;
-    expect(
-      wrapper
-        .find(Link)
-        .at(1)
-        .prop('enabled'),
-    ).toBe('enabled');
     companyStore.hasNext = false;
-    expect(
-      wrapper
-        .find(Link)
-        .at(1)
-        .prop('enabled'),
-    ).toBe('disabled');
+    const wrapper = shallow(<CompanyList.wrappedComponent companyStore={companyStore} />);
+    const PrevLink = wrapper.find(Link).first();
+    const PrevNext = wrapper.find(Link).at(1);
+    expect(PrevLink.prop('enabled')).toBe('enabled');
+    expect(PrevNext.prop('enabled')).toBe('disabled');
   });
 
   it('correct inject company store', () => {
