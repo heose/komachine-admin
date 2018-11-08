@@ -2,10 +2,9 @@ import React from 'react';
 import withLayout from '../lib/with-layout';
 import DefaultLayout from '../layouts/DefaultLayout';
 
-
 class Settings extends React.Component {
-  static async getInitialProps({req, res, pathname, query}) {
-    return {}
+  static async getInitialProps() {
+    return {};
   }
 
   render() {
