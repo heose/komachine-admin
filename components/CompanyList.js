@@ -7,6 +7,7 @@ import YesOrNoFilter from 'components/YesOrNoFilter';
 import { Button } from 'components/form/button/Button';
 import CompanyListItem from 'components/CompanyListItem';
 import Table from 'components/Table';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 @inject(({ store }) => ({ companyStore: store.companyStore }))
 @observer
@@ -20,8 +21,17 @@ class CompanyList extends React.Component {
     const nextPage = hasNext ? Number(page) + 1 : Number(page);
     const companyListItem = list.map(id => <CompanyListItem key={id} {...table[id]} />);
     const headerData = [
-      { key: 'title', str: '기업명', width: '50%' },
-      { key: 'homepage', str: '홈페이지', width: '50%' },
+      // { key: 'title', str: '기업명', width: '50%', render: 'title' },
+      {
+        key: 'homepage',
+        str: '홈페이지',
+        width: '50%',
+        render: props => (
+          <a href={props.homepage} target="_blank" rel="noopener noreferrer" style={{ color: 'black' }}>
+            <FontAwesomeIcon icon="home" fixedWidth />
+          </a>
+        ),
+      },
     ];
     const bodyData = list.map(id => table[id]);
     return (

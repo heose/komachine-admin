@@ -9,7 +9,7 @@ const TableComponent = ({ headerData, data }) => {
     </Cell>
   ));
   const body = data.map((row, i) => {
-    const cells = headerData.map(h => <Cell key={h.key}>{row[h.key]}</Cell>);
+    const cells = headerData.map(h => <Cell key={h.key}>{h.render(row)}</Cell>);
     return <Row key={row.id || i}>{cells}</Row>;
   });
   return (
