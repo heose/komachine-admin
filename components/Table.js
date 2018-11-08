@@ -47,7 +47,8 @@ const Header = styled.div`
   background-color: #e0e0e0;
   color: #7f7f7f;
   text-align: center;
-  /* font-weight: bold; */
+  height: 3.5rem;
+  font-weight: bold;
 `;
 
 const Body = styled.div`

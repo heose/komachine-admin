@@ -6,8 +6,6 @@ import moment from 'moment';
 import momtz from 'moment-timezone';
 import Link from 'components/Link';
 import YesOrNoFilter from 'components/YesOrNoFilter';
-import Table1 from 'components/form/table';
-import CompanyListItem from 'components/CompanyListItem';
 import Table from 'components/Table';
 import Logo from 'components/Logo';
 import { Button } from 'components/form/button/Button';
@@ -22,7 +20,6 @@ class CompanyList extends React.Component {
     const nextEnabled = hasNext ? 'enabled' : 'disabled';
     const prevPage = hasPrev ? Number(page) - 1 : Number(page);
     const nextPage = hasNext ? Number(page) + 1 : Number(page);
-    const companyListItem = list.map(id => <CompanyListItem key={id} {...table[id]} />);
     const headerData = [
       { key: 'title', str: '기업명', width: 'auto', render: 'title' },
       { key: 'logo', str: '로고', width: '15%', render: props => <Logo src={props.logo} height="30px" /> },
@@ -57,8 +54,6 @@ class CompanyList extends React.Component {
         <YesOrNoFilter label="기업활성화여부" queryMap={queryMap} checkKey="isActive" />
         <YesOrNoFilter label="기업연동여부" queryMap={queryMap} checkKey="hasRelation" />
         <Table headerData={headerData} data={bodyData} />
-        <Table1 list={list} table={table} />
-        {companyListItem}
         <div>
           <Link
             enabled={prevEnabled}

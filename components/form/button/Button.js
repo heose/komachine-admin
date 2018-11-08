@@ -1,8 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 import theme from 'styled-theming';
-
 
 const shape = theme('shape', {
   round: '50px',
@@ -27,7 +25,7 @@ const enabled = theme('enabled', {
       color: white;
       background-color: gray;
     }
-  `
+  `,
 });
 
 export const Button = styled.button`
@@ -47,11 +45,12 @@ export const Button = styled.button`
     color: white;
     background-color: #029688;
   }
-  ${({active}) => active && `
+  ${({ active }) =>
+    active &&
+    `
     color: white;
     background-color: #029688;
-  `}
-  ${enabled}
+  `} ${enabled};
 `;
 
 Button.propTypes = {
@@ -61,7 +60,7 @@ Button.propTypes = {
   }),
 };
 Button.defaultProps = {
-  theme: { shape: 'square', size: 'medium'},
+  theme: { shape: 'square', size: 'medium' },
 };
 
 export const SquareButton = styled(Button)`

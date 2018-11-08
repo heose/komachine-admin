@@ -17,7 +17,6 @@ const data = [
 describe('Table Component test', () => {
   it('correct', () => {
     const table = mount(<Table headerData={headerData} data={data} />);
-    // console.log(table.html());
     expect(toJson(table)).toMatchSnapshot();
   });
 });
