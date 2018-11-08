@@ -2,9 +2,40 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+const TableComponent = ({ headerData, data }) => {
+  const header = headerData.map(h => (
+    <Cell key={h.key} width={h.width}>
+      {h.str}
+    </Cell>
+  ));
+  const body = data.map((row, i) => {
+    const cells = headerData.map(h => <Cell key={h.key}>{row[h.key]}</Cell>);
+    return <Row key={row.id || i}>{cells}</Row>;
+  });
+  return (
+    <Table>
+      <Header>
+        <Row>{header}</Row>
+      </Header>
+      <Body>{body}</Body>
+    </Table>
+  );
+};
+
+TableComponent.propTypes = {
+  headerData: PropTypes.arrayOf(
+    PropTypes.shape({
+      str: PropTypes.string,
+      width: PropTypes.string,
+    }),
+  ).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
 const Table = styled.div`
   display: table;
   margin-bottom: 20px;
+  width: 100%;
 `;
 
 const Header = styled.div`
@@ -38,35 +69,5 @@ const Cell = styled.div`
   text-align: ${({ align }) => align || 'center'};
   width: ${({ width }) => width};
 `;
-
-const TableComponent = ({ headerData, data }) => {
-  const header = headerData.map(h => (
-    <Cell key={h.str} width={h.width}>
-      {h.str}
-    </Cell>
-  ));
-  const body = data.map((row, i) => {
-    const cells = headerData.map(h => <Cell key={h.str}>{row[h.str]}</Cell>);
-    return <Row key={i}>{cells}</Row>;
-  });
-  return (
-    <Table>
-      <Header>
-        <Row>{header}</Row>
-      </Header>
-      <Body>{body}</Body>
-    </Table>
-  );
-};
-
-TableComponent.propTypes = {
-  headerData: PropTypes.arrayOf(
-    PropTypes.shape({
-      str: PropTypes.string,
-      width: PropTypes.string,
-    }),
-  ).isRequired,
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
 
 export default TableComponent;

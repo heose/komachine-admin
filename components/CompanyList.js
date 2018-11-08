@@ -3,9 +3,10 @@ import { inject, observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import Link from 'components/Link';
 import YesOrNoFilter from 'components/YesOrNoFilter';
-import Table from 'components/form/table';
+// import Table from 'components/form/table';
 import { Button } from 'components/form/button/Button';
 import CompanyListItem from 'components/CompanyListItem';
+import Table from 'components/Table';
 
 @inject(({ store }) => ({ companyStore: store.companyStore }))
 @observer
@@ -18,12 +19,18 @@ class CompanyList extends React.Component {
     const prevPage = hasPrev ? Number(page) - 1 : Number(page);
     const nextPage = hasNext ? Number(page) + 1 : Number(page);
     const companyListItem = list.map(id => <CompanyListItem key={id} {...table[id]} />);
+    const headerData = [
+      { key: 'title', str: '기업명', width: '50%' },
+      { key: 'homepage', str: '홈페이지', width: '50%' },
+    ];
+    const bodyData = list.map(id => table[id]);
     return (
       <div>
         <YesOrNoFilter label="기업활성화여부" queryMap={queryMap} checkKey="isActive" />
         <YesOrNoFilter label="기업연동여부" queryMap={queryMap} checkKey="hasRelation" />
         {companyListItem}
-        <Table list={list} table={table} />
+        {/* <Table list={list} table={table} /> */}
+        <Table headerData={headerData} data={bodyData} />
         <div>
           <Link
             enabled={prevEnabled}
