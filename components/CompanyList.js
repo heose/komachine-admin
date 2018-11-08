@@ -21,7 +21,7 @@ class CompanyList extends React.Component {
     const nextPage = hasNext ? Number(page) + 1 : Number(page);
     const companyListItem = list.map(id => <CompanyListItem key={id} {...table[id]} />);
     const headerData = [
-      // { key: 'title', str: '기업명', width: '50%', render: 'title' },
+      { key: 'title', str: '기업명', width: '50%', render: 'title' },
       {
         key: 'homepage',
         str: '홈페이지',
@@ -38,9 +38,9 @@ class CompanyList extends React.Component {
       <div>
         <YesOrNoFilter label="기업활성화여부" queryMap={queryMap} checkKey="isActive" />
         <YesOrNoFilter label="기업연동여부" queryMap={queryMap} checkKey="hasRelation" />
+        <Table headerData={headerData} data={bodyData} />
         {companyListItem}
         {/* <Table list={list} table={table} /> */}
-        <Table headerData={headerData} data={bodyData} />
         <div>
           <Link
             enabled={prevEnabled}

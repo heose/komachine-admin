@@ -9,7 +9,9 @@ const TableComponent = ({ headerData, data }) => {
     </Cell>
   ));
   const body = data.map((row, i) => {
-    const cells = headerData.map(h => <Cell key={h.key}>{h.render(row)}</Cell>);
+    const cells = headerData.map(h => (
+      <Cell key={h.key}>{typeof h.render === 'function' ? h.render(row) : row[h.render]}</Cell>
+    ));
     return <Row key={row.id || i}>{cells}</Row>;
   });
   return (
@@ -27,6 +29,7 @@ TableComponent.propTypes = {
     PropTypes.shape({
       str: PropTypes.string,
       width: PropTypes.string,
+      render: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     }),
   ).isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,

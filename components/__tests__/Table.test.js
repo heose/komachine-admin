@@ -4,9 +4,9 @@ import toJson from 'enzyme-to-json';
 import Table from 'components/Table';
 
 const headerData = [
-  { key: 'header1', str: '헤더1', width: '20%' },
-  { key: 'header2', str: '헤더2', width: '30%' },
-  { key: 'header3', str: '헤더3', width: '30%' },
+  { key: 'header1', str: '헤더1', width: '20%', render: 'header1' },
+  { key: 'header2', str: '헤더2', width: '30%', render: 'header2' },
+  { key: 'header3', str: '헤더3', width: '30%', render: () => {} },
 ];
 
 const data = [
