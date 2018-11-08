@@ -56,10 +56,6 @@ CompanyListItem.defaultProps = {
   productsCount: 0,
 };
 
-const Header = styled(Row)`
-  background-color: #e0e0e0;
-`;
-
 const Cell = styled.div`
   display: flex;
   justify-content: center;

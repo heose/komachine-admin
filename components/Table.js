@@ -38,7 +38,7 @@ TableComponent.propTypes = {
 const Table = styled.div`
   display: table;
   margin-bottom: 20px;
-  width: 100%;
+  width: 750px;
 `;
 
 const Header = styled.div`
