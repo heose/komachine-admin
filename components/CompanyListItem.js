@@ -14,17 +14,6 @@ const Row = styled.div`
   border-bottom: 1px solid black;
 `;
 
-const Cell = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 0 1 ${({ w }) => w};
-  ${({ w }) =>
-    w === 'auto' &&
-    `
-    flex: 1 0 auto
-  `};
-`;
 const CompanyListItem = ({ id, title, logo, homepage, isActive, hasRelation, productsCount, createdDate }) => {
   const localDate = moment(createdDate)
     .tz('Asia/Seoul')
@@ -66,5 +55,21 @@ CompanyListItem.defaultProps = {
   hasRelation: '0',
   productsCount: 0,
 };
+
+const Header = styled(Row)`
+  background-color: #e0e0e0;
+`;
+
+const Cell = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 1 ${({ w }) => w};
+  ${({ w }) =>
+    w === 'auto' &&
+    `
+    flex: 1 0 auto
+  `};
+`;
 
 export default CompanyListItem;

@@ -7,6 +7,27 @@ import Footer from 'components/Footer';
 import NormalizeCSS from './normalize.css';
 import GlobalStyle from './global-style';
 
+const DefaultLayout = ({ children }) => (
+  <Div>
+    <NormalizeCSS />
+    <GlobalStyle />
+    <Header />
+    <Central>
+      <Nav />
+      <Page>{children}</Page>
+    </Central>
+    <Footer />
+  </Div>
+);
+
+DefaultLayout.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+};
+
+DefaultLayout.defaultProps = {
+  children: null,
+};
+
 export const Div = styled.div`
   position: relative;
   display: flex;
@@ -29,26 +50,5 @@ export const Page = styled.div`
   background-color: #f0f0f7;
   padding: 10px 0 20px 20px;
 `;
-
-const DefaultLayout = ({ children }) => (
-  <Div>
-    <NormalizeCSS />
-    <GlobalStyle />
-    <Header />
-    <Central>
-      <Nav />
-      <Page>{children}</Page>
-    </Central>
-    <Footer />
-  </Div>
-);
-
-DefaultLayout.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-};
-
-DefaultLayout.defaultProps = {
-  children: null,
-};
 
 export default DefaultLayout;
