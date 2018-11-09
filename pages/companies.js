@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CompanyList from 'components/CompanyList';
+import CompanyViewType from 'components/CompanyViewType';
 import withLayout from '../lib/with-layout';
 import DefaultLayout from '../layouts/DefaultLayout';
 
@@ -25,4 +26,4 @@ Companies.propTypes = {
   query: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
-export default withLayout(DefaultLayout)(Companies);
+export default withLayout(DefaultLayout, { viewTypesChooser: props => <CompanyViewType {...props} /> })(Companies);

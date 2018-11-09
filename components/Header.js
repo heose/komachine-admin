@@ -1,8 +1,31 @@
 import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-import ViewType from './ViewType';
+import PropTypes from 'prop-types';
 import Profile from './Profile';
+
+const Header = ({ viewTypesChooser, ...props }) => {
+  console.log('Header', props);
+  return (
+    <Div>
+      <Link href="/" passHref>
+        <HomeLink>
+          <span>KOMACHINE</span>
+        </HomeLink>
+      </Link>
+      {viewTypesChooser(props)}
+      <Profile />
+    </Div>
+  );
+};
+
+Header.propTypes = {
+  viewTypesChooser: PropTypes.func,
+};
+
+Header.defaultProps = {
+  viewTypesChooser: () => {},
+};
 
 const Div = styled.div`
   position: relative;
@@ -26,17 +49,5 @@ const HomeLink = styled.a`
     margin-left: 20px;
   }
 `;
-
-const Header = () => (
-  <Div>
-    <Link href="/" passHref>
-      <HomeLink>
-        <span>KOMACHINE</span>
-      </HomeLink>
-    </Link>
-    <ViewType />
-    <Profile />
-  </Div>
-);
 
 export default Header;

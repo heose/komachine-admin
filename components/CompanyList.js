@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { observable } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import moment from 'moment';
@@ -13,6 +14,10 @@ import { Button } from 'components/form/button/Button';
 @inject(({ store }) => ({ companyStore: store.companyStore }))
 @observer
 class CompanyList extends React.Component {
+  constructor(props) {
+    super(props);
+    const viewType = observable.box('company');
+  }
   render() {
     const { companyStore } = this.props;
     const { list, table, page, hasPrev, hasNext, queryMap } = companyStore;
