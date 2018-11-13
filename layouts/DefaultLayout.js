@@ -8,7 +8,7 @@ import NormalizeCSS from './normalize.css';
 import GlobalStyle from './global-style';
 
 const DefaultLayout = ({ children, ...props }) => {
-  console.log(props);
+  console.log('DefaultLayout', props);
   return (
     <Div>
       <NormalizeCSS />
@@ -22,6 +22,7 @@ const DefaultLayout = ({ children, ...props }) => {
     </Div>
   );
 };
+
 DefaultLayout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 };

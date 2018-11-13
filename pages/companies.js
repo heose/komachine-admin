@@ -26,4 +26,7 @@ Companies.propTypes = {
   query: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
-export default withLayout(DefaultLayout, { viewTypesChooser: props => <CompanyViewType {...props} /> })(Companies);
+const extraProps = {
+  viewTypesChooser: props => <CompanyViewType {...props} />,
+};
+export default withLayout(DefaultLayout, extraProps)(Companies);
