@@ -17,6 +17,7 @@ class CompanyList extends React.Component {
   constructor(props) {
     super(props);
     const viewType = observable.box('company');
+    // console.log(viewType);
   }
   render() {
     const { companyStore } = this.props;
