@@ -2,10 +2,8 @@ import { action, observable, computed } from 'mobx';
 import CompanyApi from '../apis/company-api';
 
 export default class CompanyStore {
-  @observable
-  table = {};
-  @observable
-  list = [];
+  table = observable({});
+  list = observable([]);
   @observable
   state = '';
   @observable
@@ -14,8 +12,7 @@ export default class CompanyStore {
   hasPrev = false;
   @observable
   hasNext = false;
-  @observable
-  isActive = null;
+  isActive = observable.box(null);
   @observable
   hasRelation = null;
 
@@ -29,7 +26,7 @@ export default class CompanyStore {
       this.page = companyStore.page;
       this.hasPrev = companyStore.hasPrev;
       this.hasNext = companyStore.hasNext;
-      this.isActive = companyStore.isActive;
+      this.isActive.set(companyStore.isActive);
       this.hasRelation = companyStore.hasRelation;
     }
   }
@@ -51,7 +48,7 @@ export default class CompanyStore {
     this.page = data.result.page;
     this.hasPrev = data.result.hasPrev;
     this.hasNext = data.result.hasNext;
-    this.isActive = data.result.isActive || null;
+    this.isActive.set(data.result.isActive || null);
     this.hasRelation = data.result.hasRelation || null;
   }
 

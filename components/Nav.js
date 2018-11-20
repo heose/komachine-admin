@@ -23,6 +23,6 @@ const Nav = () => (
       <NavItem href="/settings" title="설정" icon="cogs" />
     </NavWrap>
   </Div>
-  );
+);
 
 export default Nav;
