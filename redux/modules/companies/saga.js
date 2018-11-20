@@ -1,8 +1,12 @@
-import { takeLatest } from 'redux-saga/effects';
+import { takeLatest, put } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { FETCH_REQUEST, fetchSUCCESS } from './reducer';
 
-export function* watchFetchingCompanies() {
+export function* fetchCompanies() {
   yield delay(1000);
-  yield takeLatest(FETCH_REQUEST, fetchSUCCESS);
+  yield put(fetchSUCCESS);
+}
+
+export function* watchFetchCompanies() {
+  yield takeLatest(FETCH_REQUEST, fetchCompanies);
 }

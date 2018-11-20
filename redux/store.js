@@ -1,20 +1,25 @@
 /* eslint-disable global-require,no-underscore-dangle */
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer from './reducer';
 import rootSaga from './saga';
 
-let enhancers;
-if (process.env.NODE_ENV === 'production') {
-  enhancers = compose();
-} else {
-  enhancers = compose();
-  //   enhancers = compose(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-}
-// const sagaMiddleware = createSagaMiddleware();
-const makeStore = initialState => {
-  createStore(rootReducer, initialState);
-  // sagaMiddleware.run(rootSaga);
+const sagaMiddleware = createSagaMiddleware();
+const bindMiddleware = middleware => {
+  if (process.env.NODE_ENV !== 'production') {
+    // const { composeWithDevTools } = require('redux-devtools-extension')
+    // return composeWithDevTools(applyMiddleware(...middleware))
+  }
+  return applyMiddleware(...middleware);
+};
+
+const makeStore = (initialState = {}) => {
+  const store = createStore(rootReducer, initialState, bindMiddleware([sagaMiddleware]));
+  store.runSagaTask = () => {
+    store.sagaTask = sagaMiddleware.run(rootSaga);
+  };
+  store.runSagaTask();
+  return store;
 };
 
 export default makeStore;

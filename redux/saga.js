@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects';
-import { watchFetchingCompanies } from './modules/companies/saga';
+import { watchFetchCompanies } from './modules/companies/saga';
 
 export default function*() {
-  yield all([watchFetchingCompanies()]);
+  yield all([watchFetchCompanies()]);
 }
