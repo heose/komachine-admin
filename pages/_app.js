@@ -5,7 +5,9 @@ import { Provider } from 'mobx-react';
 import { dom } from '@fortawesome/fontawesome-svg-core';
 import '../lib/font-awesome';
 import '../lib/fonts';
-import withStore from '../lib/with-mobx-store';
+import withRedux from 'next-redux-wrapper';
+import initStore from '../redux/store';
+// import withStore from '../lib/with-mobx-store';
 
 class RootApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -19,7 +21,7 @@ class RootApp extends App {
   }
 
   render() {
-    const { Component, pageProps, rootStore } = this.props;
+    const { Component, pageProps, store } = this.props;
     return (
       <Container>
         <Head>
@@ -27,7 +29,7 @@ class RootApp extends App {
           <style>{dom.css()}</style>
           <title>Komachine Admin</title>
         </Head>
-        <Provider store={rootStore}>
+        <Provider store={store}>
           <Component {...pageProps} />
         </Provider>
       </Container>
@@ -35,4 +37,4 @@ class RootApp extends App {
   }
 }
 
-export default withStore(RootApp);
+export default withRedux(initStore)(RootApp);
