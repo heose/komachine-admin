@@ -39,4 +39,4 @@ class RootApp extends App {
   }
 }
 
-export default withRedux(makeStore)(RootApp);
+export default withRedux(makeStore)(withReduxSaga({ async: true })(RootApp));

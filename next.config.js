@@ -8,7 +8,7 @@ module.exports = withCSS({
   assetPrefix: isProd ? 'https://cdn.komachine.com/admin/' : '',
   webpack(config) {
     const extendAlias = {
-      components: path.resolve(__dirname, 'components/')
+      components: path.resolve(__dirname, 'components/'),
     };
 
     // config.module.rules.push({
@@ -25,7 +25,7 @@ module.exports = withCSS({
     //   ]
     // });
 
-    config.resolve.alias = { ...config.resolve.alias, ...extendAlias};
+    config.resolve.alias = { ...config.resolve.alias, ...extendAlias };
     return config;
-  }
+  },
 });

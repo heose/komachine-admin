@@ -8,7 +8,7 @@ import DefaultLayout from '../layouts/DefaultLayout';
 
 class Companies extends React.Component {
   static async getInitialProps({ query, store }) {
-    // store.dispatch(fetchRequest());
+    store.dispatch(fetchRequest());
     return { query };
   }
 
@@ -16,8 +16,7 @@ class Companies extends React.Component {
     const { query } = this.props;
     return (
       <div>
-        11
-        {/* <CompanyList query={query} /> */}
+        <CompanyList query={query} />
       </div>
     );
   }
