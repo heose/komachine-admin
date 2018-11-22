@@ -18,17 +18,7 @@ export const FETCH_FAILURE = 'companies/FETCH_FAILURE';
 
 const reducer = handleActions(
   {
-    [FETCH_SUCCESS]: (state, action) =>
-      produce(state, draft => {
-        draft.table = action.payload.table;
-        draft.list = action.payload.list;
-        draft.state = action.payload.state;
-        draft.page = action.payload.page;
-        draft.hasPrev = action.payload.hasPrev;
-        draft.hasNext = action.payload.hasNext;
-        draft.isActive = action.payload.isActive;
-        draft.hasRelation = action.payload.hasRelation;
-      }),
+    // [FETCH_SUCCESS]: state => state,
     [FETCH_FAILURE]: state =>
       produce(state, draft => {
         draft.state = 'error';
@@ -38,6 +28,6 @@ const reducer = handleActions(
 );
 
 export const fetchRequest = createAction(FETCH_REQUEST);
-export const fetchSUCCESS = createAction(FETCH_SUCCESS);
+export const fetchSuccess = createAction(FETCH_SUCCESS);
 
 export default reducer;

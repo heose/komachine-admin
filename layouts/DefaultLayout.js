@@ -7,21 +7,18 @@ import Footer from 'components/Footer';
 import NormalizeCSS from './normalize.css';
 import GlobalStyle from './global-style';
 
-const DefaultLayout = ({ children, ...props }) => {
-  console.log('DefaultLayout', props);
-  return (
-    <Div>
-      <NormalizeCSS />
-      <GlobalStyle />
-      <Header {...props} />
-      <Central>
-        <Nav />
-        <Page>{children}</Page>
-      </Central>
-      <Footer />
-    </Div>
-  );
-};
+const DefaultLayout = ({ children, ...props }) => (
+  <Div>
+    <NormalizeCSS />
+    <GlobalStyle />
+    <Header {...props} />
+    <Central>
+      <Nav />
+      <Page>{children}</Page>
+    </Central>
+    <Footer />
+  </Div>
+);
 
 DefaultLayout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),

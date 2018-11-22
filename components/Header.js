@@ -4,20 +4,17 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Profile from './Profile';
 
-const Header = ({ viewTypesChooser, ...props }) => {
-  console.log('Header', props);
-  return (
-    <Div>
-      <Link href="/" passHref>
-        <HomeLink>
-          <span>KOMACHINE</span>
-        </HomeLink>
-      </Link>
-      {viewTypesChooser(props)}
-      <Profile />
-    </Div>
-  );
-};
+const Header = ({ viewTypesChooser, ...props }) => (
+  <Div>
+    <Link href="/" passHref>
+      <HomeLink>
+        <span>KOMACHINE</span>
+      </HomeLink>
+    </Link>
+    {viewTypesChooser(props)}
+    <Profile />
+  </Div>
+);
 
 Header.propTypes = {
   viewTypesChooser: PropTypes.func,
