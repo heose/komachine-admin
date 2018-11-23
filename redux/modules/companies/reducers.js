@@ -10,17 +10,18 @@ const initialState = {
   hasNext: false,
   isActive: null,
   hasRelation: null,
+  viewType: 0,
 };
 
 export const FETCH_REQUEST = 'companies/FETCH';
 export const FETCH_SUCCESS = 'companies/FETCH_SUCCESS';
 export const FETCH_FAILURE = 'companies/FETCH_FAILURE';
+export const SET_VIEW_TYPE = 'companies/SET_VIEW_TYPE';
 
 const reducer = handleActions(
   {
-    [FETCH_SUCCESS]: (state, action) => {
-      console.log('FETCH_SUCCESS');
-      return produce(state, draft => {
+    [FETCH_SUCCESS]: (state, action) =>
+      produce(state, draft => {
         draft.table = action.payload.table;
         draft.list = action.payload.list;
         draft.state = action.payload.state;
@@ -29,11 +30,14 @@ const reducer = handleActions(
         draft.hasNext = action.payload.hasNext;
         draft.isActive = action.payload.isActive;
         draft.hasRelation = action.payload.hasRelation;
-      });
-    },
+      }),
     [FETCH_FAILURE]: state =>
       produce(state, draft => {
         draft.state = 'error';
+      }),
+    [SET_VIEW_TYPE]: (state, action) =>
+      produce(state, draft => {
+        draft.viewType = action.payload.viewType;
       }),
   },
   initialState,
@@ -41,5 +45,6 @@ const reducer = handleActions(
 
 export const fetchRequest = createAction(FETCH_REQUEST);
 export const fetchSuccess = createAction(FETCH_SUCCESS);
+export const setViewType = createAction(SET_VIEW_TYPE);
 
 export default reducer;

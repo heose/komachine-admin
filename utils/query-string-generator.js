@@ -1,4 +1,4 @@
-const generateQueryStr = paramMap =>
+export const generateQueryStr = paramMap =>
   Object.keys(paramMap)
     .reduce((accum, key) => {
       if (paramMap[key]) {

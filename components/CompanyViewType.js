@@ -1,21 +1,33 @@
+/* eslint-disable no-shadow */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { setViewType } from '../redux/modules/companies/reducers';
 
-const CompanyViewType = props => (
-  <Div>
-    <Label>보기 방식</Label>
-    <Label>|</Label>
-    <input type="radio" name="viewType" id="view-company" value="0" />
-    <Label htmlFor="view-company">기업관리</Label>
-    <input type="radio" name="viewType" id="view-img" value="1" />
-    <Label htmlFor="view-img">대표이미지</Label>
-    <input type="radio" name="viewType" id="view-product" value="2" />
-    <Label htmlFor="view-product">제품관리</Label>
-  </Div>
-);
+function CompanyViewType({ viewType, setViewType }) {
+  return (
+    <Div>
+      <Label>보기 방식</Label>
+      <Label>|</Label>
+      <input type="radio" name="viewType" id="view-company" value="0" checked={viewType === 0} />
+      <Label htmlFor="view-company">기업관리</Label>
+      <input type="radio" name="viewType" id="view-img" value="1" checked={viewType === 1} />
+      <Label htmlFor="view-img">대표이미지</Label>
+      <input type="radio" name="viewType" id="view-product" value="2" checked={viewType === 2} />
+      <Label htmlFor="view-product">제품관리</Label>
+    </Div>
+  );
+}
 
-CompanyViewType.propTypes = {};
+CompanyViewType.propTypes = {
+  viewType: PropTypes.number,
+  setViewType: PropTypes.func.isRequired,
+};
+
+CompanyViewType.defaultProps = {
+  viewType: 0,
+};
 
 const Div = styled.div`
   display: flex;
@@ -29,4 +41,13 @@ const Label = styled.label`
   user-select: none;
 `;
 
-export default CompanyViewType;
+const mapStateToProps = ({ companies }) => ({
+  viewType: companies.viewType,
+});
+
+const mapDispatchToProps = { setViewType };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CompanyViewType);

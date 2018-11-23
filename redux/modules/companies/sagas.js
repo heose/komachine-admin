@@ -1,10 +1,16 @@
-import { takeLatest, put } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
+import { takeLatest, put, call } from 'redux-saga/effects';
+import CompanyApi from '../../../apis/company-api';
 import { FETCH_REQUEST, fetchSuccess } from './reducers';
 
-export function* fetchCompanies() {
-  yield delay(5000);
-  yield put(fetchSuccess());
+const api = new CompanyApi();
+export function* fetchCompanies(action) {
+  try {
+    const query = action.payload;
+    const { data } = yield call(api.fetchCompanies, query);
+    yield put(fetchSuccess(data.result));
+  } catch (e) {
+    yield put();
+  }
 }
 
 export function* watchFetchCompanies() {
