@@ -1,5 +1,5 @@
 import axios from 'axios';
-import generateQueryStr from '../utils/query-string-generator';
+import { generateQueryStr } from '../utils/query-string-generator';
 
 class CompanyApi {
   constructor() {

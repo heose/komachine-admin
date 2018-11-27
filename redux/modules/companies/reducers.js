@@ -10,7 +10,6 @@ const initialState = {
   hasNext: false,
   isActive: null,
   hasRelation: null,
-  viewType: 0,
 };
 
 export const FETCH_REQUEST = 'companies/FETCH';
@@ -37,7 +36,7 @@ const reducer = handleActions(
       }),
     [SET_VIEW_TYPE]: (state, action) =>
       produce(state, draft => {
-        draft.viewType = action.payload.viewType;
+        draft.viewType = action.payload;
       }),
   },
   initialState,

@@ -10,11 +10,32 @@ function CompanyViewType({ viewType, setViewType }) {
     <Div>
       <Label>보기 방식</Label>
       <Label>|</Label>
-      <input type="radio" name="viewType" id="view-company" value="0" checked={viewType === 0} />
+      <input
+        type="radio"
+        name="viewType"
+        id="view-company"
+        value="0"
+        checked={viewType === 0}
+        onChange={() => setViewType(0)}
+      />
       <Label htmlFor="view-company">기업관리</Label>
-      <input type="radio" name="viewType" id="view-img" value="1" checked={viewType === 1} />
+      <input
+        type="radio"
+        name="viewType"
+        id="view-img"
+        value="1"
+        checked={viewType === 1}
+        onChange={() => setViewType(1)}
+      />
       <Label htmlFor="view-img">대표이미지</Label>
-      <input type="radio" name="viewType" id="view-product" value="2" checked={viewType === 2} />
+      <input
+        type="radio"
+        name="viewType"
+        id="view-product"
+        value="2"
+        checked={viewType === 2}
+        onChange={() => setViewType(2)}
+      />
       <Label htmlFor="view-product">제품관리</Label>
     </Div>
   );
