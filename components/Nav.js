@@ -2,17 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import NavItem from 'components/NavItem';
 
-const Div = styled.div`
-  width: 200px;
-  min-width: 200px;
-  background-color: #43425d;
-  color: #ededf0;
-`;
-
-const NavWrap = styled.div`
-  color: #ededf0;
-`;
-
 const Nav = () => (
   <Div>
     <NavWrap>
@@ -24,5 +13,16 @@ const Nav = () => (
     </NavWrap>
   </Div>
 );
+
+const Div = styled.div`
+  width: 200px;
+  min-width: 200px;
+  background-color: #43425d;
+  color: #ededf0;
+`;
+
+const NavWrap = styled.div`
+  color: #ededf0;
+`;
 
 export default Nav;

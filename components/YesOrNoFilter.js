@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Link from 'components/Link';
 import { Button } from 'components/form/button/Button';
-import generateQueryStr from '../utils/query-string-generator';
+import { generateQueryStr } from '../utils/query-string-generator';
 
 const Div = styled.div`
   //display: flex;
