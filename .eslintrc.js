@@ -14,6 +14,7 @@ module.exports = {
     'react/prop-types': 'error',
     'react/jsx-filename-extension': 'off',
     'react/jsx-one-expression-per-line': 'off',
+    'react/destructuring-assignment': 'off',
     'react/prop-types': ['error', { skipUndeclared: true }],
     'arrow-body-style': ['warn', 'as-needed'],
     'import/prefer-default-export': 'off',

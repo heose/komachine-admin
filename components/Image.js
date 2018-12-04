@@ -13,6 +13,8 @@ export default class Image extends Component {
   }
 
   state = {
+    offsetWidth: '',
+    offsetHeight: '',
     tinyState: 'loading',
     originState: 'loading',
   };
@@ -20,6 +22,7 @@ export default class Image extends Component {
   componentDidMount() {
     if (this.tinyRef.current.complete) {
       if (this.tinyRef.current.naturalWidth) {
+        console.log(this.tinyRef.current);
         this.setState(() => ({ tinyState: 'complete' }));
       } else {
         this.setState(() => ({ tinyState: 'failure' }));
@@ -28,6 +31,7 @@ export default class Image extends Component {
   }
 
   handleLoaded(type) {
+    console.log(this.tinyRef.current);
     this.setState(() => ({ [type]: 'complete' }));
   }
 
@@ -36,8 +40,8 @@ export default class Image extends Component {
   }
 
   render() {
-    const { tinyState, originState } = this.state;
-    const { height, src } = this.props;
+    const { offsetWidth, offsetHeight, tinyState, originState } = this.state;
+    const { width, height, src } = this.props;
     let origin = null;
     if (tinyState !== 'loading') {
       origin = (
@@ -70,32 +74,47 @@ export default class Image extends Component {
     );
   }
 }
+const requiredLeastOne = (props, propName, componentName) => {
+  if (!props.width && !props.height) {
+    return new Error(`One of 'width' or 'height' is required by '${componentName}' component.`);
+  }
+  return null;
+};
 
 Image.propTypes = {
   src: PropTypes.string.isRequired,
-  height: PropTypes.string.isRequired,
+  width: requiredLeastOne,
+  height: requiredLeastOne,
+};
+
+Image.defaultProps = {
+  width: '',
+  height: '',
 };
 
 const Wrapper = styled.div`
   height: ${props => props.height};
-  width: auto;
+  width: ${props => props.width};
+  min-width: 133px;
   position: relative;
-  padding: 2px;
+  overflow: hidden;
+  display: inline-block;
 `;
 
 const Default = styled.div`
   height: 100%;
   background-color: lightgray;
   width: auto;
-  margin-bottom: 20px;
   position: absolute;
-  top: 0;
-  left: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
 `;
 
 const Init = styled(Default)`
+  opacity: ${props => (props.tinyState === 'complete' ? 0 : 1)};
   height: ${props => props.height};
-  min-width: 48px;
+  width: 100%;
+  transition: opacity 1s;
 `;
 
 const Tiny = styled(Default)`

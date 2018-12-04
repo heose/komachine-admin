@@ -20,7 +20,7 @@ function CompanyList({ list, table, page, hasPrev, hasNext, isActive, hasRelatio
   const Table = withViewType(viewType);
   return (
     <div>
-      <Image height="40px" />
+      <Image src="" height="100px" />
       <YesOrNoFilter label="기업활성화여부" queryMap={queryMap} checkKey="isActive" />
       <YesOrNoFilter label="기업연동여부" queryMap={queryMap} checkKey="hasRelation" />
       <Table data={bodyData} />
