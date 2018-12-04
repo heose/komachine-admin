@@ -54,8 +54,10 @@ const Header = styled.div`
 const Body = styled.div`
   display: table-row-group;
   background-color: white;
-  & div {
+  & > div > div {
     border-bottom: 1px solid gray;
+  }
+  & div {
     height: 40px;
     min-height: 40px;
     max-height: 40px;

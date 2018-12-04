@@ -20,7 +20,12 @@ function CompanyList({ list, table, page, hasPrev, hasNext, isActive, hasRelatio
   const Table = withViewType(viewType);
   return (
     <div>
-      <Image src="" height="100px" />
+      <Image
+        src="https://cdn.komachine.com/media/2013-Porsche-Cayenne-Gts-1920x2560.jpeg"
+        height="100px"
+        width="auto"
+        minWidth="133px"
+      />
       <YesOrNoFilter label="기업활성화여부" queryMap={queryMap} checkKey="isActive" />
       <YesOrNoFilter label="기업연동여부" queryMap={queryMap} checkKey="hasRelation" />
       <Table data={bodyData} />

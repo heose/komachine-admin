@@ -13,8 +13,6 @@ export default class Image extends Component {
   }
 
   state = {
-    offsetWidth: '',
-    offsetHeight: '',
     tinyState: 'loading',
     originState: 'loading',
   };
@@ -22,7 +20,6 @@ export default class Image extends Component {
   componentDidMount() {
     if (this.tinyRef.current.complete) {
       if (this.tinyRef.current.naturalWidth) {
-        console.log(this.tinyRef.current);
         this.setState(() => ({ tinyState: 'complete' }));
       } else {
         this.setState(() => ({ tinyState: 'failure' }));
@@ -31,7 +28,6 @@ export default class Image extends Component {
   }
 
   handleLoaded(type) {
-    console.log(this.tinyRef.current);
     this.setState(() => ({ [type]: 'complete' }));
   }
 
@@ -40,15 +36,18 @@ export default class Image extends Component {
   }
 
   render() {
-    const { offsetWidth, offsetHeight, tinyState, originState } = this.state;
-    const { width, height, src } = this.props;
+    const { tinyState, originState } = this.state;
+    const { width, height, src, minWidth, minHeight } = this.props;
+    const regexp = /^(.*)\.([^.]*)$/;
+    const match = regexp.exec(src);
+    const tinySrc = `${match[1]}_tiny.${match[2]}`;
     let origin = null;
     if (tinyState !== 'loading') {
       origin = (
         <Origin
           as="img"
           ref={this.originRef}
-          src="https://cdn.komachine.com/media/2013-Porsche-Cayenne-Gts-1920x2560.jpeg"
+          src={src}
           alt=""
           onLoad={() => this.handleLoaded('originState')}
           onError={this.handleError}
@@ -57,12 +56,12 @@ export default class Image extends Component {
       );
     }
     return (
-      <Wrapper height={height}>
-        <Init tinyState={tinyState} height={height} />
+      <Wrapper width={width} height={height} minWidth={minWidth} minHeight={minHeight}>
+        <Default />
         <Tiny
           as="img"
           ref={this.tinyRef}
-          src="https://cdn.komachine.com/media/2013-Porsche-Cayenne-Gts-1920x2560_tiny.jpg"
+          src={tinySrc}
           alt=""
           onLoad={() => this.handleLoaded('tinyState')}
           onError={() => this.handleError('tinyState')}
@@ -74,28 +73,25 @@ export default class Image extends Component {
     );
   }
 }
-const requiredLeastOne = (props, propName, componentName) => {
-  if (!props.width && !props.height) {
-    return new Error(`One of 'width' or 'height' is required by '${componentName}' component.`);
-  }
-  return null;
-};
 
 Image.propTypes = {
   src: PropTypes.string.isRequired,
-  width: requiredLeastOne,
-  height: requiredLeastOne,
+  width: PropTypes.string.isRequired,
+  height: PropTypes.string.isRequired,
+  minWidth: PropTypes.string,
+  minHeight: PropTypes.string,
 };
 
 Image.defaultProps = {
-  width: '',
-  height: '',
+  minWidth: '',
+  minHeight: '',
 };
 
 const Wrapper = styled.div`
-  height: ${props => props.height};
-  width: ${props => props.width};
-  min-width: 133px;
+  height: ${props => props.height} !important;
+  width: ${props => props.width} !important;
+  min-width: ${props => props.minWidth} !important;
+  min-height: ${props => props.minHeight} !important;
   position: relative;
   overflow: hidden;
   display: inline-block;
@@ -104,17 +100,11 @@ const Wrapper = styled.div`
 const Default = styled.div`
   height: 100%;
   background-color: lightgray;
-  width: auto;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
-`;
-
-const Init = styled(Default)`
-  opacity: ${props => (props.tinyState === 'complete' ? 0 : 1)};
-  height: ${props => props.height};
   width: 100%;
-  transition: opacity 1s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const Tiny = styled(Default)`
