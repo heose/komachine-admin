@@ -55,9 +55,10 @@ export default class Image extends Component {
         />
       );
     }
+    const isDisableBlank = tinyState === 'complete' || originState === 'complete';
     return (
       <Wrapper width={width} height={height} minWidth={minWidth} minHeight={minHeight}>
-        <Default />
+        <Blank tinyState={tinyState} isDisableBlank={isDisableBlank} />
         <Tiny
           as="img"
           ref={this.tinyRef}
@@ -88,10 +89,10 @@ Image.defaultProps = {
 };
 
 const Wrapper = styled.div`
-  height: ${props => props.height} !important;
-  width: ${props => props.width} !important;
-  min-width: ${props => props.minWidth} !important;
-  min-height: ${props => props.minHeight} !important;
+  height: ${props => props.height};
+  width: ${props => props.width};
+  min-width: ${props => props.minWidth};
+  min-height: ${props => props.minHeight};
   position: relative;
   overflow: hidden;
   display: inline-block;
@@ -100,11 +101,17 @@ const Wrapper = styled.div`
 const Default = styled.div`
   height: 100%;
   background-color: lightgray;
-  width: 100%;
+  width: auto;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+`;
+
+const Blank = styled(Default)`
+  width: 100%;
+  opacity: ${props => (props.isDisableBlank ? 0 : 1)};
+  transition: opacity 0.5s;
 `;
 
 const Tiny = styled(Default)`
@@ -115,5 +122,5 @@ const Tiny = styled(Default)`
 
 const Origin = styled(Default)`
   opacity: ${props => (props.originState === 'complete' ? 1 : 0)};
-  transition: opacity 0.3s;
+  transition: opacity 0.3s 0.2s;
 `;
