@@ -96,6 +96,7 @@ const Wrapper = styled.div`
   position: relative;
   overflow: hidden;
   display: inline-block;
+  margin-bottom: -4.5px;
 `;
 
 const Default = styled.div`
@@ -110,8 +111,8 @@ const Default = styled.div`
 
 const Blank = styled(Default)`
   width: 100%;
-  opacity: ${props => (props.isDisableBlank ? 0 : 1)};
-  transition: opacity 0.5s;
+  /* opacity: ${props => (props.isDisableBlank ? 0 : 1)}; */
+  /* transition: opacity 0.5s; */
 `;
 
 const Tiny = styled(Default)`
