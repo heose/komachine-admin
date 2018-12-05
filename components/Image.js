@@ -1,9 +1,9 @@
 /* eslint-disable class-methods-use-this */
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-export default class Image extends Component {
+export default class Image extends React.PureComponent {
   constructor(props) {
     super(props);
     this.tinyRef = React.createRef();

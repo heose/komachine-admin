@@ -21,7 +21,7 @@ const reducer = handleActions(
   {
     [FETCH_SUCCESS]: (state, action) =>
       produce(state, draft => {
-        draft.table = action.payload.table;
+        draft.table = { ...state.table, ...action.payload.table };
         draft.list = action.payload.list;
         draft.state = action.payload.state;
         draft.page = action.payload.page;
