@@ -8,7 +8,7 @@ import Image from 'components/Image';
 import { generateQueryStr } from '../utils/query-string-generator';
 import withViewType from '../lib/with-view-type';
 
-function CompanyList({ list, table, page, hasPrev, hasNext, isActive, hasRelation, viewType }) {
+function CompanyList({ list, table, page, hasPrev, hasNext, isActive, hasRelation, viewType, isFetching }) {
   const prevEnabled = hasPrev ? 'enabled' : 'disabled';
   const nextEnabled = hasNext ? 'enabled' : 'disabled';
   const prevPage = hasPrev ? Number(page) - 1 : Number(page);
@@ -20,15 +20,15 @@ function CompanyList({ list, table, page, hasPrev, hasNext, isActive, hasRelatio
   const Table = withViewType(viewType);
   return (
     <div>
-      <Image
+      {/* <Image
         src="https://cdn.komachine.com/media/2013-Porsche-Cayenne-Gts-1920x2560.jpeg"
         height="100px"
         width="auto"
         minWidth="133px"
-      />
+      /> */}
       <YesOrNoFilter label="기업활성화여부" queryMap={queryMap} checkKey="isActive" />
       <YesOrNoFilter label="기업연동여부" queryMap={queryMap} checkKey="hasRelation" />
-      <Table data={bodyData} />
+      <Table data={bodyData} isFetching={isFetching} />
       <div>
         <Link
           enabled={prevEnabled}
@@ -62,6 +62,7 @@ CompanyList.propTypes = {
   isActive: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   hasRelation: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   viewType: PropTypes.number,
+  isFetching: PropTypes.bool,
 };
 
 CompanyList.defaultProps = {
@@ -73,6 +74,7 @@ CompanyList.defaultProps = {
   isActive: null,
   hasRelation: null,
   viewType: 0,
+  isFetching: false,
 };
 
 const mapStateToProps = state => {

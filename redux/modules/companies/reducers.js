@@ -10,6 +10,7 @@ const initialState = {
   hasNext: false,
   isActive: null,
   hasRelation: null,
+  isFetching: false,
 };
 
 export const FETCH_REQUEST = 'companies/FETCH';
@@ -19,6 +20,10 @@ export const SET_VIEW_TYPE = 'companies/SET_VIEW_TYPE';
 
 const reducer = handleActions(
   {
+    [FETCH_REQUEST]: state =>
+      produce(state, draft => {
+        draft.isFetching = true;
+      }),
     [FETCH_SUCCESS]: (state, action) =>
       produce(state, draft => {
         draft.table = { ...state.table, ...action.payload.table };
@@ -29,10 +34,12 @@ const reducer = handleActions(
         draft.hasNext = action.payload.hasNext;
         draft.isActive = action.payload.isActive;
         draft.hasRelation = action.payload.hasRelation;
+        draft.isFetching = false;
       }),
     [FETCH_FAILURE]: state =>
       produce(state, draft => {
         draft.state = 'error';
+        draft.isFetching = false;
       }),
     [SET_VIEW_TYPE]: (state, action) =>
       produce(state, draft => {

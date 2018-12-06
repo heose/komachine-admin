@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-export default class Image extends React.PureComponent {
+export default class Image extends React.Component {
   constructor(props) {
     super(props);
     this.tinyRef = React.createRef();
@@ -27,6 +27,10 @@ export default class Image extends React.PureComponent {
     }
   }
 
+  shouldComponentUpdate(nextProps) {
+    return !nextProps.isFetching;
+  }
+
   handleLoaded(type) {
     this.setState(() => ({ [type]: 'complete' }));
   }
@@ -47,7 +51,7 @@ export default class Image extends React.PureComponent {
         <Origin
           as="img"
           ref={this.originRef}
-          src={src}
+          src={`${src}`}
           alt=""
           onLoad={() => this.handleLoaded('originState')}
           onError={this.handleError}
@@ -112,16 +116,34 @@ const Default = styled.div`
 const Blank = styled(Default)`
   width: 100%;
   /* opacity: ${props => (props.isDisableBlank ? 0 : 1)}; */
-  /* transition: opacity 0.5s; */
+  opacity: 1;
+  ${props =>
+    props.isDisableBlank &&
+    `
+    opacity: 0;
+    transition: opacity 0.5s;
+  `};
 `;
 
 const Tiny = styled(Default)`
-  opacity: ${props => (props.tinyState === 'complete' ? 1 : 0)};
-  transition: opacity 0.3s;
+  /* opacity: ${props => (props.tinyState === 'complete' ? 1 : 0)}; */
+  opacity: 0;
   filter: blur(5px);
+  ${props =>
+    props.tinyState === 'complete' &&
+    `
+    opacity: 1;
+    transition: opacity 0.3s;
+  `};
 `;
 
 const Origin = styled(Default)`
-  opacity: ${props => (props.originState === 'complete' ? 1 : 0)};
-  transition: opacity 0.3s 0.2s;
+  /* opacity: ${props => (props.originState === 'complete' ? 1 : 0)}; */
+  opacity: 0;
+  ${props =>
+    props.originState === 'complete' &&
+    `
+    opacity: 1;
+    transition: opacity 0.3s .2s;
+  `};
 `;
