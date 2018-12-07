@@ -22,7 +22,6 @@ class Logo extends React.Component {
   }
   render() {
     const { src, width, height } = this.props;
-    const tinySrc = 'cascor-768_vhxboc_tiny.JPG';
     return <Img ref={this.imgRef} src={src} width={width} height={height} />;
   }
 }

@@ -85,11 +85,13 @@ Image.propTypes = {
   height: PropTypes.string.isRequired,
   minWidth: PropTypes.string,
   minHeight: PropTypes.string,
+  isFetching: PropTypes.bool,
 };
 
 Image.defaultProps = {
   minWidth: '',
   minHeight: '',
+  isFetching: false,
 };
 
 const Wrapper = styled.div`
