@@ -27,7 +27,7 @@ function CompanyList({ list, table, page, hasPrev, hasNext, isActive, hasRelatio
         width="auto"
         minWidth="133px"
       />
-      <Checkbox />
+      <Checkbox name="test" />
       <YesOrNoFilter label="기업활성화여부" queryMap={queryMap} checkKey="isActive" />
       <YesOrNoFilter label="기업연동여부" queryMap={queryMap} checkKey="hasRelation" />
       <Table data={bodyData} isFetching={isFetching} />
