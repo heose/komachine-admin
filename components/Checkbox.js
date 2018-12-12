@@ -6,49 +6,66 @@ class Checkbox extends React.Component {
   constructor(props) {
     super(props);
     this.svg = null;
+    this.outerBox = null;
+    this.innerBox = null;
+    this.v = null;
+    this.d =
+      'M4,1 L16,1 C17.6568542,1 19,2.34314575 19,4 L19,16 C19,17.6568542 17.6568542,19 16,19 L4,19 C2.34314575,19 1,17.6568542 1,16 L1,4 C1,2.34314575 2.34314575,1 4,1 Z';
   }
+  state = {};
   componentDidMount() {
     import('snapsvg-cjs').then(module => {
       const Snap = module.default;
       this.svg = Snap('#cbx1');
-      const bigCircle = this.svg.circle(100, 100, 20);
-      bigCircle.attr({
-        fill: '#bada55',
-        stroke: '#000',
-        strokeWidth: 5,
+      this.outerBox = this.svg.path(this.d);
+      const g = this.svg.group(this.outerBox);
+      g.attr({
+        stroke: 'none',
+        strokeWidth: 1,
+        fill: 'none',
+        fillRule: 'evenodd',
       });
-      bigCircle.click(this.handleClick);
-      // Now lets create another small circle:
-
-      // Despite our small circle now is a part of a group
-      // and a part of a mask we could still access it:
+      this.outerBox.attr({ stroke: '#979797', strokeWidth: 2, fillRule: 'nonzero' });
+      // this.innerBox = this.svg.rect(3, 3, 14, 14, 1);
+      // this.innerBox.attr({ fill: 'white' });
     });
   }
-  handleClick = e => {
-    const smallCircle = this.svg.circle(100, 150, 70);
-    // Lets put this small circle and another one into a group:
-    const discs = this.svg.group(smallCircle, this.svg.circle(200, 150, 70));
-    // Now we can change attributes for the whole group
-    discs.attr({
-      fill: '#fff',
-    });
-    // Now more interesting stuff
-    // Lets assign this group as a mask for our big circle
-    smallCircle.animate({ r: 50 }, 1000);
+  handleClick = () => {};
+  handleOver = () => {
+    // this.outerBox.attr({ fill: 'none', fillOpacity: 1 });
+    // this.outerBox.animate({ fill: 'none', stroke: '#0a87ff', strokeWidth: 5 }, 400);
+  };
+  handleOut = () => {
+    // this.outerBox.attr({ fill: '#4A4A4A', fillOpacity: 0.5, stroke: 'none' });
   };
   render() {
     const { name } = this.props;
+    const id = 'cbx';
     return (
       <div>
-        <label htmlFor="cbx" className="label-cbx">
-          <input type="checkbox" name={name} id="cbx" />
-          <svg id="cbx1" style={{ width: '200px', height: '200px' }} />
-          {/* <div className="checkbox">
+        <label htmlFor={id} className="label-cbx" onMouseOver={this.handleOver} onMouseOut={this.handleOut}>
+          <input type="checkbox" name={name} id={id} />
+          <svg id="cbx1" width="20px" height="20px" viewBox="0 0 20 20" />
           <svg width="20px" height="20px" viewBox="0 0 20 20">
-            <path d="M3,1 L17,1 L17,1 C18.1045695,1 19,1.8954305 19,3 L19,17 L19,17 C19,18.1045695 18.1045695,19 17,19 L3,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,3 L1,3 C1,1.8954305 1.8954305,1 3,1 Z" />
-            <polyline points="4 11 8 15 16 6" />
+            <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+              <path d={this.d} id="Rectangle" stroke="#979797" strokeWidth="2" fillRule="nonzero" />
+              <polyline
+                id="Path-2"
+                stroke="#E11B1B"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                points="4.95121951 9.92998491 8.46616628 13.4137931 15.4878049 6.5862069"
+              />
+            </g>
           </svg>
-        </div> */}
+          안녕하세요
+          {/* <div className="checkbox">
+            <svg width="20px" height="20px" viewBox="0 0 20 20">
+              <path d="M3,1 L17,1 L17,1 C18.1045695,1 19,1.8954305 19,3 L19,17 L19,17 C19,18.1045695 18.1045695,19 17,19 L3,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,3 L1,3 C1,1.8954305 1.8954305,1 3,1 Z" />
+              <polyline points="4 11 8 15 16 6" />
+            </svg>
+          </div> */}
         </label>
       </div>
     );
