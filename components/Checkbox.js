@@ -6,6 +6,7 @@ class Checkbox extends React.Component {
   constructor(props) {
     super(props);
     this.svg = null;
+    this.checkboxRef = React.createRef();
     this.outerBox = null;
     this.innerBox = null;
     this.v = null;
@@ -17,6 +18,14 @@ class Checkbox extends React.Component {
     import('snapsvg-cjs').then(module => {
       const Snap = module.default;
       this.svg = Snap('#cbx1');
+      const s = Snap('#cbx2');
+      console.log(this.checkboxRef.current.checked);
+      if (this.checkboxRef.current.checked) {
+        s.select('#cbx-group polyline').attr({
+          stroke: '#fff',
+        });
+        s.select('#cbx-group path').attr({ stroke: '#0a87ff', fill: '#0a87ff' });
+      }
       this.outerBox = this.svg.path(this.d);
       const g = this.svg.group(this.outerBox);
       g.attr({
@@ -44,14 +53,14 @@ class Checkbox extends React.Component {
     return (
       <div>
         <label htmlFor={id} className="label-cbx" onMouseOver={this.handleOver} onMouseOut={this.handleOut}>
-          <input type="checkbox" name={name} id={id} />
+          <input type="checkbox" name={name} id={id} ref={this.checkboxRef} checked />
           <svg id="cbx1" width="20px" height="20px" viewBox="0 0 20 20" />
-          <svg width="20px" height="20px" viewBox="0 0 20 20">
-            <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-              <path d={this.d} id="Rectangle" stroke="#979797" strokeWidth="2" fillRule="nonzero" />
+          <svg id="cbx2" width="20px" height="20px" viewBox="0 0 20 20">
+            <g id="cbx-group" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+              <path id="cbx-box" d={this.d} id="Rectangle" stroke="#979797" strokeWidth="2" fillRule="nonzero" />
               <polyline
                 id="Path-2"
-                stroke="#E11B1B"
+                stroke="none"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
