@@ -6,6 +6,7 @@ class Checkbox extends React.Component {
   constructor(props) {
     super(props);
     this.svg = null;
+    this.s = null;
     this.checkboxRef = React.createRef();
     this.outerBox = null;
     this.innerBox = null;
@@ -18,13 +19,15 @@ class Checkbox extends React.Component {
     import('snapsvg-cjs').then(module => {
       const Snap = module.default;
       this.svg = Snap('#cbx1');
-      const s = Snap('#cbx2');
-      console.log(this.checkboxRef.current.checked);
+      this.s = Snap('#cbx2');
+      this.s.click(this.handleClick);
       if (this.checkboxRef.current.checked) {
-        s.select('#cbx-group polyline').attr({
-          stroke: '#fff',
+        const length = this.s.select('#cbx-group polyline').getTotalLength();
+        this.s.select('#cbx-group polyline').attr({
+          'stroke-dasharray': `${length} ${length}`,
+          'stroke-dashoffset': length,
         });
-        s.select('#cbx-group path').attr({ stroke: '#0a87ff', fill: '#0a87ff' });
+        this.s.select('#cbx-group path').attr({ stroke: '#0a87ff', fill: '#0a87ff' });
       }
       this.outerBox = this.svg.path(this.d);
       const g = this.svg.group(this.outerBox);
@@ -39,10 +42,14 @@ class Checkbox extends React.Component {
       // this.innerBox.attr({ fill: 'white' });
     });
   }
-  handleClick = () => {};
+  handleClick = () => {
+    console.log('asdf');
+    this.s.select('#cbx-group polyline').attr({ stroke: '#fff' });
+    this.s.select('#cbx-group polyline').animate({ strokeDashoffset: 0 }, 200);
+  };
   handleOver = () => {
     // this.outerBox.attr({ fill: 'none', fillOpacity: 1 });
-    // this.outerBox.animate({ fill: 'none', stroke: '#0a87ff', strokeWidth: 5 }, 400);
+    // this.outerBox.animate({ fill: 'none', stroke: '#0a87ff', strokeWidth: 5 }, 40);
   };
   handleOut = () => {
     // this.outerBox.attr({ fill: '#4A4A4A', fillOpacity: 0.5, stroke: 'none' });
@@ -55,7 +62,7 @@ class Checkbox extends React.Component {
         <label htmlFor={id} className="label-cbx" onMouseOver={this.handleOver} onMouseOut={this.handleOut}>
           <input type="checkbox" name={name} id={id} ref={this.checkboxRef} checked />
           <svg id="cbx1" width="20px" height="20px" viewBox="0 0 20 20" />
-          <svg id="cbx2" width="20px" height="20px" viewBox="0 0 20 20">
+          <svg id="cbx2" width="40px" height="40px" viewBox="0 0 20 20">
             <g id="cbx-group" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
               <path id="cbx-box" d={this.d} id="Rectangle" stroke="#979797" strokeWidth="2" fillRule="nonzero" />
               <polyline
