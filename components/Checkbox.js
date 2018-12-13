@@ -62,7 +62,7 @@ class Checkbox extends React.Component {
         <label htmlFor={id} className="label-cbx" onMouseOver={this.handleOver} onMouseOut={this.handleOut}>
           <input type="checkbox" name={name} id={id} ref={this.checkboxRef} checked />
           <svg id="cbx1" width="20px" height="20px" viewBox="0 0 20 20" />
-          <svg id="cbx2" width="40px" height="40px" viewBox="0 0 20 20">
+          <svg id="cbx2" width="20px" height="20px" viewBox="0 0 20 20">
             <g id="cbx-group" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
               <path id="cbx-box" d={this.d} id="Rectangle" stroke="#979797" strokeWidth="2" fillRule="nonzero" />
               <polyline
