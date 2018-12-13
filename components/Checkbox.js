@@ -5,68 +5,85 @@ import styled from 'styled-components';
 class Checkbox extends React.Component {
   constructor(props) {
     super(props);
-    this.svg = null;
-    this.s = null;
+    this.handleClick = this.handleClick.bind(this);
     this.checkboxRef = React.createRef();
-    this.outerBox = null;
-    this.innerBox = null;
-    this.v = null;
+    this.svg = null;
+    this.box = null;
+    this.boxOutline = null;
+    this.checkSymbol = null;
     this.d =
       'M4,1 L16,1 C17.6568542,1 19,2.34314575 19,4 L19,16 C19,17.6568542 17.6568542,19 16,19 L4,19 C2.34314575,19 1,17.6568542 1,16 L1,4 C1,2.34314575 2.34314575,1 4,1 Z';
+    this.symbolLength = 0;
+    this.boxLength = 0;
   }
-  state = {};
+  state = { checked: false };
   componentDidMount() {
     import('snapsvg-cjs').then(module => {
       const Snap = module.default;
-      this.svg = Snap('#cbx1');
-      this.s = Snap('#cbx2');
-      this.s.click(this.handleClick);
-      if (this.checkboxRef.current.checked) {
-        const length = this.s.select('#cbx-group polyline').getTotalLength();
-        this.s.select('#cbx-group polyline').attr({
-          'stroke-dasharray': `${length} ${length}`,
-          'stroke-dashoffset': length,
-        });
-        this.s.select('#cbx-group path').attr({ stroke: '#0a87ff', fill: '#0a87ff' });
-      }
-      this.outerBox = this.svg.path(this.d);
-      const g = this.svg.group(this.outerBox);
-      g.attr({
-        stroke: 'none',
-        strokeWidth: 1,
-        fill: 'none',
-        fillRule: 'evenodd',
+      this.svg = Snap('#cbx2');
+      this.box = this.svg.select('#cbx-group #box');
+      this.boxOutline = this.svg.select('#cbx-group #box-outline');
+      this.checkSymbol = this.svg.select('#cbx-group #check-symbol');
+      this.boxLength = this.boxOutline.getTotalLength();
+      this.boxOutline.attr({
+        'stroke-dasharray': `${this.boxLength} ${this.boxLength}`,
+        'stroke-dashoffset': this.boxLength,
       });
-      this.outerBox.attr({ stroke: '#979797', strokeWidth: 2, fillRule: 'nonzero' });
-      // this.innerBox = this.svg.rect(3, 3, 14, 14, 1);
-      // this.innerBox.attr({ fill: 'white' });
+      this.symbolLength = this.checkSymbol.getTotalLength();
+      this.checkSymbol.attr({
+        'stroke-dasharray': `${this.symbolLength} ${this.symbolLength}`,
+        'stroke-dashoffset': this.symbolLength,
+      });
+      if (this.checkboxRef.current.checked) {
+        this.box.attr({ stroke: '#0a87ff', fill: '#0a87ff' });
+      }
     });
   }
   handleClick = () => {
-    console.log('asdf');
-    this.s.select('#cbx-group polyline').attr({ stroke: '#fff' });
-    this.s.select('#cbx-group polyline').animate({ strokeDashoffset: 0 }, 200);
+    if (this.state.checked) {
+      this.setState(() => ({ checked: false }));
+      this.box.attr({ stroke: '#979797', fill: 'none' });
+      this.checkSymbol.animate({ strokeDashoffset: this.symbolLength - 1 }, 140, () =>
+        this.checkSymbol.attr({ stroke: 'none' }),
+      );
+    } else {
+      this.setState(() => ({ checked: true }));
+      this.box.attr({ stroke: '#0a87ff', fill: '#0a87ff' });
+      this.checkSymbol.attr({ stroke: '#fff' });
+      this.checkSymbol.animate({ strokeDashoffset: 0 }, 140);
+    }
   };
   handleOver = () => {
-    // this.outerBox.attr({ fill: 'none', fillOpacity: 1 });
-    // this.outerBox.animate({ fill: 'none', stroke: '#0a87ff', strokeWidth: 5 }, 40);
+    console.log('over');
+    this.boxOutline.attr({ stroke: '#0a87ff' });
+    this.boxOutline.animate({ strokeDashoffset: 0 }, 300);
   };
   handleOut = () => {
-    // this.outerBox.attr({ fill: '#4A4A4A', fillOpacity: 0.5, stroke: 'none' });
+    this.boxOutline.animate({ strokeDashoffset: this.boxLength - 1 }, 200, () =>
+      this.boxOutline.attr({ stroke: 'none' }),
+    );
   };
   render() {
     const { name } = this.props;
     const id = 'cbx';
     return (
-      <div>
-        <label htmlFor={id} className="label-cbx" onMouseOver={this.handleOver} onMouseOut={this.handleOut}>
-          <input type="checkbox" name={name} id={id} ref={this.checkboxRef} checked />
-          <svg id="cbx1" width="20px" height="20px" viewBox="0 0 20 20" />
+      <Div>
+        <label htmlFor={id} onMouseEnter={this.handleOver} onMouseLeave={this.handleOut}>
+          <input type="checkbox" name={name} id={id} ref={this.checkboxRef} onClick={this.handleClick} />
           <svg id="cbx2" width="20px" height="20px" viewBox="0 0 20 20">
             <g id="cbx-group" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-              <path id="cbx-box" d={this.d} id="Rectangle" stroke="#979797" strokeWidth="2" fillRule="nonzero" />
+              <path id="box" d={this.d} stroke="#979797" strokeWidth="2" fillRule="nonzero" />
+              <path
+                id="box-outline"
+                d={this.d}
+                stroke="none"
+                strokeWidth="2"
+                fillRule="nonzero"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
               <polyline
-                id="Path-2"
+                id="check-symbol"
                 stroke="none"
                 strokeWidth="2"
                 strokeLinecap="round"
@@ -76,14 +93,8 @@ class Checkbox extends React.Component {
             </g>
           </svg>
           안녕하세요
-          {/* <div className="checkbox">
-            <svg width="20px" height="20px" viewBox="0 0 20 20">
-              <path d="M3,1 L17,1 L17,1 C18.1045695,1 19,1.8954305 19,3 L19,17 L19,17 C19,18.1045695 18.1045695,19 17,19 L3,19 L3,19 C1.8954305,19 1,18.1045695 1,17 L1,3 L1,3 C1,1.8954305 1.8954305,1 3,1 Z" />
-              <polyline points="4 11 8 15 16 6" />
-            </svg>
-          </div> */}
         </label>
-      </div>
+      </Div>
     );
   }
 }
@@ -93,58 +104,8 @@ Checkbox.propTypes = {
 };
 
 const Div = styled.div`
-  .label-cbx {
-    user-select: none;
-    cursor: pointer;
-    margin-bottom: 0;
-  }
-  .label-cbx input:checked + .checkbox {
-    border-color: #20c2e0;
-  }
-  .label-cbx input:checked + .checkbox svg path {
-    fill: #20c2e0;
-  }
-  .label-cbx input:checked + .checkbox svg polyline {
-    stroke-dashoffset: 0;
-  }
-  .label-cbx:hover .checkbox svg path {
-    stroke-dashoffset: 0;
-  }
-  .label-cbx .checkbox {
-    position: relative;
-    top: 2px;
-    float: left;
-    margin-right: 8px;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #c8ccd4;
-    border-radius: 3px;
-  }
-  .label-cbx .checkbox svg {
-    position: absolute;
-    top: -2px;
-    left: -2px;
-  }
-  .label-cbx .checkbox svg path {
-    fill: none;
-    stroke: #20c2e0;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-dasharray: 71px;
-    stroke-dashoffset: 71px;
-    transition: all 0.6s ease;
-  }
-  .label-cbx .checkbox svg polyline {
-    fill: none;
-    stroke: #fff;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-dasharray: 18px;
-    stroke-dashoffset: 18px;
-    transition: all 0.3s ease;
-  }
+  margin-top: 10px;
+  user-select: none;
 `;
 
 export default Checkbox;
