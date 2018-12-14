@@ -63,7 +63,7 @@ class Checkbox extends React.Component {
     );
   };
   render() {
-    const { name } = this.props;
+    const { name, children } = this.props;
     const id = 'cbx';
     return (
       <Div>
@@ -91,7 +91,7 @@ class Checkbox extends React.Component {
               />
             </g>
           </svg>
-          안녕하세요
+          {children}
         </label>
       </Div>
     );
@@ -100,8 +100,12 @@ class Checkbox extends React.Component {
 
 Checkbox.propTypes = {
   name: PropTypes.string.isRequired,
+  children: PropTypes.string,
 };
 
+Checkbox.defaultProps = {
+  children: '',
+};
 const Div = styled.div`
   margin-top: 10px;
   user-select: none;

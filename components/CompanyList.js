@@ -5,9 +5,10 @@ import Link from 'components/Link';
 import YesOrNoFilter from 'components/YesOrNoFilter';
 import { Button } from 'components/form/button/Button';
 import Image from 'components/Image';
+import Checkbox from 'components/Checkbox';
+import ToggleBox from 'components/ToggleBox';
 import { generateQueryStr } from '../utils/query-string-generator';
 import withViewType from '../lib/with-view-type';
-import Checkbox from './Checkbox';
 
 function CompanyList({ list, table, page, hasPrev, hasNext, isActive, hasRelation, viewType, isFetching }) {
   const prevEnabled = hasPrev ? 'enabled' : 'disabled';
@@ -27,7 +28,13 @@ function CompanyList({ list, table, page, hasPrev, hasNext, isActive, hasRelatio
         width="auto"
         minWidth="133px"
       />
-      <Checkbox name="test" />
+      <div>
+        <Checkbox name="test">체크박스</Checkbox>
+      </div>
+      <div>
+        <ToggleBox>토글박스</ToggleBox>
+      </div>
+
       <YesOrNoFilter label="기업활성화여부" queryMap={queryMap} checkKey="isActive" />
       <YesOrNoFilter label="기업연동여부" queryMap={queryMap} checkKey="hasRelation" />
       <Table data={bodyData} isFetching={isFetching} />
