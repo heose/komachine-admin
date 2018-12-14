@@ -54,7 +54,6 @@ class Checkbox extends React.Component {
     }
   };
   handleOver = () => {
-    console.log('over');
     this.boxOutline.attr({ stroke: '#0a87ff' });
     this.boxOutline.animate({ strokeDashoffset: 0 }, 300);
   };
@@ -106,6 +105,9 @@ Checkbox.propTypes = {
 const Div = styled.div`
   margin-top: 10px;
   user-select: none;
+  input {
+    display: none;
+  }
 `;
 
 export default Checkbox;
