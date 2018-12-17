@@ -8,13 +8,13 @@ class ToggleBox extends Component {
     const { children } = this.props;
     return (
       <Div>
-        <label htmlFor="toggle-box">
+        <Label htmlFor="toggle-box">
           <input type="checkbox" id="toggle-box" />
           <Wrapper>
             <Button />
             <Span />
           </Wrapper>
-        </label>
+        </Label>
       </Div>
     );
   }
@@ -30,6 +30,13 @@ ToggleBox.defaultProps = {
 
 const Div = styled.div`
   user-select: none;
+  input {
+    display: none;
+  }
+`;
+
+const Label = styled.label`
+  cursor: pointer;
 `;
 
 const Wrapper = styled.div`

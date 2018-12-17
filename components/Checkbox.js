@@ -42,7 +42,7 @@ class Checkbox extends React.Component {
   handleClick = () => {
     if (this.state.checked) {
       this.setState(() => ({ checked: false }));
-      this.box.attr({ stroke: '#979797', fill: 'none' });
+      this.box.attr({ stroke: '#c8ccd4', fill: 'none' });
       this.checkSymbol.animate({ strokeDashoffset: this.symbolLength - 1 }, 140, () =>
         this.checkSymbol.attr({ stroke: 'none' }),
       );
@@ -67,11 +67,11 @@ class Checkbox extends React.Component {
     const id = 'cbx';
     return (
       <Div>
-        <label htmlFor={id} onMouseEnter={this.handleOver} onMouseLeave={this.handleOut}>
+        <Label htmlFor={id} onMouseEnter={this.handleOver} onMouseLeave={this.handleOut}>
           <input type="checkbox" name={name} id={id} ref={this.checkboxRef} onClick={this.handleClick} />
           <svg id="cbx2" width="20px" height="20px" viewBox="0 0 20 20">
             <g id="cbx-group" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-              <path id="box" d={this.d} stroke="#979797" strokeWidth="2" fillRule="nonzero" />
+              <path id="box" d={this.d} stroke="#c8ccd4" strokeWidth="2" fillRule="nonzero" />
               <path
                 id="box-outline"
                 d={this.d}
@@ -92,7 +92,7 @@ class Checkbox extends React.Component {
             </g>
           </svg>
           {children}
-        </label>
+        </Label>
       </Div>
     );
   }
@@ -112,6 +112,10 @@ const Div = styled.div`
   input {
     display: none;
   }
+`;
+
+const Label = styled.label`
+  cursor: pointer;
 `;
 
 export default Checkbox;

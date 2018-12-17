@@ -7,6 +7,7 @@ import { Button } from 'components/form/button/Button';
 import Image from 'components/Image';
 import Checkbox from 'components/Checkbox';
 import ToggleBox from 'components/ToggleBox';
+import RadioButton from 'components/RadioButton';
 import { generateQueryStr } from '../utils/query-string-generator';
 import withViewType from '../lib/with-view-type';
 
@@ -33,6 +34,17 @@ function CompanyList({ list, table, page, hasPrev, hasNext, isActive, hasRelatio
       </div>
       <div>
         <ToggleBox>토글박스</ToggleBox>
+      </div>
+      <div>
+        <RadioButton id="rb-1" name="rb-test">
+          라디오버튼1
+        </RadioButton>
+        <RadioButton id="rb-2" name="rb-test">
+          라디오버튼2
+        </RadioButton>
+        <RadioButton id="rb-3" name="rb-test">
+          라디오버튼3
+        </RadioButton>
       </div>
 
       <YesOrNoFilter label="기업활성화여부" queryMap={queryMap} checkKey="isActive" />
