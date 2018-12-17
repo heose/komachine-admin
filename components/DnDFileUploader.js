@@ -7,8 +7,28 @@ function DnDFileUploader(props) {
     console.log('adf');
     // window.addEventListener('drop', e => e.preventDefault(), false);
     // window.addEventListener('dragover', e => e.preventDefault(), false);
+    // window.addEventListener(
+    //   'dragenter',
+    //   e => {
+    //     e.preventDefault();
+    //     // e.dataTransfer.effectAllowed = 'none';
+    //     // e.dataTransfer.dropEffect = 'none';
+    //   },
+    //   false,
+    // );
+
     window.addEventListener(
-      'dragenter',
+      'dragover',
+      e => {
+        e.dataTransfer.effectAllowed = 'none';
+        e.dataTransfer.dropEffect = 'none';
+        e.preventDefault();
+      },
+      false,
+    );
+
+    window.addEventListener(
+      'drop',
       e => {
         e.preventDefault();
         e.dataTransfer.effectAllowed = 'none';
@@ -16,18 +36,6 @@ function DnDFileUploader(props) {
       },
       false,
     );
-
-    window.addEventListener('dragover', e => {
-      e.preventDefault();
-      e.dataTransfer.effectAllowed = 'none';
-      e.dataTransfer.dropEffect = 'none';
-    });
-
-    window.addEventListener('drop', e => {
-      e.preventDefault();
-      // e.dataTransfer.effectAllowed = 'none';
-      // e.dataTransfer.dropEffect = 'none';
-    });
   }
 
   const handleFileChange = e => {
@@ -35,11 +43,10 @@ function DnDFileUploader(props) {
   };
   const handleDragEnter = e => {
     console.log(e);
+    e.dataTransfer.dropEffect = 'copy';
     e.preventDefault();
   };
   const handleDrop = e => {
-    e.stopPropagation();
-    e.stopImmediatePropagation();
     e.preventDefault();
     console.log(e);
   };
