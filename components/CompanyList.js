@@ -8,6 +8,7 @@ import Image from 'components/Image';
 import Checkbox from 'components/Checkbox';
 import ToggleBox from 'components/ToggleBox';
 import RadioButton from 'components/RadioButton';
+import DndFileUploader from 'components/DnDFileUploader';
 import { generateQueryStr } from '../utils/query-string-generator';
 import withViewType from '../lib/with-view-type';
 
@@ -45,6 +46,9 @@ function CompanyList({ list, table, page, hasPrev, hasNext, isActive, hasRelatio
         <RadioButton id="rb-3" name="rb-test">
           라디오버튼3
         </RadioButton>
+      </div>
+      <div>
+        <DndFileUploader />
       </div>
 
       <YesOrNoFilter label="기업활성화여부" queryMap={queryMap} checkKey="isActive" />
