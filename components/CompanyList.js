@@ -30,7 +30,7 @@ function CompanyList({ list, table, page, hasPrev, hasNext, isActive, hasRelatio
         minWidth="133px"
       />
       <div>
-        <Checkbox name="test">체크박스</Checkbox>
+        <Checkbox name="test" />
       </div>
       <div>
         <ToggleBox>토글박스</ToggleBox>

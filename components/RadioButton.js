@@ -12,7 +12,7 @@ function RadioButton({ id, name, children }) {
           <Inner d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z" />
           <Outer d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z" />
         </Svg>
-        <span>{children}</span>
+        <Span>{children}</Span>
       </Label>
     </Wrapper>
   );
@@ -31,14 +31,18 @@ RadioButton.defaultProps = {
 const Wrapper = styled.div`
   display: inline-block;
   cursor: pointer;
-
   input {
     display: none;
+  }
+  & + & {
+    margin-left: 12px;
   }
 `;
 
 const Label = styled.label`
   cursor: pointer;
+  display: flex;
+  align-items: center;
 `;
 
 const Svg = styled.svg`
@@ -58,7 +62,6 @@ const Inner = styled.path`
   input:checked + svg & {
     transition: all 0.4s ease;
     stroke-dashoffset: 38;
-    /* transition-delay: 0.3s; */
   }
 `;
 
@@ -72,6 +75,11 @@ const Outer = styled.path`
   label:hover & {
     stroke-dashoffset: 0;
   }
+`;
+
+const Span = styled.span`
+  margin-left: 2px;
+  margin-top: 5px;
 `;
 
 export default RadioButton;

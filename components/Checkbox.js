@@ -91,7 +91,6 @@ class Checkbox extends React.Component {
               />
             </g>
           </svg>
-          {children}
         </Label>
       </Div>
     );
@@ -107,8 +106,9 @@ Checkbox.defaultProps = {
   children: '',
 };
 const Div = styled.div`
-  margin-top: 10px;
+  margin-top: 20px;
   user-select: none;
+  display: inline-block;
   input {
     display: none;
   }
@@ -116,6 +116,8 @@ const Div = styled.div`
 
 const Label = styled.label`
   cursor: pointer;
+  display: flex;
+  align-items: center;
 `;
 
 export default Checkbox;
