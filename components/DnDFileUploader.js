@@ -4,10 +4,17 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 class DnDFileUploader extends React.Component {
-  state = {};
+  state = { isSelectable: false, isUploadable: false };
   render() {
     if (process.browser) {
-      window.addEventListener('dragover', e => e.preventDefault(), false);
+      window.addEventListener(
+        'dragover',
+        e => {
+          // e.dataTransfer.dropEffect = 'copy';
+          e.preventDefault();
+        },
+        false,
+      );
       window.addEventListener('drop', e => e.preventDefault(), false);
     }
 
@@ -19,6 +26,15 @@ class DnDFileUploader extends React.Component {
     const handleDragEnter = e => {
       e.stopPropagation();
       e.preventDefault();
+      if (e.dataTransfer.files) {
+        e.dataTransfer.effectAllowed = 'copy';
+        e.dataTransfer.dropEffect = 'copy';
+        this.setState(() => ({ isSelectable: true }));
+      }
+    };
+
+    const handleDragLeave = e => {
+      this.setState(() => ({ isSelectable: false }));
     };
 
     const handleDrop = e => {
@@ -50,7 +66,12 @@ class DnDFileUploader extends React.Component {
         .catch(err => console.log(err));
     };
     return (
-      <Div onDragEnter={handleDragEnter} onDrop={handleFile}>
+      <Div
+        onDragEnter={handleDragEnter}
+        onDragLeave={handleDragLeave}
+        onDrop={handleFile}
+        isSelectable={this.state.isSelectable}
+      >
         <span>드래그 or </span>
         <label htmlFor="dndfile">
           <input type="file" id="dndfile" onChange={handleFile} />
@@ -72,6 +93,12 @@ const Div = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: column nowrap;
+  ${props =>
+    props.isSelectable &&
+    `
+      border: 1px solid green;
+      cursor: copy;
+  `};
   input[type='file'] {
     position: absolute !important;
     height: 1px;
