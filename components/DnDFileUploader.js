@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -47,28 +48,37 @@ class DnDFileUploader extends React.Component {
       console.log(typeof e.dataTransfer.files);
     };
 
+    const readFile = (file, method = 'readAsArrayBuffer') =>
+      new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          resolve(reader.result);
+        };
+        reader.onerror = reject;
+        reader[method](file);
+      });
+
     const handleFile = async e => {
-      let file;
-      if (e.type === 'change') {
-        [file] = e.target.files;
-      } else if (e.type === 'drop') {
-        [file] = e.dataTransfer.files;
-      }
+      const [file] = e.target.files || e.dataTransfer.files;
       console.log(file);
       const presignedUrl = await axios
-        .head('http://localhost:8000/en/test/presigned/', { headers: { 'x-file-name': file.name } })
+        .head('http://localhost:8000/en/test/presigned/', {
+          headers: { 'x-file-name': file.name, 'x-file-type': file.type },
+        })
         .then(res => res.headers['x-pre-signed-url']);
-      const formData = new FormData();
-      formData.append('file', file);
+      console.log(presignedUrl);
+      const contentUrl = await readFile(file, 'readAsDataURL');
+      console.log(contentUrl);
+      document.querySelector('#preview').src = contentUrl;
+      const contentBuffer = await readFile(file);
       const config = {
-        headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'binary/octet-stream' },
         onUploadProgress: ProgressEvent => {
           const percentCompleted = Math.round((ProgressEvent.loaded * 100) / ProgressEvent.total);
           console.log(percentCompleted);
         },
       };
       axios
-        .put(presignedUrl, formData, config)
+        .put(presignedUrl, contentBuffer, config)
         .then(res => console.log(res))
         .catch(err => console.log(err));
     };
