@@ -4,17 +4,14 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 class DnDFileUploader extends React.Component {
-  state = { isSelectable: false, isUploadable: false };
+  constructor(props) {
+    super(props);
+    const divRef = React.createRef();
+  }
+  state = { enterCount: 0, isSelectable: false };
   render() {
     if (process.browser) {
-      window.addEventListener(
-        'dragover',
-        e => {
-          // e.dataTransfer.dropEffect = 'copy';
-          e.preventDefault();
-        },
-        false,
-      );
+      window.addEventListener('dragover', e => e.preventDefault(), false);
       window.addEventListener('drop', e => e.preventDefault(), false);
     }
 
@@ -24,17 +21,23 @@ class DnDFileUploader extends React.Component {
     };
 
     const handleDragEnter = e => {
-      e.stopPropagation();
       e.preventDefault();
+      e.stopPropagation();
       if (e.dataTransfer.files) {
-        e.dataTransfer.effectAllowed = 'copy';
         e.dataTransfer.dropEffect = 'copy';
-        this.setState(() => ({ isSelectable: true }));
+        this.setState(state => ({ enterCount: state.enterCount + 1, isSelectable: true }));
       }
     };
 
-    const handleDragLeave = e => {
-      this.setState(() => ({ isSelectable: false }));
+    const handleDragLeave = () => {
+      this.setState(
+        state => ({ enterCount: state.enterCount - 1 }),
+        () => {
+          if (this.state.enterCount === 0) {
+            this.setState(() => ({ isSelectable: false }));
+          }
+        },
+      );
     };
 
     const handleDrop = e => {
@@ -44,7 +47,7 @@ class DnDFileUploader extends React.Component {
       console.log(typeof e.dataTransfer.files);
     };
 
-    const handleFile = e => {
+    const handleFile = async e => {
       let file;
       if (e.type === 'change') {
         [file] = e.target.files;
@@ -52,21 +55,26 @@ class DnDFileUploader extends React.Component {
         [file] = e.dataTransfer.files;
       }
       console.log(file);
+      const presignedUrl = await axios
+        .head('http://localhost:8000/en/test/presigned/', { headers: { 'x-file-name': file.name } })
+        .then(res => res.headers['x-pre-signed-url']);
       const formData = new FormData();
       formData.append('file', file);
       const config = {
+        headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'binary/octet-stream' },
         onUploadProgress: ProgressEvent => {
           const percentCompleted = Math.round((ProgressEvent.loaded * 100) / ProgressEvent.total);
           console.log(percentCompleted);
         },
       };
       axios
-        .put('http://localhost:8000/en/test/upload/', formData, config)
+        .put(presignedUrl, formData, config)
         .then(res => console.log(res))
         .catch(err => console.log(err));
     };
     return (
       <Div
+        ref={this.divRef}
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
         onDrop={handleFile}
@@ -86,7 +94,7 @@ DnDFileUploader.propTypes = {};
 
 const Div = styled.div`
   width: 130px;
-  height: 50px;
+  height: 60px;
   background-color: #fff;
   border: 1px solid lightgray;
   display: flex;
@@ -97,7 +105,6 @@ const Div = styled.div`
     props.isSelectable &&
     `
       border: 1px solid green;
-      cursor: copy;
   `};
   input[type='file'] {
     position: absolute !important;
@@ -106,10 +113,13 @@ const Div = styled.div`
     overflow: hidden;
     clip: rect(1px, 1px, 1px, 1px);
   }
+  span {
+    margin: 3px auto;
+  }
   label {
     display: inline-flex;
     width: 90px;
-    height: 20px;
+    height: 25px;
     color: #fff;
     background-color: lightgray;
     justify-content: center;
