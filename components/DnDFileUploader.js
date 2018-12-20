@@ -9,7 +9,11 @@ class DnDFileUploader extends React.Component {
     super(props);
     const divRef = React.createRef();
   }
-  state = { enterCount: 0, isSelectable: false };
+  state = {
+    enterCount: 0,
+    isSelectable: false,
+    contentUrl: '',
+  };
   render() {
     if (process.browser) {
       window.addEventListener('dragover', e => e.preventDefault(), false);
@@ -70,6 +74,7 @@ class DnDFileUploader extends React.Component {
       const contentUrl = await readFile(file, 'readAsDataURL');
       console.log(contentUrl);
       document.querySelector('#preview').src = contentUrl;
+      this.setState(() => ({ contentUrl }));
       const contentBuffer = await readFile(file);
       const config = {
         onUploadProgress: ProgressEvent => {
@@ -89,6 +94,7 @@ class DnDFileUploader extends React.Component {
         onDragLeave={handleDragLeave}
         onDrop={handleFile}
         isSelectable={this.state.isSelectable}
+        contentUrl={this.state.contentUrl}
       >
         <span>드래그 or </span>
         <label htmlFor="dndfile">
@@ -103,14 +109,18 @@ class DnDFileUploader extends React.Component {
 DnDFileUploader.propTypes = {};
 
 const Div = styled.div`
-  width: 130px;
-  height: 60px;
+  width: 240px;
+  height: 80px;
   background-color: #fff;
   border: 1px solid lightgray;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: column nowrap;
+  background-image: url(${props => props.contentUrl});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   ${props =>
     props.isSelectable &&
     `
