@@ -49,9 +49,8 @@ function CompanyList({ list, table, page, hasPrev, hasNext, isActive, hasRelatio
       </div>
       <div>
         <DndFileUploader />
-        <img id="preview" src="" width="200" alt="로컬에 있는 이미지가 보여지는 영역" />
       </div>
-
+      &nbsp;&nbsp;
       <YesOrNoFilter label="기업활성화여부" queryMap={queryMap} checkKey="isActive" />
       <YesOrNoFilter label="기업연동여부" queryMap={queryMap} checkKey="hasRelation" />
       <Table data={bodyData} isFetching={isFetching} />

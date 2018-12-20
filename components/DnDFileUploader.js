@@ -7,23 +7,20 @@ import axios from 'axios';
 class DnDFileUploader extends React.Component {
   constructor(props) {
     super(props);
-    const divRef = React.createRef();
+    this.inputRef = React.createRef();
   }
   state = {
     enterCount: 0,
     isSelectable: false,
+    isSelect: false,
     contentUrl: '',
+    fileName: '',
   };
   render() {
     if (process.browser) {
       window.addEventListener('dragover', e => e.preventDefault(), false);
       window.addEventListener('drop', e => e.preventDefault(), false);
     }
-
-    const handleFileChange = e => {
-      console.log(e.type);
-      console.log(e.target.files);
-    };
 
     const handleDragEnter = e => {
       e.preventDefault();
@@ -45,13 +42,6 @@ class DnDFileUploader extends React.Component {
       );
     };
 
-    const handleDrop = e => {
-      e.preventDefault();
-      console.log(e.type);
-      console.log(e.dataTransfer.items);
-      console.log(typeof e.dataTransfer.files);
-    };
-
     const readFile = (file, method = 'readAsArrayBuffer') =>
       new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -64,16 +54,13 @@ class DnDFileUploader extends React.Component {
 
     const handleFile = async e => {
       const [file] = e.target.files || e.dataTransfer.files;
-      console.log(file);
+      this.setState(() => ({ fileName: file.name, isSelect: true }));
       const presignedUrl = await axios
         .head('http://localhost:8000/en/test/presigned/', {
           headers: { 'x-file-name': file.name, 'x-file-type': file.type },
         })
         .then(res => res.headers['x-pre-signed-url']);
-      console.log(presignedUrl);
       const contentUrl = await readFile(file, 'readAsDataURL');
-      console.log(contentUrl);
-      document.querySelector('#preview').src = contentUrl;
       this.setState(() => ({ contentUrl }));
       const contentBuffer = await readFile(file);
       const config = {
@@ -87,68 +74,141 @@ class DnDFileUploader extends React.Component {
         .then(res => console.log(res))
         .catch(err => console.log(err));
     };
+
+    const handleCancel = () => {
+      this.inputRef.current.value = '';
+      this.setState(() => ({
+        enterCount: 0,
+        isSelectable: false,
+        isSelect: false,
+        contentUrl: '',
+        fileName: '',
+      }));
+    };
     return (
-      <Div
-        ref={this.divRef}
-        onDragEnter={handleDragEnter}
-        onDragLeave={handleDragLeave}
-        onDrop={handleFile}
-        isSelectable={this.state.isSelectable}
-        contentUrl={this.state.contentUrl}
-      >
-        <span>드래그 or </span>
-        <label htmlFor="dndfile">
-          <input type="file" id="dndfile" onChange={handleFile} />
-          <span>파일선택</span>
-        </label>
-      </Div>
+      <Wrapper>
+        <Div
+          ref={this.divRef}
+          onDragEnter={handleDragEnter}
+          onDragLeave={handleDragLeave}
+          onDrop={handleFile}
+          isSelectable={this.state.isSelectable}
+          contentUrl={this.state.contentUrl}
+        >
+          <Inner isSelect={this.state.isSelect}>
+            <Desc>드래그 or </Desc>
+            <Label htmlFor="dndfile">
+              <InputFile ref={this.inputRef} type="file" id="dndfile" onChange={handleFile} />
+              <span>파일선택</span>
+            </Label>
+          </Inner>
+        </Div>
+        <span>{this.state.fileName}</span>
+        <Button isSelect={this.state.isSelect} onClick={handleCancel}>
+          삭제
+        </Button>
+      </Wrapper>
     );
   }
 }
 
 DnDFileUploader.propTypes = {};
 
+const Wrapper = styled.div`
+  width: 240px;
+  height: 100px;
+`;
+
 const Div = styled.div`
   width: 240px;
   height: 80px;
-  background-color: #fff;
-  border: 1px solid lightgray;
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-flow: column nowrap;
-  background-image: url(${props => props.contentUrl});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #fff;
+  border: 1px solid lightgray;
+  position: relative;
+  &:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(${props => props.contentUrl});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 0;
+    transition: all 0.2s;
+  }
+  &:hover {
+    &:after {
+      opacity: 0.2;
+    }
+  }
   ${props =>
     props.isSelectable &&
     `
       border: 1px solid green;
   `};
-  input[type='file'] {
-    position: absolute !important;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
-    clip: rect(1px, 1px, 1px, 1px);
+`;
+
+const Inner = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+  z-index: 1;
+  position: relative;
+  transition: all 0.3s;
+  ${Div}:hover & {
+    opacity: 1;
   }
-  span {
-    margin: 3px auto;
+  ${props =>
+    props.isSelect &&
+    `
+      opacity: 0;
+      
+  `};
+`;
+
+const InputFile = styled.input`
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+`;
+
+const Desc = styled.span`
+  margin: 3px auto;
+`;
+
+const Label = styled.label`
+  display: inline-flex;
+  width: 90px;
+  height: 25px;
+  color: #fff;
+  background-color: #596ac6;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    background-color: #3c3b55;
   }
-  label {
-    display: inline-flex;
-    width: 90px;
-    height: 25px;
-    color: #fff;
-    background-color: lightgray;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    &:hover {
-      background-color: gray;
-    }
-  }
+`;
+
+const Button = styled.button`
+  display: none;
+  cursor: pointer;
+  border: 0;
+  color: red;
+  ${props =>
+    props.isSelect &&
+    `
+    display: inline;
+  `};
 `;
 
 export default DnDFileUploader;
