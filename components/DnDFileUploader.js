@@ -64,13 +64,17 @@ class DnDFileUploader extends React.Component {
       this.setState(() => ({ contentUrl }));
       const contentBuffer = await readFile(file);
       const config = {
+        headers: {
+          'Content-Type': 'application/octet-stream',
+          'Content-Disposition': `attachment; filename=${file.name}`,
+        },
         onUploadProgress: ProgressEvent => {
           const percentCompleted = Math.round((ProgressEvent.loaded * 100) / ProgressEvent.total);
           console.log(percentCompleted);
         },
       };
       axios
-        .put(presignedUrl, contentBuffer, config)
+        .put('http://localhost:8000/en/test/upload/', contentBuffer, config)
         .then(res => console.log(res))
         .catch(err => console.log(err));
     };
