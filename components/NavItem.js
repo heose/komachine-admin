@@ -4,16 +4,19 @@ import Link from 'next/link';
 import { withRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const NavItem = ({ router, href, title, icon, ...props }) => (
-  <Link href={href} passHref>
-    <A active={router.pathname === href}>
-      <Icon>
-        <FontAwesomeIcon icon={icon} fixedWidth {...props} />
-      </Icon>
-      <span>{title}</span>
-    </A>
-  </Link>
-);
+function NavItem({ router, href, title, icon, ...props }) {
+  const regex = new RegExp(`^\\${href}($|\\/[\\w\\/\\d]*$)`);
+  return (
+    <Link href={href} passHref>
+      <A active={regex.test(router.pathname)}>
+        <Icon>
+          <FontAwesomeIcon icon={icon} fixedWidth {...props} />
+        </Icon>
+        <span>{title}</span>
+      </A>
+    </Link>
+  );
+}
 
 const A = styled.a`
   position: relative;
