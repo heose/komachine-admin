@@ -117,7 +117,6 @@ const Default = styled.div`
 
 const Blank = styled(Default)`
   width: 100%;
-  /* opacity: ${props => (props.isDisableBlank ? 0 : 1)}; */
   opacity: 1;
   ${props =>
     props.isDisableBlank &&
@@ -128,7 +127,6 @@ const Blank = styled(Default)`
 `;
 
 const Tiny = styled(Default)`
-  /* opacity: ${props => (props.tinyState === 'complete' ? 1 : 0)}; */
   opacity: 0;
   filter: blur(5px);
   ${props =>
@@ -140,7 +138,6 @@ const Tiny = styled(Default)`
 `;
 
 const Origin = styled(Default)`
-  /* opacity: ${props => (props.originState === 'complete' ? 1 : 0)}; */
   opacity: 0;
   ${props =>
     props.originState === 'complete' &&
