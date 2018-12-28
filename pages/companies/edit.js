@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import InputText from 'components/form/InputText';
 import withLayout from '../../lib/with-layout';
 import DefaultLayout from '../../layouts/DefaultLayout';
 
@@ -9,7 +10,12 @@ class CompanyEdit extends React.Component {
   }
 
   render() {
-    return <div>기업등록</div>;
+    return (
+      <div>
+        기업등록
+        <InputText id="test" label="이름" />
+      </div>
+    );
   }
 }
 

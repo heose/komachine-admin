@@ -51,8 +51,8 @@ function CompanyList({ list, table, page, hasPrev, hasNext, isActive, hasRelatio
         <DndFileUploader />
       </div>
       &nbsp;&nbsp;
-      <Link href="/companies/edit/" component={Button} as="a" theme={{ size: 'small', shape: 'square', enabled: true }}>
-        이전
+      <Link href="/companies/edit" component={Button} as="a" theme={{ size: 'small', shape: 'square', enabled: true }}>
+        등록
       </Link>
       <YesOrNoFilter label="기업활성화여부" queryMap={queryMap} checkKey="isActive" />
       <YesOrNoFilter label="기업연동여부" queryMap={queryMap} checkKey="hasRelation" />
