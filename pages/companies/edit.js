@@ -14,6 +14,7 @@ class CompanyEdit extends React.Component {
       <div>
         기업등록
         <InputText id="test" label="이름" />
+        <InputText id="test" label="비밀번호" type="password" />
       </div>
     );
   }

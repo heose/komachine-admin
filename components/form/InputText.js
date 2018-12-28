@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { renderComponent } from 'recompose';
 
 class InputText extends React.Component {
   constructor(props) {
@@ -17,10 +16,10 @@ class InputText extends React.Component {
     }
   };
   render() {
-    const { id, label } = this.props;
+    const { id, label, type } = this.props;
     return (
       <Div>
-        <Input ref={this.input} type="text" id={id} onChange={this.handleChange} />
+        <Input ref={this.input} type={type} id={id} onChange={this.handleChange} />
         <Label htmlFor={id} hasText={this.state.hasText}>
           {label}
         </Label>
@@ -29,37 +28,53 @@ class InputText extends React.Component {
   }
 }
 
+InputText.propTypes = {
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  type: PropTypes.string,
+};
+
+InputText.defaultProps = {
+  label: '',
+  type: 'text',
+};
+
 const Div = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
 `;
 const Input = styled.input`
+  width: 100%;
   border: 0.5px solid lightgray;
   outline: 0;
   border-radius: 0;
   outline-style: none;
   appearance: none;
   padding: 1.8rem 1rem 1rem 1rem;
-  font-size: 1.4rem;
+  &[type='password'] {
+    -webkit-text-stroke-width: 0.5rem;
+    letter-spacing: 0.5rem;
+  }
   &:focus {
     border: 0.5px solid black;
   }
 `;
 const Label = styled.label`
   position: absolute;
-  top: 8px;
   left: 1rem;
   margin: auto;
   color: #a3a3a3;
   user-select: none;
+  transform-origin: 0 -2rem;
   transition: all 0.2s;
-  transform: scale(1.2);
-  transform-origin: 0 0;
   ${props =>
     props.hasText &&
     `
-    transform: scale(0.7);
-  `} ${Input}:focus+& {
-    transform: scale(0.7);
+    transform: scale(0.6);
+  `};
+  ${Input}:focus+& {
+    transform: scale(0.6);
   }
 `;
 export default InputText;
