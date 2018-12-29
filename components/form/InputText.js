@@ -53,8 +53,7 @@ const Input = styled.input`
   appearance: none;
   padding: 1.8rem 1rem 1rem 1rem;
   &[type='password'] {
-    -webkit-text-stroke-width: 0.5rem;
-    letter-spacing: 0.5rem;
+    font-family: Verdana, sans-serif;
   }
   &:focus {
     border: 0.5px solid black;
