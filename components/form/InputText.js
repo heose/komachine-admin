@@ -16,9 +16,9 @@ class InputText extends React.Component {
     }
   };
   render() {
-    const { id, label, type } = this.props;
+    const { id, label, type, width } = this.props;
     return (
-      <Div>
+      <Div width={width}>
         <Input ref={this.input} type={type} id={id} onChange={this.handleChange} />
         <Label htmlFor={id} hasText={this.state.hasText}>
           {label}
@@ -32,17 +32,21 @@ InputText.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string,
   type: PropTypes.string,
+  width: PropTypes.string,
 };
 
 InputText.defaultProps = {
   label: '',
   type: 'text',
+  width: '100%',
 };
 
 const Div = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  margin-bottom: 5px;
+  width: ${props => props.width};
 `;
 const Input = styled.input`
   width: 100%;
