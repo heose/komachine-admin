@@ -62,7 +62,8 @@ const Selected = styled.span`
   cursor: pointer;
   height: 40px;
   display: flex;
-  justify-content: center;
+  padding-left: 10px;
+  justify-content: flex-start;
   align-items: center;
   user-select: none;
   position: relative;
@@ -85,7 +86,7 @@ const Ul = styled.ul`
   padding: 0;
   flex-flow: column nowrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   ${props => props.isFocus && `display: flex`};
 `;
 
