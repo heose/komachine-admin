@@ -47,9 +47,10 @@ const Div = styled.div`
   align-items: center;
   margin-bottom: 5px;
   width: ${props => props.width};
+  height: 45px;
 `;
 const Input = styled.input`
-  width: 100%;
+  width: calc(100% - 2.1rem);
   border: 0.5px solid lightgray;
   outline: 0;
   border-radius: 0;

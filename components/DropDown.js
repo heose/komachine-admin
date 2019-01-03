@@ -30,13 +30,13 @@ class DropDown extends Component {
     ));
     return (
       <Div width={width} isFocus={isFocus} onClick={this.handleFocus}>
-        <Selected htmlFor={id} isFocus={isFocus}>
-          {selectedLabel}
-          <Icon isFocus={isFocus}>
+        <Selected htmlFor={id}>
+          <span>{selectedLabel}</span>
+          <Icon>
             <FontAwesomeIcon icon="caret-down" fixedWidth />
           </Icon>
         </Selected>
-        <Ul isFocus={isFocus}>{items}</Ul>
+        <Ul>{items}</Ul>
       </Div>
     );
   }
@@ -52,29 +52,20 @@ DropDown.defaultProps = {
   width: '100%',
 };
 
-const Selected = styled.span`
+const Selected = styled.div`
   cursor: pointer;
-  height: 40px;
+  height: 100%;
   display: flex;
-  padding-left: 10px;
   justify-content: flex-start;
   align-items: center;
   user-select: none;
   position: relative;
-  /* ${props => props.isFocus && `border-bottom: 0.5px solid black`}; */
-`;
+  background-color: #fff;
 
-const Div = styled.div`
-  width: ${props => props.width};
-  border: 0.5px solid lightgray;
-  ${props =>
-    props.isFocus &&
-    css`
-      border: 0.5px solid black;
-      ${Selected} {
-        border-bottom: 0.5px solid black;
-      }
-    `};
+  width: 100%;
+  & > span:first-child {
+    padding-left: 10px;
+  }
 `;
 
 const Icon = styled.span`
@@ -83,10 +74,10 @@ const Icon = styled.span`
   right: 5px;
   font-size: 1.5rem;
   transition: all 0.2s;
-  ${props => props.isFocus && `transform: rotate(180deg);`};
 `;
 
 const Ul = styled.ul`
+  position: absolute;
   display: none;
   list-style-type: none;
   margin: 0;
@@ -94,7 +85,11 @@ const Ul = styled.ul`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
-  ${props => props.isFocus && `display: flex`};
+  z-index: 1;
+  width: 100%;
+  background-color: #fff;
+  border: 0.5px solid black;
+  border-top: 0;
 `;
 
 const Li = styled.li`
@@ -104,6 +99,27 @@ const Li = styled.li`
   &:hover {
     text-decoration: underline;
   }
+`;
+
+const Div = styled.div`
+  width: ${props => props.width};
+  height: 45px;
+  margin-bottom: 5px;
+  position: relative;
+  border: 0.5px solid lightgray;
+  ${props =>
+    props.isFocus &&
+    css`
+      border: 0.5px solid black;
+      ${Selected} {
+      }
+      ${Icon} {
+        transform: rotate(180deg);
+      }
+      ${Ul} {
+        display: flex;
+      }
+    `};
 `;
 
 export default onClickOutside(DropDown);
