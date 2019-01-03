@@ -11,7 +11,7 @@ class DropDownText extends Component {
     return (
       <Div width={width}>
         <DropDown id={`${id}-combine-dd`} list={list} width="40%" />
-        <InputText id={`${id}-combine-it`} label={label} type={type} width="50%" />
+        <InputText id={`${id}-combine-it`} label={label} type={type} width="60%" />
       </Div>
     );
   }
@@ -32,11 +32,11 @@ DropDownText.defaultProps = {
 };
 
 const Div = styled.div`
-  /* height: 45px; */
+  height: auto;
   display: flex;
-  /* flex-flow: row nowrap; */
-  /* align-items: center; */
-  justify-content: space-around;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
   width: ${props => props.width};
 `;
 
