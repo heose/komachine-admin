@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import onClickOutside from 'react-onclickoutside';
 
 class DropDown extends Component {
@@ -52,12 +52,6 @@ DropDown.defaultProps = {
   width: '100%',
 };
 
-const Div = styled.div`
-  width: ${props => props.width};
-  border: 0.5px solid lightgray;
-  ${props => props.isFocus && `border: 0.5px solid black`};
-`;
-
 const Selected = styled.span`
   cursor: pointer;
   height: 40px;
@@ -67,7 +61,20 @@ const Selected = styled.span`
   align-items: center;
   user-select: none;
   position: relative;
-  ${props => props.isFocus && `border-bottom: 0.5px solid black`};
+  /* ${props => props.isFocus && `border-bottom: 0.5px solid black`}; */
+`;
+
+const Div = styled.div`
+  width: ${props => props.width};
+  border: 0.5px solid lightgray;
+  ${props =>
+    props.isFocus &&
+    css`
+      border: 0.5px solid black;
+      ${Selected} {
+        border-bottom: 0.5px solid black;
+      }
+    `};
 `;
 
 const Icon = styled.span`
