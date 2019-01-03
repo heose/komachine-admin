@@ -61,7 +61,7 @@ const Selected = styled.div`
   user-select: none;
   position: relative;
   background-color: #fff;
-
+  border: 0.5px solid lightgray;
   width: 100%;
   & > span:first-child {
     padding-left: 10px;
@@ -106,12 +106,11 @@ const Div = styled.div`
   height: 45px;
   margin-bottom: 5px;
   position: relative;
-  border: 0.5px solid lightgray;
   ${props =>
     props.isFocus &&
     css`
-      border: 0.5px solid black;
       ${Selected} {
+        border: 0.5px solid black;
       }
       ${Icon} {
         transform: rotate(180deg);
