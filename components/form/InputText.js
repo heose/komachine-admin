@@ -47,16 +47,16 @@ const Div = styled.div`
   align-items: center;
   margin-bottom: 5px;
   width: ${props => props.width};
-  height: 45px;
+  /* height: 100%; */
 `;
-const Input = styled.input`
-  width: calc(100% - 2.1rem);
+export const Input = styled.input`
+  /* width: calc(100% - 2rem); */
   border: 0.5px solid lightgray;
   outline: 0;
   border-radius: 0;
   outline-style: none;
   appearance: none;
-  padding: 1.8rem 1rem 1rem 1rem;
+  /* padding: 1.8rem 1rem 1rem 1rem; */
   &[type='password'] {
     font-family: Verdana, sans-serif;
   }

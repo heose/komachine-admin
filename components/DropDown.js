@@ -52,7 +52,7 @@ DropDown.defaultProps = {
   width: '100%',
 };
 
-const Selected = styled.div`
+export const Selected = styled.div`
   cursor: pointer;
   height: 100%;
   display: flex;
@@ -76,7 +76,7 @@ const Icon = styled.span`
   transition: all 0.2s;
 `;
 
-const Ul = styled.ul`
+export const Ul = styled.ul`
   position: absolute;
   display: none;
   list-style-type: none;
@@ -92,7 +92,7 @@ const Ul = styled.ul`
   border-top: 0;
 `;
 
-const Li = styled.li`
+export const Li = styled.li`
   cursor: pointer;
   display: block;
   padding: 1rem;
@@ -101,10 +101,10 @@ const Li = styled.li`
   }
 `;
 
-const Div = styled.div`
+export const Div = styled.div`
   width: ${props => props.width};
-  height: 45px;
-  margin-bottom: 5px;
+  /* height: 45px; */
+  margin: 0 1px 5px 0;
   position: relative;
   ${props =>
     props.isFocus &&
