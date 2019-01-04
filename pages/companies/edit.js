@@ -22,7 +22,7 @@ class CompanyEdit extends React.Component {
         <DropDown id="dropdown-test1" list={listDemo} width="100px" />
         <DropDownText id="dropdowntext-test1" list={listDemo} width="200px" label="기업명" />
         <InputText id="i18n.company-name" name="i18n.company_name" label="기업명" width="200px" />
-        <InputText id="password-test" label="비밀번호" type="password" width="100px" />
+        <InputText id="i18n.company-name1" name="i18n.company_name" label="기업명" width="100px" />
       </div>
     );
   }
