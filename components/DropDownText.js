@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import DropDown, { Div as DropDownDiv } from 'components/DropDown';
+import DropDown from 'components/DropDown';
 import InputText, { Input } from 'components/form/InputText';
 
 class DropDownText extends Component {
@@ -9,14 +9,10 @@ class DropDownText extends Component {
   render() {
     const { id, list, label, type, width } = this.props;
     return (
-      <Wrapper width={width}>
-        <Div width="100px">
-          <DropDown id={`${id}-combine-dd`} list={list} />
-        </Div>
-        <Div width="99px">
-          <InputText id={`${id}-combine-it`} label={label} type={type} width="60%" />
-        </Div>
-      </Wrapper>
+      <div>
+        <DropDown id={`${id}-combine-dd`} list={list} />
+        <InputText id={`${id}-combine-it`} label={label} type={type} width="60%" />
+      </div>
     );
   }
 }
@@ -49,12 +45,6 @@ const Div = styled.div`
   justify-content: flex-start;
   width: ${props => props.width};
   height: 45px;
-  ${DropDownDiv} {
-    height: 18.1px;
-  }
-  ${Input} {
-    border-left: 0;
-  }
 `;
 
 export default DropDownText;

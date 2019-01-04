@@ -29,15 +29,13 @@ class DropDown extends Component {
       </Li>
     ));
     return (
-      <Div width={width} isFocus={isFocus} onClick={this.handleFocus}>
-        <Selected htmlFor={id}>
-          <span>{selectedLabel}</span>
-          <Icon>
-            <FontAwesomeIcon icon="caret-down" fixedWidth />
-          </Icon>
-        </Selected>
+      <Wrapper isFocus={isFocus} width={width} onClick={this.handleFocus}>
+        <Label htmlFor={id}>{selectedLabel}</Label>
+        <Symbol>
+          <FontAwesomeIcon icon="caret-down" fixedWidth />
+        </Symbol>
         <Ul>{items}</Ul>
-      </Div>
+      </Wrapper>
     );
   }
 }
@@ -52,26 +50,26 @@ DropDown.defaultProps = {
   width: '100%',
 };
 
-export const Selected = styled.div`
+export const Label = styled.div`
   cursor: pointer;
-  height: 100%;
+  margin: 0;
+  padding: 0;
+  height: 41.1px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   user-select: none;
   position: relative;
   background-color: #fff;
-  border: 0.5px solid lightgray;
   width: 100%;
-  & > span:first-child {
-    padding-left: 10px;
-  }
+  text-indent: 10px;
 `;
 
-const Icon = styled.span`
-  display: inline-block;
+const Symbol = styled.span`
   position: absolute;
   right: 5px;
+  top: 50%;
+  transform: translate(0, -50%);
   font-size: 1.5rem;
   transition: all 0.2s;
 `;
@@ -86,10 +84,11 @@ export const Ul = styled.ul`
   justify-content: center;
   align-items: flex-start;
   z-index: 1;
+  left: -1px;
   width: 100%;
+
   background-color: #fff;
-  border: 0.5px solid black;
-  border-top: 0;
+  border: 1px solid black;
 `;
 
 export const Li = styled.li`
@@ -100,20 +99,21 @@ export const Li = styled.li`
     text-decoration: underline;
   }
 `;
-
-export const Div = styled.div`
-  width: ${props => props.width};
-  /* height: 45px; */
-  margin: 0 1px 5px 0;
+const Wrapper = styled.div`
   position: relative;
+  display: inline-block;
+  margin: -1px -1px 0 0;
+  width: ${props => props.width};
+  border: 1px solid lightgray;
+  padding: 0;
+  vertical-align: top;
   ${props =>
     props.isFocus &&
     css`
-      ${Selected} {
-        border: 0.5px solid black;
-      }
-      ${Icon} {
-        transform: rotate(180deg);
+      border-color: black;
+      z-index: 10;
+      ${Symbol} {
+        transform: translate(0, -50%) rotate(180deg);
       }
       ${Ul} {
         display: flex;

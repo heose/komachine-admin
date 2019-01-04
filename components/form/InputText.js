@@ -61,6 +61,7 @@ const Wrapper = styled.div`
   width: ${props => props.width};
   border: 1px solid lightgray;
   background-color: white;
+  vertical-align: top;
   ${props =>
     props.hasFocus &&
     css`
