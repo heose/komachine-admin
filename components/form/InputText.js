@@ -94,6 +94,7 @@ export const Input = styled.input`
 `;
 
 const Label = styled.label`
+  cursor: text;
   left: 1.8rem;
   position: absolute;
   margin: auto;
