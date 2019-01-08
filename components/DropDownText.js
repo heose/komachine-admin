@@ -8,13 +8,26 @@ class DropDownText extends Component {
   constructor(props) {
     super(props);
     this.handleFocus = this.handleFocus.bind(this);
+    this.selectHandler = this.selectHandler.bind(this);
+    this.inputRef = React.createRef();
   }
-  state = { hasFocus: false };
+  state = { hasFocus: false, isSelect: false };
 
-  handleFocus = isFocus => this.setState(() => ({ hasFocus: isFocus }));
+  handleFocus = isFocus => {
+    this.setState(() => ({ hasFocus: isFocus }));
+    if (!isFocus) {
+      this.setState(() => ({ isSelect: false }));
+    }
+  };
+  selectHandler = isSelect => {
+    this.setState(() => ({ isSelect }));
+    if (this.inputRef.current) {
+      this.inputRef.current.focus();
+    }
+  };
   render() {
     const { id, list, label, type, width } = this.props;
-    const { hasFocus } = this.state;
+    const { hasFocus, isSelect } = this.state;
     return (
       <Wrapper
         width={width}
@@ -24,9 +37,16 @@ class DropDownText extends Component {
         onBlur={() => this.handleFocus(false)}
       >
         <Div>
-          <DropDown id={`${id}-combine-dd`} list={list} width="auto" isCombine />
+          <DropDown id={`${id}-combine-dd`} list={list} width="auto" isCombine selectHandler={this.selectHandler} />
           <Divider />
-          <InputText id={`${id}-combine-it`} label={label} type={type} isCombine />
+          <InputText
+            id={`${id}-combine-it`}
+            label={label}
+            type={type}
+            isCombine
+            isSelect={isSelect}
+            ref={this.inputRef}
+          />
         </Div>
       </Wrapper>
     );

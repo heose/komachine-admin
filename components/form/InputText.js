@@ -5,46 +5,33 @@ import styled, { css } from 'styled-components';
 class InputText extends React.Component {
   constructor(props) {
     super(props);
-    this.input = React.createRef();
+    this.insideRef = React.createRef();
   }
   state = { hasText: false, hasFocus: false };
   handleChange = () => {
-    if (this.input.current.value) {
+    const { outsideRef } = this.props;
+    const inputRef = outsideRef || this.insideRef;
+    if (inputRef.current && inputRef.current.value) {
       this.setState(() => ({ hasText: true }));
     } else {
       this.setState(() => ({ hasText: false }));
     }
   };
   handleFocus = () => {
-    const { focusHandler } = this.props;
-    this.setState(
-      () => ({ hasFocus: true }),
-      () => {
-        if (focusHandler) {
-          focusHandler(true);
-        }
-      },
-    );
+    this.setState(() => ({ hasFocus: true }));
   };
   handleBlur = () => {
-    const { focusHandler } = this.props;
-    this.setState(
-      () => ({ hasFocus: false }),
-      () => {
-        if (focusHandler) {
-          focusHandler(false);
-        }
-      },
-    );
+    this.setState(() => ({ hasFocus: false }));
   };
   render() {
-    const { id, label, type, width, isCombine } = this.props;
+    const { id, label, type, width, isCombine, outsideRef } = this.props;
     const { hasFocus } = this.state;
+    const inputRef = outsideRef || this.insideRef;
     return (
       <Wrapper width={width} hasFocus={hasFocus} isCombine={isCombine}>
         <Div>
           <Input
-            ref={this.input}
+            ref={inputRef}
             type={type}
             id={id}
             onChange={this.handleChange}
@@ -67,7 +54,7 @@ InputText.propTypes = {
   type: PropTypes.string,
   width: PropTypes.string,
   isCombine: PropTypes.bool,
-  focusHandler: PropTypes.func,
+  outsideRef: PropTypes.oneOfType([PropTypes.node, PropTypes.object]),
 };
 
 InputText.defaultProps = {
@@ -75,7 +62,7 @@ InputText.defaultProps = {
   type: 'text',
   width: '100%',
   isCombine: false,
-  focusHandler: null,
+  outsideRef: null,
 };
 
 const Wrapper = styled.div`
@@ -138,4 +125,4 @@ const Label = styled.label`
     transform: scale(0.7);
   }
 `;
-export default InputText;
+export default React.forwardRef((props, ref) => <InputText {...props} outsideRef={ref} />);
