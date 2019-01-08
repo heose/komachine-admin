@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import DropDown, { Wrapper as DDWrapper } from 'components/DropDown';
-import InputText, { Input } from 'components/form/InputText';
+import DropDown from 'components/DropDown';
+import InputText from 'components/form/InputText';
 
 class DropDownText extends Component {
   constructor(props) {
     super(props);
-    this.focusHandler = this.focusHandler.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
   }
   state = { hasFocus: false };
-  focusHandler = isFocus => {
-    this.setState(() => ({ hasFocus: isFocus }));
-  };
+
+  handleFocus = isFocus => this.setState(() => ({ hasFocus: isFocus }));
   render() {
     const { id, list, label, type, width } = this.props;
     const { hasFocus } = this.state;
     return (
-      <Wrapper width={width} hasFocus={hasFocus}>
+      <Wrapper
+        width={width}
+        hasFocus={hasFocus}
+        tabIndex="0"
+        onFocus={() => this.handleFocus(true)}
+        onBlur={() => this.handleFocus(false)}
+      >
         <Div>
-          <DropDown id={`${id}-combine-dd`} list={list} width="140px" isCombine focusHandler={this.focusHandler} />
-          <InputText id={`${id}-combine-it`} label={label} type={type} isCombine focusHandler={this.focusHandler} />
+          <DropDown id={`${id}-combine-dd`} list={list} width="140px" isCombine />
+          <Divider />
+          <InputText id={`${id}-combine-it`} label={label} type={type} isCombine />
         </Div>
       </Wrapper>
     );
@@ -48,6 +54,7 @@ const Wrapper = styled.div`
   vertical-align: top;
   border: 1px solid lightgray;
   margin: -1px -1px 0 0;
+  outline: none;
   ${props =>
     props.hasFocus &&
     css`
@@ -64,8 +71,12 @@ const Div = styled.div`
   width: 100%;
 `;
 
-styled(DDWrapper)`
+const Divider = styled.div`
+  width: 1px;
+  height: 90%;
   border: 0;
+  margin-left: -5px;
+  border-left: 1px solid red;
 `;
 
 export default DropDownText;
