@@ -18,7 +18,7 @@ const Div = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 100%;
+  height: auto;
   position: relative;
   margin: 0 auto;
   margin-left: 10px;
