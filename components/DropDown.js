@@ -8,19 +8,27 @@ class DropDown extends Component {
   constructor(props) {
     super(props);
     this.handleSelecte = this.handleSelecte.bind(this);
+    this.handleAfter = this.handleAfter.bind(this);
   }
   state = { isFocus: false, selectedIdx: 0 };
   handleFocus = () => {
-    this.setState(({ isFocus }) => ({ isFocus: !isFocus }));
+    this.setState(({ isFocus }) => ({ isFocus: !isFocus }), this.handleAfter);
+  };
+  handleAfter = () => {
+    const { focusHandler } = this.props;
+    if (focusHandler) {
+      focusHandler(this.state.isFocus);
+    }
   };
   handleSelecte = idx => {
     this.setState(() => ({ selectedIdx: idx }));
   };
   handleClickOutside = () => {
     this.setState(() => ({ isFocus: false }));
+    this.handleAfter();
   };
   render() {
-    const { id, list, width } = this.props;
+    const { id, list, width, isCombine } = this.props;
     const { isFocus, selectedIdx } = this.state;
     const selectedLabel = list[selectedIdx].label;
     const items = list.map(({ value, label }, idx) => (
@@ -29,7 +37,7 @@ class DropDown extends Component {
       </Li>
     ));
     return (
-      <Wrapper isFocus={isFocus} width={width} onClick={this.handleFocus}>
+      <Wrapper isFocus={isFocus} isCombine={isCombine} width={width} onClick={this.handleFocus}>
         <Label htmlFor={id}>{selectedLabel}</Label>
         <Symbol>
           <FontAwesomeIcon icon="caret-down" fixedWidth />
@@ -44,10 +52,14 @@ DropDown.propTypes = {
   id: PropTypes.string.isRequired,
   list: PropTypes.arrayOf(PropTypes.any).isRequired,
   width: PropTypes.string,
+  isCombine: PropTypes.bool,
+  focusHandler: PropTypes.func,
 };
 
 DropDown.defaultProps = {
   width: '100%',
+  isCombine: false,
+  focusHandler: null,
 };
 
 export const Label = styled.div`
@@ -99,7 +111,7 @@ export const Li = styled.li`
     text-decoration: underline;
   }
 `;
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   position: relative;
   display: inline-block;
   margin: -1px -1px 0 0;
@@ -118,6 +130,12 @@ const Wrapper = styled.div`
       ${Ul} {
         display: flex;
       }
+    `};
+  ${props =>
+    props.isCombine &&
+    css`
+      border: 0;
+      margin: 0;
     `};
 `;
 

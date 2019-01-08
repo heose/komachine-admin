@@ -15,13 +15,33 @@ class InputText extends React.Component {
       this.setState(() => ({ hasText: false }));
     }
   };
-  handleFocus = () => this.setState(() => ({ hasFocus: true }));
-  handleBlur = () => this.setState(() => ({ hasFocus: false }));
+  handleFocus = () => {
+    const { focusHandler } = this.props;
+    this.setState(
+      () => ({ hasFocus: true }),
+      () => {
+        if (focusHandler) {
+          focusHandler(true);
+        }
+      },
+    );
+  };
+  handleBlur = () => {
+    const { focusHandler } = this.props;
+    this.setState(
+      () => ({ hasFocus: false }),
+      () => {
+        if (focusHandler) {
+          focusHandler(false);
+        }
+      },
+    );
+  };
   render() {
-    const { id, label, type, width } = this.props;
+    const { id, label, type, width, isCombine } = this.props;
     const { hasFocus } = this.state;
     return (
-      <Wrapper width={width} hasFocus={hasFocus}>
+      <Wrapper width={width} hasFocus={hasFocus} isCombine={isCombine}>
         <Div>
           <Input
             ref={this.input}
@@ -46,12 +66,16 @@ InputText.propTypes = {
   label: PropTypes.string,
   type: PropTypes.string,
   width: PropTypes.string,
+  isCombine: PropTypes.bool,
+  focusHandler: PropTypes.func,
 };
 
 InputText.defaultProps = {
   label: '',
   type: 'text',
   width: '100%',
+  isCombine: false,
+  focusHandler: null,
 };
 
 const Wrapper = styled.div`
@@ -67,6 +91,12 @@ const Wrapper = styled.div`
     css`
       border-color: black;
       z-index: 10;
+    `};
+  ${props =>
+    props.isCombine &&
+    css`
+      border: 0;
+      margin: 0;
     `};
 `;
 
@@ -88,9 +118,6 @@ export const Input = styled.input`
   border-radius: 0;
   outline-style: none;
   appearance: none;
-  /* padding: 1.8rem 1rem 0.5rem 1.8rem; */
-  &:focus {
-  }
 `;
 
 const Label = styled.label`
