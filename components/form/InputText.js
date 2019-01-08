@@ -108,7 +108,7 @@ const Div = styled.div`
 `;
 
 export const Input = styled.input`
-  width: calc(${props => props.width} - 3.8rem);
+  width: calc(${props => props.width} - 3rem);
   border: 0;
   border-top: 1.8rem solid white;
   border-left: 1.8rem solid white;

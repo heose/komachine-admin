@@ -73,15 +73,22 @@ const Div = styled.div`
 `;
 
 const Divider = styled.div`
-  position: absolute;
-  top: 5px;
-  left: 65px;
-  z-index: 100;
-  width: 1px;
-  height: 30px;
+  position: relative;
+  background-color: #fff;
+  width: 2px;
+  height: 40px;
   border: 0;
   margin: 0;
-  border-left: 1px solid lightgray;
+  &:after {
+    position: absolute;
+    width: 1px;
+    height: 80%;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    content: '';
+    border-left: 1px solid lightgray;
+  }
 `;
 
 export default DropDownText;
