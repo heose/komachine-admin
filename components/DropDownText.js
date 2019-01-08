@@ -24,7 +24,7 @@ class DropDownText extends Component {
         onBlur={() => this.handleFocus(false)}
       >
         <Div>
-          <DropDown id={`${id}-combine-dd`} list={list} width="140px" isCombine />
+          <DropDown id={`${id}-combine-dd`} list={list} width="auto" isCombine />
           <Divider />
           <InputText id={`${id}-combine-it`} label={label} type={type} isCombine />
         </Div>
@@ -69,14 +69,19 @@ const Div = styled.div`
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  height: 100%;
 `;
 
 const Divider = styled.div`
+  position: absolute;
+  top: 5px;
+  left: 65px;
+  z-index: 100;
   width: 1px;
-  height: 90%;
+  height: 30px;
   border: 0;
-  margin-left: -5px;
-  border-left: 1px solid red;
+  margin: 0;
+  border-left: 1px solid lightgray;
 `;
 
 export default DropDownText;

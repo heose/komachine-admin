@@ -31,11 +31,17 @@ class DropDown extends Component {
     const { id, list, width, isCombine } = this.props;
     const { isFocus, selectedIdx } = this.state;
     const selectedLabel = list[selectedIdx].label;
-    const items = list.map(({ value, label }, idx) => (
-      <Li key={value} onClick={() => this.handleSelecte(idx)}>
-        {label}
-      </Li>
-    ));
+    const items = list.reduce((accum, current, idx) => {
+      if (this.state.selectedIdx !== idx) {
+        accum.push(
+          <Li key={current.value} onClick={() => this.handleSelecte(idx)}>
+            {current.label}
+          </Li>,
+        );
+      }
+      return accum;
+    }, []);
+
     return (
       <Wrapper isFocus={isFocus} isCombine={isCombine} width={width} onClick={this.handleFocus}>
         <Label htmlFor={id}>{selectedLabel}</Label>
@@ -91,7 +97,7 @@ export const Ul = styled.ul`
   display: none;
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 8px 0;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
@@ -106,7 +112,9 @@ export const Ul = styled.ul`
 export const Li = styled.li`
   cursor: pointer;
   display: block;
-  padding: 1rem;
+  padding: 5px 0;
+  width: 100%;
+  text-indent: 10px;
   &:hover {
     text-decoration: underline;
   }
@@ -116,6 +124,7 @@ export const Wrapper = styled.div`
   display: inline-block;
   margin: -1px -1px 0 0;
   width: ${props => props.width};
+  min-width: 65px;
   border: 1px solid lightgray;
   padding: 0;
   vertical-align: top;
