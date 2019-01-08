@@ -15,15 +15,20 @@ Flags.propTypes = {
 };
 
 const Div = styled.div`
-  display: block;
+  display: flex;
+  justify-content: space-between;
   width: 100%;
+  height: 100%;
+  position: relative;
   margin: 0 auto;
+  margin-left: 10px;
 `;
 
 const Img = styled.img`
   width: 25px;
   height: auto;
   border-radius: 5px;
+  position: relative;
 `;
 
 export default Flags;

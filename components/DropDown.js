@@ -70,6 +70,7 @@ export const Label = styled.div`
   padding: 0;
   height: 41.1px;
   display: flex;
+  flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
   user-select: none;
