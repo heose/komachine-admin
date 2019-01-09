@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import InputWrapper from 'components/styled/InputWrapper';
 
 class InputText extends React.Component {
   constructor(props) {
@@ -65,14 +66,7 @@ InputText.defaultProps = {
   outsideRef: null,
 };
 
-const Wrapper = styled.div`
-  position: relative;
-  display: inline-block;
-  margin: -1px -1px 0 0;
-  width: ${props => props.width};
-  border: 1px solid lightgray;
-  background-color: white;
-  vertical-align: top;
+const Wrapper = styled(InputWrapper)`
   ${props =>
     props.hasFocus &&
     css`

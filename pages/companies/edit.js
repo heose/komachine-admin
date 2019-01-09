@@ -3,6 +3,7 @@ import InputText from 'components/form/InputText';
 import DropDown from 'components/DropDown';
 import DropDownText from 'components/DropDownText';
 import Flags from 'components/Flags';
+import InputButton from 'components/InputButton';
 import withLayout from '../../lib/with-layout';
 import DefaultLayout from '../../layouts/DefaultLayout';
 
@@ -38,6 +39,11 @@ class CompanyEdit extends React.Component {
         &nbsp;
         <div>
           <DropDownText id="dropdowntext-test1" list={nationList} width="200px" label="기업명" />
+        </div>
+        &nbsp;
+        <div>
+          <DropDownText id="dropdowntext-test2" list={nationList} width="200px" label="기업명" />
+          <InputButton>저장</InputButton>
         </div>
       </div>
     );

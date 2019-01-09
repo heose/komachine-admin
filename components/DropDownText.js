@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import DropDown from 'components/DropDown';
 import InputText from 'components/form/InputText';
+import InputWrapper from 'components/styled/InputWrapper';
 
 class DropDownText extends Component {
   constructor(props) {
@@ -67,13 +68,7 @@ DropDownText.defaultProps = {
   type: 'text',
 };
 
-const Wrapper = styled.div`
-  position: relative;
-  width: ${props => props.width};
-  display: inline-block;
-  vertical-align: top;
-  border: 1px solid lightgray;
-  margin: -1px -1px 0 0;
+const Wrapper = styled(InputWrapper)`
   outline: none;
   ${props =>
     props.hasFocus &&

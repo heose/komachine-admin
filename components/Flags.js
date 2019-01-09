@@ -5,7 +5,7 @@ import styled from 'styled-components';
 function Flags({ nation }) {
   return (
     <Div>
-      <Img src={`https://cdn.komachine.com/static/flags/svg/${nation}.svg`} alt="flag" />
+      <Img src={`https://cdn.komachine.com/static/flags/svg/${nation}.svg`} alt="" />
     </Div>
   );
 }
@@ -26,7 +26,7 @@ const Div = styled.div`
 
 const Img = styled.img`
   width: 25px;
-  height: auto;
+  height: 100%;
   border-radius: 5px;
   position: relative;
 `;

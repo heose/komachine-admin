@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled, { css } from 'styled-components';
 import onClickOutside from 'react-onclickoutside';
+import InputWrapper from 'components/styled/InputWrapper';
 
 class DropDown extends Component {
   constructor(props) {
@@ -68,7 +69,7 @@ export const Label = styled.div`
   cursor: pointer;
   margin: 0;
   padding: 0;
-  height: 41.1px;
+  height: 100%;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
@@ -116,15 +117,9 @@ export const Li = styled.li`
     text-decoration: underline;
   }
 `;
-export const Wrapper = styled.div`
-  position: relative;
-  display: inline-block;
-  margin: -1px -1px 0 0;
-  width: ${props => props.width};
-  min-width: 65px;
-  border: 1px solid lightgray;
+export const Wrapper = styled(InputWrapper)`
   padding: 0;
-  vertical-align: top;
+  min-width: 65px;
   ${props =>
     props.isFocus &&
     css`
