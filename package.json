@@ -20,6 +20,7 @@
     "axios": "^0.18.0",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
+    "flag-icon-css": "^3.2.1",
     "fontfaceobserver": "^2.0.13",
     "immer": "^1.8.0",
     "mobx": "^5.5.0",

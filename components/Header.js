@@ -11,7 +11,7 @@ const Header = ({ viewTypesChooser, ...props }) => (
         <span>KOMACHINE</span>
       </HomeLink>
     </Link>
-    {viewTypesChooser(props)}
+    {/* {viewTypesChooser(props)} */}
     <Profile />
   </Div>
 );
@@ -27,7 +27,7 @@ Header.defaultProps = {
 const Div = styled.div`
   position: relative;
   width: 100%;
-  height: 60px;
+  height: 90px;
   display: flex;
   flex-flow: row nowrap;
 `;
