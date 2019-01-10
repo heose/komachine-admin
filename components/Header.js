@@ -16,16 +16,18 @@ const Header = ({ viewTypesChooser, ...props }) => (
         <span>KOMACHINE</span>
       </HomeLink>
     </Link>
-    <GlobalNav />
-    <OptionNav />
-    <IconButton label="작업로그" width="146px" height="90px" iconWidth="40px" fontColor="white" fontSize="15px">
-      <WorkingLogSVG />
-    </IconButton>
-    <IconButton label="" width="146px" height="90px" iconWidth="40px" fontColor="white" fontSize="15px">
-      <ProfileSVG />
-    </IconButton>
-    {/* {viewTypesChooser(props)} */}
-    {/* <Profile /> */}
+    <TopMenus>
+      <GlobalNav />
+      <OptionNav />
+      <IconButton label="작업로그" width="146px" height="90px" iconWidth="40px" fontColor="white" fontSize="15px">
+        <WorkingLogSVG />
+      </IconButton>
+      <IconButton label="" width="100px" height="90px" iconWidth="40px" fontColor="white" fontSize="15px">
+        <ProfileSVG />
+      </IconButton>
+      {/* {viewTypesChooser(props)} */}
+      {/* <Profile /> */}
+    </TopMenus>
   </Div>
 );
 
@@ -59,6 +61,13 @@ const HomeLink = styled.a`
     color: white;
     margin-left: 20px;
   }
+`;
+
+const TopMenus = styled.div`
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+  margin-right: 30px;
 `;
 
 export default Header;

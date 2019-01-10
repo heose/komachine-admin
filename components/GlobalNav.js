@@ -33,7 +33,9 @@ function GlobalNav(props) {
 GlobalNav.propTypes = {};
 
 const Div = styled.div`
+  flex: 1 0 auto;
   display: flex;
+  justify-content: center;
 `;
 
 export default GlobalNav;
