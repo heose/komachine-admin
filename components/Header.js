@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import GlobalNav from 'components/GlobalNav';
 import Profile from './Profile';
+import OptionNav from './OptionNav';
 
 const Header = ({ viewTypesChooser, ...props }) => (
   <Div>
@@ -13,6 +14,7 @@ const Header = ({ viewTypesChooser, ...props }) => (
       </HomeLink>
     </Link>
     <GlobalNav />
+    <OptionNav />
     {/* {viewTypesChooser(props)} */}
     {/* <Profile /> */}
   </Div>
