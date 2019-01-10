@@ -3,20 +3,28 @@ import styled from 'styled-components';
 import IndustrySVG from '../lib/svg/industry.svg';
 import DistrictSVG from '../lib/svg/district.svg';
 import UserSVG from '../lib/svg/user.svg';
-import OptionNavItem from './OptionNavItem';
+import IconButton from './IconButton';
 
 function OptionNav() {
+  const props = {
+    width: '148.48px',
+    height: '30px',
+    iconWidth: '10px',
+    fontSize: '15px',
+    fontColor: '#9fabda',
+    labelMinWidth: '51.86666px',
+  };
   return (
     <Div>
-      <OptionNavItem label="산업단지">
+      <IconButton label="산업단지" {...props}>
         <IndustrySVG />
-      </OptionNavItem>
-      <OptionNavItem label="행정구역">
+      </IconButton>
+      <IconButton label="행정구역" {...props}>
         <DistrictSVG />
-      </OptionNavItem>
-      <OptionNavItem label="유저">
+      </IconButton>
+      <IconButton label="유저" {...props}>
         <UserSVG />
-      </OptionNavItem>
+      </IconButton>
     </Div>
   );
 }
