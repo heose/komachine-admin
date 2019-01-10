@@ -34,6 +34,8 @@ export const Div = styled.div`
   flex-flow: column nowrap;
   justify-content: space-between;
   min-height: 100%;
+  min-width: 1355px;
+  overflow: scroll;
   height: auto;
 `;
 

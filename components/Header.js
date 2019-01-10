@@ -44,7 +44,6 @@ const Div = styled.div`
   display: flex;
   flex-flow: row nowrap;
   background-color: #43425d;
-  /* box-shadow: 0 3px 6px; */
 `;
 
 const HomeLink = styled.a`
