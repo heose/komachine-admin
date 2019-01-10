@@ -26,8 +26,7 @@ const Icon = styled.div`
   height: auto;
   display: flex;
   margin-top: 15px;
-  /* justify-content: left; */
-  /* align-items: flex-start; */
+  justify-content: center;
 `;
 
 const Span = styled.span`
