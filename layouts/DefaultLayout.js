@@ -13,7 +13,7 @@ const DefaultLayout = ({ children, ...props }) => (
     <GlobalStyle />
     <Header {...props} />
     <Central>
-      <Nav />
+      {/* <Nav /> */}
       <Page>{children}</Page>
     </Central>
     <Footer />
