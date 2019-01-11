@@ -2,23 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Header from 'components/Header';
-import Nav from 'components/Nav';
+import SideNav from 'components/SideNav';
 import Footer from 'components/Footer';
 import NormalizeCSS from './normalize.css';
 import GlobalStyle from './global-style';
 
-const DefaultLayout = ({ children, ...props }) => (
-  <Div>
-    <NormalizeCSS />
-    <GlobalStyle />
-    <Header {...props} />
-    <Central>
-      {/* <Nav /> */}
-      <Page>{children}</Page>
-    </Central>
-    <Footer />
-  </Div>
-);
+function DefaultLayout({ children, sideNavData, ...props }) {
+  return (
+    <Div>
+      <NormalizeCSS />
+      <GlobalStyle />
+      <Header {...props} />
+      <Central>
+        <SideNav {...sideNavData} />
+        <Page>{children}</Page>
+      </Central>
+      <Footer />
+    </Div>
+  );
+}
 
 DefaultLayout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
@@ -34,7 +36,7 @@ export const Div = styled.div`
   flex-flow: column nowrap;
   justify-content: space-between;
   min-height: 100%;
-  min-width: 1355px;
+  min-width: 1400px;
   overflow: scroll;
   height: auto;
 `;

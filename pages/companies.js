@@ -5,6 +5,7 @@ import CompanyViewType from 'components/CompanyViewType';
 import { fetchRequest } from '../redux/modules/companies/reducers';
 import withLayout from '../lib/with-layout';
 import DefaultLayout from '../layouts/DefaultLayout';
+import CompanySVG from '../lib/svg/company.svg';
 
 class Companies extends React.Component {
   static async getInitialProps({ query, store }) {
@@ -27,6 +28,17 @@ Companies.propTypes = {
 };
 
 const extraProps = {
+  sideNavData: {
+    active: true,
+    parentPageName: '기업',
+    icon: <CompanySVG />,
+    items: [
+      { label: '기업 관리', url: '/companies' },
+      { label: '로고, 대표이미지 관리', url: '/companies/logo-img' },
+      { label: '제품 관리(1차)', url: '/companies/prod/first' },
+      { label: '제품 관리(2차)', url: '/companies/prod/second' },
+    ],
+  },
   viewTypesChooser: props => <CompanyViewType {...props} />,
 };
 

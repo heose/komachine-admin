@@ -17,7 +17,7 @@ function GlobalNav(props) {
     { href: '/companies', label: '번역', icon: <TranslationSVG /> },
     { href: '/companies', label: '문의', icon: <InquirySVG /> },
   ].map(item => (
-    <Link href={item.href}>
+    <Link key={item.label} href={item.href}>
       <GlobalNavItem label={item.label}>{item.icon}</GlobalNavItem>
     </Link>
   ));

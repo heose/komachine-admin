@@ -19,10 +19,10 @@ const Header = ({ viewTypesChooser, ...props }) => (
     <TopMenus>
       <GlobalNav />
       <OptionNav />
-      <IconButton label="작업로그" width="146px" height="90px" iconWidth="40px" fontColor="white" fontSize="15px">
+      <IconButton label="작업로그" width="146px" height="90px" iconWidth="40px" color="white" fontSize="15px">
         <WorkingLogSVG />
       </IconButton>
-      <IconButton label="" width="100px" height="90px" iconWidth="40px" fontColor="white" fontSize="15px">
+      <IconButton label="" width="100px" height="90px" iconWidth="40px" color="white" fontSize="15px">
         <ProfileSVG />
       </IconButton>
       {/* {viewTypesChooser(props)} */}
@@ -55,7 +55,7 @@ const HomeLink = styled.a`
   align-items: center;
   height: 100%;
   background-color: #3b3b53;
-  width: 200px;
+  width: 270px;
   letter-spacing: 5px;
   & span {
     color: white;

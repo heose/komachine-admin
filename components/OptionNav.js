@@ -9,9 +9,9 @@ function OptionNav() {
   const props = {
     width: '148.48px',
     height: '30px',
-    iconWidth: '10px',
+    iconWidth: '15px',
+    color: '#9fabda',
     fontSize: '15px',
-    fontColor: '#9fabda',
     labelMinWidth: '51.86666px',
   };
   return (
