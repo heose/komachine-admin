@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import IndustrySVG from '../lib/svg/industry.svg';
+import IndustrySVG from '../lib/svg/complex.svg';
 import DistrictSVG from '../lib/svg/district.svg';
 import UserSVG from '../lib/svg/user.svg';
 import IconButton from './IconButton';

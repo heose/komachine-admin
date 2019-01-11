@@ -20,7 +20,7 @@ app.prepare().then(() => {
   // });
   server.get('/a', (req, res) => app.render(req, res, '/about', req.query));
 
-  server.get('/companies', (req, res) => app.render(req, res, '/companies', req.query));
+  server.get('/companies', (req, res) => app.render(req, res, '/companies/list', req.query));
 
   server.get('/about/:id', (req, res) => app.render(req, res, '/about', { ...req.params, ...req.query }));
 

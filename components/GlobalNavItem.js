@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function GlobalNavItem({ children, label }) {
+function GlobalNavItem({ active, children, label }) {
   return (
     <Div>
       <Icon>{children}</Icon>

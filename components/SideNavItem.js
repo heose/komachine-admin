@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function SideNavItem({ label, url }) {
+function SideNavItem({ active, label, href }) {
   return (
-    <Div>
+    <Div active={active}>
       <Span>{label}</Span>
       <Icon>
         <FontAwesomeIcon icon="angle-right" fixedWidth />
@@ -14,7 +14,15 @@ function SideNavItem({ label, url }) {
   );
 }
 
-SideNavItem.propTypes = {};
+SideNavItem.propTypes = {
+  active: PropTypes.bool,
+  label: PropTypes.string.isRequired,
+  href: PropTypes.string.isRequired,
+};
+
+SideNavItem.defaultProps = {
+  active: false,
+};
 
 const Div = styled.div`
   position: relative;
@@ -46,13 +54,23 @@ const Div = styled.div`
       display: block;
     }
   }
+  ${props =>
+    props.active &&
+    css`
+      background-color: #f0f0f7;
+      color: #5c6bc0;
+      z-index: 10;
+      &:before {
+        display: block;
+      }
+    `};
 `;
 
 const Span = styled.span`
   padding-left: 25px;
   font-size: 1.6rem;
   font-weight: bold;
-  &:hover {
+  ${Div}:hover & {
     color: #3b3b53;
   }
 `;

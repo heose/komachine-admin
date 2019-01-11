@@ -51,6 +51,7 @@ const reducer = handleActions(
 
 export const fetchRequest = createAction(FETCH_REQUEST);
 export const fetchSuccess = createAction(FETCH_SUCCESS);
+export const fetchFailure = createAction(FETCH_FAILURE);
 export const setViewType = createAction(SET_VIEW_TYPE);
 
 export default reducer;

@@ -14,7 +14,7 @@ function SideNav({ active, items, icon }) {
       </IconButton>
       <Items>
         {items.map(item => (
-          <Link key={item.label} href={item.url}>
+          <Link key={item.label} {...item}>
             <SideNavItem {...item} />
           </Link>
         ))}
@@ -35,7 +35,7 @@ SideNav.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
+      href: PropTypes.string.isRequired,
     }),
   ),
 };

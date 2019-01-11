@@ -50,7 +50,8 @@ export const Button = styled.button`
     `
     color: white;
     background-color: #029688;
-  `} ${enabled};
+  `};
+  ${enabled};
 `;
 
 Button.propTypes = {

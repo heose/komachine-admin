@@ -9,6 +9,7 @@ module.exports = withCSS({
   webpack(config) {
     const extendAlias = {
       components: path.resolve(__dirname, 'components/'),
+      lib: path.resolve(__dirname, 'lib/'),
     };
 
     // config.module.rules.push(
