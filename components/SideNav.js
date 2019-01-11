@@ -24,6 +24,7 @@ function SideNav({ active, items, icon }) {
         <NavItem href="/translations" title="번역" icon="language" />
         <NavItem href="/settings" title="설정" icon="cogs" /> */}
       </Items>
+      <GoToKomachine>코머신 사이트로</GoToKomachine>
     </Div>
   );
 }
@@ -46,6 +47,7 @@ SideNav.defaultProps = {
 };
 
 const Div = styled.div`
+  position: relative;
   width: 270px;
   min-width: 200px;
   background-color: #a5a4bf;
@@ -55,6 +57,11 @@ const Div = styled.div`
 
 const Items = styled.div`
   margin-top: 20px;
+`;
+
+const GoToKomachine = styled.div`
+  position: absolute;
+  bottom: 0;
 `;
 
 export default SideNav;
