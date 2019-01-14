@@ -22,7 +22,12 @@ class Companies extends React.Component {
     );
   }
 }
-
+/**
+ * 기업관리 - 기업명, 로고, 웹사이트, 기업활성화, 제품활성화, 기업연동, 멤버등급, 제품수, 카테고리, 수정일
+ * 로고    - 기업명, 웹사이트, 로고, 대표이미지, 기업활성화
+ * 제품1차 - 기업명, 로고, 웹사이트, 기업활성화, 제품활성화, 우선순위, 1차완료, 제품수, 코멘트, 수정일
+ * 제품2차 - 기업명, 로고, 웹사이트, 제품활성화, 우선순위, 제품수, 코멘트, 수정일
+ */
 Companies.propTypes = {
   query: PropTypes.objectOf(PropTypes.string).isRequired,
 };
