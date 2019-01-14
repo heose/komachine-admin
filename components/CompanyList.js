@@ -24,6 +24,27 @@ function CompanyList({ list, table, page, hasPrev, hasNext, isActive, hasRelatio
   const Table = withViewType(viewType);
   return (
     <div>
+      <Table data={bodyData} isFetching={isFetching} />
+      <div>
+        <Link
+          enabled={prevEnabled}
+          href={`?page=${prevPage}&${queryStr}`}
+          component={Button}
+          as="a"
+          theme={{ size: 'small', shape: 'square', enabled: prevEnabled }}
+        >
+          이전
+        </Link>
+        <Link
+          enabled={nextEnabled}
+          href={`?page=${nextPage}&${queryStr}`}
+          component={Button}
+          as="a"
+          theme={{ size: 'small', shape: 'square', enabled: nextEnabled }}
+        >
+          다음
+        </Link>
+      </div>
       <Image
         src="https://cdn.komachine.com/media/2013-Porsche-Cayenne-Gts-1920x2560.jpeg"
         height="100px"
@@ -56,27 +77,6 @@ function CompanyList({ list, table, page, hasPrev, hasNext, isActive, hasRelatio
       </Link>
       <YesOrNoFilter label="기업활성화여부" queryMap={queryMap} checkKey="isActive" />
       <YesOrNoFilter label="기업연동여부" queryMap={queryMap} checkKey="hasRelation" />
-      <Table data={bodyData} isFetching={isFetching} />
-      <div>
-        <Link
-          enabled={prevEnabled}
-          href={`?page=${prevPage}&${queryStr}`}
-          component={Button}
-          as="a"
-          theme={{ size: 'small', shape: 'square', enabled: prevEnabled }}
-        >
-          이전
-        </Link>
-        <Link
-          enabled={nextEnabled}
-          href={`?page=${nextPage}&${queryStr}`}
-          component={Button}
-          as="a"
-          theme={{ size: 'small', shape: 'square', enabled: nextEnabled }}
-        >
-          다음
-        </Link>
-      </div>
     </div>
   );
 }

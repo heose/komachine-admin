@@ -29,7 +29,7 @@ function IconButton({
 }
 
 IconButton.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   width: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired,
   iconWidth: PropTypes.string.isRequired,
@@ -44,6 +44,7 @@ IconButton.propTypes = {
 };
 
 IconButton.defaultProps = {
+  children: null,
   label: '',
   color: 'inherit',
   bgColor: 'inherit',

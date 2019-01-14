@@ -33,10 +33,26 @@ const extraProps = {
     parentPageName: '기업',
     icon: <CompanySVG />,
     items: [
-      { label: '기업 관리', href: '/companies' },
-      { label: '로고, 대표이미지 관리', href: '/companies/logo-img' },
-      { label: '제품 관리(1차)', href: '/companies/product/first' },
-      { label: '제품 관리(2차)', href: '/companies/product/second' },
+      {
+        label: '기업 관리',
+        href: '/companies',
+        isActivePattern: '^\\/companies($|\\/[\\w\\/\\d]*$)',
+      },
+      {
+        label: '로고, 대표이미지 관리',
+        href: '/companies?viewType=img-logo',
+        isActivePattern: '^\\/companies(\\?|\\/[\\w\\/\\d]*\\?).*viewType=img-logo',
+      },
+      {
+        label: '제품 관리(1차)',
+        href: '/companies?viewType=prod-proc1',
+        isActivePattern: '^\\/companies(\\?|\\/[\\w\\/\\d]*\\?).*viewType=prod-proc1',
+      },
+      {
+        label: '제품 관리(2차)',
+        href: '/companies?viewType=prod-proc2',
+        isActivePattern: '^\\/companies(\\?|\\/[\\w\\/\\d]*\\?).*viewType=prod-proc2',
+      },
     ],
   },
   viewTypesChooser: props => <CompanyViewType {...props} />,

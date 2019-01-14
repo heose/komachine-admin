@@ -13,9 +13,9 @@ function GlobalNav(props) {
   const menus = [
     { href: '/companies', label: '기업', icon: <CompanySVG /> },
     { href: '/categories', label: '카테고리', icon: <CategorySVG /> },
-    { href: '/companies', label: '동의어', icon: <SynonymSVG /> },
-    { href: '/companies', label: '번역', icon: <TranslationSVG /> },
-    { href: '/companies', label: '문의', icon: <InquirySVG /> },
+    { href: '/synonyms', label: '동의어', icon: <SynonymSVG /> },
+    { href: '/translations', label: '번역', icon: <TranslationSVG /> },
+    { href: '/inquiry', label: '문의', icon: <InquirySVG /> },
   ].map(item => (
     <Link key={item.label} href={item.href}>
       <GlobalNavItem label={item.label}>{item.icon}</GlobalNavItem>

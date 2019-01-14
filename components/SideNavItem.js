@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function SideNavItem({ active, label, href }) {
+function SideNavItem({ isActive, label, href }) {
   return (
-    <Div active={active}>
+    <Div isActive={isActive}>
       <Span>{label}</Span>
       <Icon>
         <FontAwesomeIcon icon="angle-right" fixedWidth />
@@ -15,13 +15,13 @@ function SideNavItem({ active, label, href }) {
 }
 
 SideNavItem.propTypes = {
-  active: PropTypes.bool,
+  isActive: PropTypes.bool,
   label: PropTypes.string.isRequired,
   href: PropTypes.string.isRequired,
 };
 
 SideNavItem.defaultProps = {
-  active: false,
+  isActive: false,
 };
 
 const Div = styled.div`
@@ -55,7 +55,7 @@ const Div = styled.div`
     }
   }
   ${props =>
-    props.active &&
+    props.isActive &&
     css`
       background-color: #f0f0f7;
       color: #5c6bc0;
