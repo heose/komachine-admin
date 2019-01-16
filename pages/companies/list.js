@@ -42,6 +42,7 @@ const extraProps = {
         label: '기업 관리',
         href: '/companies',
         isActivePattern: '^\\/companies($|\\/[\\w\\/\\d]*$)',
+        activeTestData: { url: '/companies' },
       },
       {
         label: '로고, 대표이미지 관리',

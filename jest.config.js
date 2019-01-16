@@ -6,4 +6,8 @@ module.exports = {
     '@lib/(.*)': '<rootDir>/lib/$1',
   },
   collectCoverage: true,
+  transform: {
+    '^.+\\.js?$': 'babel-jest',
+  },
+  transformIgnorePatterns: [],
 };
