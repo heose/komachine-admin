@@ -9,5 +9,5 @@ module.exports = {
   transform: {
     '^.+\\.js?$': 'babel-jest',
   },
-  transformIgnorePatterns: [],
+  transformIgnorePatterns: ['<rootDir>/node_modules/(?!lodash-es)'],
 };
