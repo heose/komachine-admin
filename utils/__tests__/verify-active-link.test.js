@@ -43,7 +43,7 @@ describe('check if current path is active(router is made up of path and query)',
 
   it('should true if router.asPath and href is match only path', () => {
     const router = { asPath: '/companies?a=b' };
-    const href = '/companies?a=b';
+    const href = '/companies';
     expect(verifyActiveLink(router, href)).toBeTruthy();
   });
 
