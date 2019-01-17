@@ -2,7 +2,21 @@ module.exports = api => {
   api.cache(true);
   const presets = ['next/babel'];
   const plugins = [
-    'inline-react-svg',
+    [
+      'inline-react-svg',
+      {
+        svgo: {
+          plugins: [
+            {
+              removeAttrs: { attrs: '(data-name)' },
+            },
+            {
+              cleanupIDs: true,
+            },
+          ],
+        },
+      },
+    ],
     [
       'babel-plugin-styled-components',
       {
