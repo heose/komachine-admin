@@ -1,32 +1,20 @@
 import verifyActiveLink from '../verify-active-link';
 
 describe('check if current url is active', () => {
-  it('empty', () => {
+  it('should false if router is null', () => {
     const router = null;
-    const activeTestData = { url: '/companies' };
-    expect(verifyActiveLink(router, activeTestData)).toBeFalsy();
+    const href = '/companies';
+    expect(verifyActiveLink(router, href)).toBeFalsy();
   });
-  it('empty', () => {
-    const router = { asPath: '/companies' };
-    const activeTestData = { url: '/companies' };
-    expect(verifyActiveLink(router, activeTestData)).toBeTruthy();
-  });
-
-  it('empty', () => {
-    const router = { asPath: '/companies' };
-    const activeTestData = { url: '/companies?a=b' };
-    expect(verifyActiveLink(router, activeTestData)).toBeFalsy();
+  it('should true if full match router.asPath and href', () => {
+    const router = { asPath: '/companies/a/b' };
+    const href = '/companies/a/b';
+    expect(verifyActiveLink(router, href)).toBeTruthy();
   });
 
-  it('empty', () => {
-    const router = { asPath: '/companies?a=b', query: { a: 'b', c: 'd' } };
-    const activeTestData = { url: '/companies', query: { a: 'b' } };
-    expect(verifyActiveLink(router, activeTestData)).toBeTruthy();
-  });
-
-  it('empty', () => {
-    const router = { asPath: '/companies?a=b', query: { a: 'b', c: 'd' } };
-    const activeTestData = { url: '?a=b', query: { a: 'b' } };
-    expect(verifyActiveLink(router, activeTestData)).toBeTruthy();
+  it('should true if router.asPath contains href', () => {
+    const router = { asPath: '/companies/a/b/c' };
+    const href = '/companies/a/b';
+    expect(verifyActiveLink(router, href)).toBeFalsy();
   });
 });
