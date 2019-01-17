@@ -1,20 +1,23 @@
-import { isMatch } from 'lodash-es';
+import isMatch from 'lodash/isMatch';
+// import { isMatch } from 'lodash-es'; //왜 이건 안되는거지?..
+import { toMapFromQueryStr } from './query-string-generator';
 
-export default function verifyActiveLink(router, { url, query, onlyUrl = true }) {
+export default function verifyActiveLink(router, href, needFullMatch = false) {
   if (!router || !router.asPath) {
     return false;
   }
-  const [a, b] = url.split('?');
-  console.log(url);
-  console.log('a', a);
-  console.log('b', b);
-  const path = router.asPath.split('?')[0];
-  const regexUrl = new RegExp(onlyUrl ? `^\\${url}$` : `^\\${url}($|\\/[\\w\\/\\d]*$).*`);
-  if (!regexUrl.test(path)) {
-    return false;
+  const [hrefPath, hrefQuery] = href.split('?');
+  if (hrefPath) {
+    const routerPath = router.asPath.split('?')[0];
+    const regex = new RegExp(needFullMatch ? `^\\${hrefPath}$` : `^\\${hrefPath}($|\\/[\\w\\d\\-\\_\\/]*$).*`);
+    if (regex.test(routerPath)) {
+      return true;
+    }
   }
-  if (query && !isMatch(router.query, query)) {
-    return false;
+  if (hrefQuery) {
+    if (isMatch(router.query, toMapFromQueryStr(hrefQuery))) {
+      return true;
+    }
   }
-  return true;
+  return false;
 }

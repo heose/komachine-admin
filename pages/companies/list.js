@@ -41,23 +41,19 @@ const extraProps = {
       {
         label: '기업 관리',
         href: '/companies',
-        isActivePattern: '^\\/companies($|\\/[\\w\\/\\d]*$)',
-        activeTestData: { url: '/companies' },
+        needFullMatch: true,
       },
       {
         label: '로고, 대표이미지 관리',
-        href: '/companies?viewType=img-logo',
-        isActivePattern: '^\\/companies(\\?|\\/[\\w\\/\\d]*\\?).*viewType=img-logo',
+        href: '/companies/img-logo',
       },
       {
         label: '제품 관리(1차)',
-        href: '/companies?viewType=prod-proc1',
-        isActivePattern: '^\\/companies(\\?|\\/[\\w\\/\\d]*\\?).*viewType=prod-proc1',
+        href: '/companies/prod-proc1',
       },
       {
         label: '제품 관리(2차)',
-        href: '/companies?viewType=prod-proc2',
-        isActivePattern: '^\\/companies(\\?|\\/[\\w\\/\\d]*\\?).*viewType=prod-proc2',
+        href: '/companies/prod-proc2',
       },
     ],
   },
