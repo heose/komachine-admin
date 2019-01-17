@@ -12,7 +12,13 @@ describe('check if current url is active', () => {
     expect(verifyActiveLink(router, href)).toBeTruthy();
   });
 
-  it('should true if router.asPath contains href', () => {
+  it('should true if router.asPath contains href and begin by href', () => {
+    const router = { asPath: '/companies/a/b/c' };
+    const href = '/companies/a/b';
+    expect(verifyActiveLink(router, href)).toBeFalsy();
+  });
+
+  it('should false if router.asPath does not begin by href', () => {
     const router = { asPath: '/companies/a/b/c' };
     const href = '/companies/a/b';
     expect(verifyActiveLink(router, href)).toBeFalsy();
