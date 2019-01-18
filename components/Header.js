@@ -3,13 +3,12 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import GlobalNav from 'components/GlobalNav';
-import Profile from './Profile';
 import OptionNav from './OptionNav';
 import IconButton from './IconButton';
 import WorkingLogSVG from '../lib/svg/working-log.svg';
 import ProfileSVG from '../lib/svg/profile.svg';
 
-const Header = ({ viewTypesChooser, ...props }) => (
+const Header = () => (
   <Div>
     <Link href="/" passHref>
       <HomeLink>
@@ -25,8 +24,6 @@ const Header = ({ viewTypesChooser, ...props }) => (
       <IconButton label="" width="100px" height="90px" iconWidth="40px" color="white" fontSize="15px">
         <ProfileSVG />
       </IconButton>
-      {/* {viewTypesChooser(props)} */}
-      {/* <Profile /> */}
     </TopMenus>
   </Div>
 );

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CompanyList from 'components/CompanyList';
-import CompanyViewType from 'components/CompanyViewType';
 import withLayout from '../../lib/with-layout';
 import CompanySVG from '../../lib/svg/company.svg';
 import { fetchRequest } from '../../redux/modules/companies/reducers';
@@ -57,7 +56,6 @@ const extraProps = {
       },
     ],
   },
-  viewTypesChooser: props => <CompanyViewType {...props} />,
 };
 
 export default withLayout(DefaultLayout, extraProps)(Companies);

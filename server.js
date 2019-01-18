@@ -25,6 +25,23 @@ app.prepare().then(() => {
   server.get('/companies/prod-proc1', (req, res) => app.render(req, res, '/companies/list', req.query));
   server.get('/companies/prod-proc2', (req, res) => app.render(req, res, '/companies/list', req.query));
 
+  server.get('/categories', (req, res) => app.render(req, res, '/categories/list', req.query));
+
+  server.get('/synonyms', (req, res) => app.render(req, res, '/synonyms/list', req.query));
+  server.get('/synonyms/ko', (req, res) => app.render(req, res, '/synonyms/list', req.query));
+  server.get('/synonyms/en', (req, res) => app.render(req, res, '/synonyms/list', req.query));
+
+  server.get('/translations', (req, res) => app.render(req, res, '/translations/list', req.query));
+  server.get('/translations/en', (req, res) => app.render(req, res, '/translations/list', req.query));
+  server.get('/translations/zh-hans', (req, res) => app.render(req, res, '/translations/list', req.query));
+  server.get('/translations/vi', (req, res) => app.render(req, res, '/translations/list', req.query));
+
+  server.get('/inquiry', (req, res) => app.render(req, res, '/inquiry/list', req.query));
+  server.get('/inquiry/komachine', (req, res) => app.render(req, res, '/inquiry/list', req.query));
+  server.get('/inquiry/registration', (req, res) => app.render(req, res, '/inquiry/list', req.query));
+  server.get('/inquiry/relation', (req, res) => app.render(req, res, '/inquiry/list', req.query));
+  server.get('/inquiry/company', (req, res) => app.render(req, res, '/inquiry/list', req.query));
+
   server.get('/about/:id', (req, res) => app.render(req, res, '/about', { ...req.params, ...req.query }));
 
   server.get('*', (req, res) => handle(req, res));
