@@ -5,7 +5,7 @@ import Link from 'components/Link';
 import IconButton from 'components/IconButton';
 import SideNavItem from 'components/SideNavItem';
 
-function SideNav({ active, items, icon }) {
+function SideNav({ active, items, icon, ...props }) {
   return (
     <Div active={active}>
       <IconButton width="270px" height="133.5px" iconWidth="50px" color="#5c6bc0" bgColor="white">
@@ -14,7 +14,7 @@ function SideNav({ active, items, icon }) {
       <Items>
         {items.map(item => (
           <Link key={item.label} {...item}>
-            <SideNavItem {...item} />
+            <SideNavItem {...item} {...props} />
           </Link>
         ))}
       </Items>

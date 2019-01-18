@@ -16,8 +16,7 @@ class Inquiry extends React.Component {
         Router.push('/inquiry/komachine');
       }
     }
-
-    return {};
+    return { a: 'b' };
   }
 
   render() {

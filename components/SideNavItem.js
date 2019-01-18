@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function SideNavItem({ isActive, label, href }) {
+function SideNavItem({ isActive, label, href, ...props }) {
+  console.log('SideNavItem', props);
   return (
     <Div isActive={isActive}>
       <Span>{label}</Span>

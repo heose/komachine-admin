@@ -8,13 +8,14 @@ import NormalizeCSS from './normalize.css';
 import GlobalStyle from './global-style';
 
 function DefaultLayout({ children, sideNavData, ...props }) {
+  console.log('defaultlayout', props);
   return (
     <Div>
       <NormalizeCSS />
       <GlobalStyle />
       <Header {...props} />
       <Central>
-        <SideNav {...sideNavData} />
+        <SideNav {...sideNavData} {...props} />
         <Page>{children}</Page>
       </Central>
       <Footer />
