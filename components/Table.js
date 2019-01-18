@@ -4,9 +4,9 @@ import styled from 'styled-components';
 
 const TableComponent = ({ headerData, data }) => {
   const header = headerData.map(h => (
-    <Cell key={h.key} width={h.width}>
+    <Th key={h.key} width={h.width}>
       {h.str}
-    </Cell>
+    </Th>
   ));
   const body = data.map((row, i) => {
     const cells = headerData.map(h => (
@@ -17,7 +17,7 @@ const TableComponent = ({ headerData, data }) => {
   return (
     <Table>
       <Header>
-        <Row>{header}</Row>
+        <HeaderRow>{header}</HeaderRow>
       </Header>
       <Body>{body}</Body>
     </Table>
@@ -35,55 +35,62 @@ TableComponent.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-const Table = styled.div`
-  display: table;
+const Table = styled.table`
   margin-bottom: 20px;
   width: 750px;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
 `;
 
-const Cell = styled.div`
-  display: table-cell;
+const Header = styled.thead`
+  width: 100%;
+  color: white;
+  text-align: center;
+`;
+
+const Th = styled.th`
+  height: 3.7rem;
+  background-color: #9fabda;
   vertical-align: middle;
   text-align: ${({ align }) => align || 'center'};
   width: ${({ width }) => width};
-`;
-
-const Row = styled.div`
-  display: table-row;
-`;
-
-const Header = styled.div`
-  display: table-header-group;
-  width: 100%;
-  background-color: #9fabda;
-  color: white;
-  text-align: center;
-  height: 3.5rem;
   font-weight: bold;
   font-size: 1.5rem;
-  & ${Row} {
-    height: 3.5rem;
+  &:first-child {
+    border-top-left-radius: 14px;
   }
-  & ${Cell}:first-child {
-    border-top-left-radius: 5px;
-  }
-  & ${Cell}:last-child {
-    border-top-right-radius: 5px;
+  &:last-child {
+    border-top-right-radius: 14px;
   }
 `;
 
-const Body = styled.div`
-  display: table-row-group;
+const Body = styled.tbody`
   background-color: white;
-  & > div > div {
-    border-bottom: 1px solid gray;
+`;
+
+const HeaderRow = styled.tr``;
+
+const Row = styled.tr`
+  &:nth-child(odd) {
+    background-color: #f9f9f9;
   }
-  & div {
-    height: 40px;
-    min-height: 40px;
-    max-height: 40px;
-    padding: 0 5px;
+  &:hover {
+    background-color: #f0f0f7;
+  }
+`;
+
+const Cell = styled.td`
+  height: 6rem;
+  border-bottom: 0.5px solid #d3d3d9;
+  vertical-align: middle;
+  text-align: ${({ align }) => align || 'center'};
+  width: ${({ width }) => width};
+  font-size: 1.5rem;
+  &:first-child {
+    border-left: 0.5px solid #d3d3d9;
+  }
+  &:last-child {
+    border-right: 0.5px solid #d3d3d9;
   }
 `;
 
