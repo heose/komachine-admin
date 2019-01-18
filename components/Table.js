@@ -39,16 +39,38 @@ const Table = styled.div`
   display: table;
   margin-bottom: 20px;
   width: 750px;
+  border-collapse: collapse;
+`;
+
+const Cell = styled.div`
+  display: table-cell;
+  vertical-align: middle;
+  text-align: ${({ align }) => align || 'center'};
+  width: ${({ width }) => width};
+`;
+
+const Row = styled.div`
+  display: table-row;
 `;
 
 const Header = styled.div`
   display: table-header-group;
   width: 100%;
-  background-color: #e0e0e0;
-  color: #7f7f7f;
+  background-color: #9fabda;
+  color: white;
   text-align: center;
   height: 3.5rem;
   font-weight: bold;
+  font-size: 1.5rem;
+  & ${Row} {
+    height: 3.5rem;
+  }
+  & ${Cell}:first-child {
+    border-top-left-radius: 5px;
+  }
+  & ${Cell}:last-child {
+    border-top-right-radius: 5px;
+  }
 `;
 
 const Body = styled.div`
@@ -63,17 +85,6 @@ const Body = styled.div`
     max-height: 40px;
     padding: 0 5px;
   }
-`;
-
-const Row = styled.div`
-  display: table-row;
-`;
-
-const Cell = styled.div`
-  display: table-cell;
-  vertical-align: middle;
-  text-align: ${({ align }) => align || 'center'};
-  width: ${({ width }) => width};
 `;
 
 export default TableComponent;
