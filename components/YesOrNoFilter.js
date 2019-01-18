@@ -5,26 +5,6 @@ import Link from 'components/Link';
 import { Button } from 'components/form/button/Button';
 import { generateQueryStr } from '../utils/query-string-generator';
 
-const Div = styled.div`
-  //display: flex;
-  //flex-flow: column nowrap;
-  //align-items: flex-end;
-`;
-
-const Title = styled.div``;
-
-const Span = styled.div`
-  //font-size: 1.2rem;
-  //flex: 1 0 100%;
-  //margin: 0 0 5px 10px;
-  //justify-content: flex-end;
-`;
-
-const Filters = styled.div`
-  //display: flex;
-  //flex-flow: row nowrap;
-`;
-
 const YesOrNoFilter = ({ label, yes, no, queryMap, checkKey, valueStrings }) => {
   const value = queryMap[checkKey] || null;
   const getQueryStr = toBe => {
@@ -68,5 +48,25 @@ YesOrNoFilter.defaultProps = {
   checkKey: '',
   valueStrings: { null: '모두', 1: '네', 0: '아니오' },
 };
+
+const Div = styled.div`
+  //display: flex;
+  //flex-flow: column nowrap;
+  //align-items: flex-end;
+`;
+
+const Title = styled.div``;
+
+const Span = styled.div`
+  //font-size: 1.2rem;
+  //flex: 1 0 100%;
+  //margin: 0 0 5px 10px;
+  //justify-content: flex-end;
+`;
+
+const Filters = styled.div`
+  //display: flex;
+  //flex-flow: row nowrap;
+`;
 
 export default YesOrNoFilter;
