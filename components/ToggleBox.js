@@ -4,12 +4,23 @@ import styled from 'styled-components';
 
 class ToggleBox extends Component {
   state = {};
+  handleChanged = () => {
+    const { id, toggleHandler } = this.props;
+    if (toggleHandler && typeof toggleHandler === 'function') {
+      toggleHandler(id);
+    }
+  };
   render() {
-    const { children } = this.props;
+    const { id, isActive } = this.props;
     return (
       <Div>
-        <Label htmlFor="toggle-box">
-          <input type="checkbox" id="toggle-box" />
+        <Label htmlFor={`company-isactive-toggle-${id}`}>
+          <input
+            type="checkbox"
+            id={`company-isactive-toggle-${id}`}
+            checked={isActive}
+            onChange={this.handleChanged}
+          />
           <Wrapper>
             <Button />
             <Span />
@@ -21,11 +32,14 @@ class ToggleBox extends Component {
 }
 
 ToggleBox.propTypes = {
-  children: PropTypes.string,
+  id: PropTypes.number.isRequired,
+  toggleHandler: PropTypes.func,
+  isActive: PropTypes.oneOf('1', '0'),
 };
 
 ToggleBox.defaultProps = {
-  children: '',
+  toggleHandler: null,
+  isActive: '0',
 };
 
 const Div = styled.div`
