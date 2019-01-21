@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import axios from 'axios';
 
 class ToggleBox extends Component {
   state = {};
   handleChanged = () => {
+    axios.get('http://localhost.com:8000/ko/api/admin/companies', {
+      withCredentials: true,
+      headers: {
+        // Cookie:
+        //   'access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTQ4MzE5NDU0LCJqdGkiOiJkYmE5ZjI5YWUwNjg0YmIwOTZkODIxZjg1ODYzN2FlMCIsImVtYWlsIjoiaGVvc2VAa29tYWNoaW5lLmNvbSJ9.18tII7tpg-50M2UdbHDigAPbEKCng7Q_oE56smtmJnc',
+      },
+    });
     const { id, toggleHandler } = this.props;
     if (toggleHandler && typeof toggleHandler === 'function') {
       toggleHandler(id);

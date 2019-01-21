@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CompanyList from 'components/CompanyList';
+import axios from 'axios';
 import withLayout from '../../lib/with-layout';
 import CompanySVG from '../../lib/svg/company.svg';
 import { fetchRequest } from '../../redux/modules/companies/reducers';
@@ -8,10 +9,26 @@ import DefaultLayout from '../../layouts/DefaultLayout';
 
 class Companies extends React.Component {
   static async getInitialProps({ req, query, store }) {
+    console.log('????');
     if (req) {
-      console.log(req.cookies);
+      axios.get('http://localhost.com:8000/ko/api/admin/companies', {
+        withCredentials: true,
+        headers: {
+          // Cookie:
+          //   'access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTQ4MzE5NDU0LCJqdGkiOiJkYmE5ZjI5YWUwNjg0YmIwOTZkODIxZjg1ODYzN2FlMCIsImVtYWlsIjoiaGVvc2VAa29tYWNoaW5lLmNvbSJ9.18tII7tpg-50M2UdbHDigAPbEKCng7Q_oE56smtmJnc',
+        },
+      });
+    } else {
+      console.log('csr');
+      axios.get('http://localhost.com:8000/ko/api/admin/companies', {
+        withCredentials: true,
+        headers: {
+          // Cookie:
+          //   'access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTQ4MzE5NDU0LCJqdGkiOiJkYmE5ZjI5YWUwNjg0YmIwOTZkODIxZjg1ODYzN2FlMCIsImVtYWlsIjoiaGVvc2VAa29tYWNoaW5lLmNvbSJ9.18tII7tpg-50M2UdbHDigAPbEKCng7Q_oE56smtmJnc',
+        },
+      });
     }
-    store.dispatch(fetchRequest(query));
+    // store.dispatch(fetchRequest(query));
     return { query };
   }
 
