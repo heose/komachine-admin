@@ -55,7 +55,7 @@ function CompanyList({ list, table, page, hasPrev, hasNext, isActive, hasRelatio
         <Checkbox name="test" />
       </div>
       <div>
-        <ToggleBox>토글박스</ToggleBox>
+        <ToggleBox id="111">토글박스</ToggleBox>
       </div>
       <div>
         <RadioButton id="rb-1" name="rb-test">

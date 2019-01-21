@@ -14,13 +14,8 @@ class ToggleBox extends Component {
     const { id, isActive } = this.props;
     return (
       <Div>
-        <Label htmlFor={`company-isactive-toggle-${id}`}>
-          <input
-            type="checkbox"
-            id={`company-isactive-toggle-${id}`}
-            checked={isActive}
-            onChange={this.handleChanged}
-          />
+        <Label>
+          <input type="checkbox" checked={isActive} onChange={this.handleChanged} />
           <Wrapper>
             <Button />
             <Span />
@@ -32,14 +27,14 @@ class ToggleBox extends Component {
 }
 
 ToggleBox.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   toggleHandler: PropTypes.func,
-  isActive: PropTypes.oneOf('1', '0'),
+  isActive: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
 };
 
 ToggleBox.defaultProps = {
   toggleHandler: null,
-  isActive: '0',
+  isActive: null,
 };
 
 const Div = styled.div`

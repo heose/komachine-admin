@@ -7,8 +7,10 @@ export function* fetchCompanies(action) {
   try {
     const query = action.payload;
     const { data } = yield call(api.fetchCompanies, query);
+    console.log(data);
     yield put(fetchSuccess(data.result));
   } catch (e) {
+    console.log(e);
     yield put(fetchFailure());
   }
 }
