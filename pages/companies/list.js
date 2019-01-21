@@ -7,7 +7,10 @@ import { fetchRequest } from '../../redux/modules/companies/reducers';
 import DefaultLayout from '../../layouts/DefaultLayout';
 
 class Companies extends React.Component {
-  static async getInitialProps({ query, store }) {
+  static async getInitialProps({ req, query, store }) {
+    if (req) {
+      console.log(req.cookies);
+    }
     store.dispatch(fetchRequest(query));
     return { query };
   }
