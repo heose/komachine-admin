@@ -1,12 +1,9 @@
 const express = require('express');
-const next = require('next');
-const mobxReact = require('mobx-react');
-
-mobxReact.useStaticRendering(true);
+const nextjs = require('next');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
+const app = nextjs({ dev });
 const handle = app.getRequestHandler();
 const cookieParser = require('cookie-parser');
 
@@ -18,12 +15,24 @@ app.prepare().then(() => {
   //   console.log('user name:', Buffer.from(encodeURIComponent(baseUserName), 'base64').toString('utf-8'));
   //   next();
   // });
+
+  const requireAuthentication = (req, res, next) => {
+    if (!('access_token' in req.cookies)) {
+      const host = dev ? 'http://localhost:8000' : 'https://www.komachine.com';
+      res.redirect(host);
+    } else {
+      next();
+    }
+  };
+
+  server.all('*', requireAuthentication);
+
   server.get('/a', (req, res) => app.render(req, res, '/about', req.query));
 
-  server.get('/companies', (req, res) => app.render(req, res, '/companies/list', req.query));
-  server.get('/companies/img-logo', (req, res) => app.render(req, res, '/companies/list', req.query));
-  server.get('/companies/prod-proc1', (req, res) => app.render(req, res, '/companies/list', req.query));
-  server.get('/companies/prod-proc2', (req, res) => app.render(req, res, '/companies/list', req.query));
+  // server.get('/companies', (req, res) => app.render(req, res, '/companies/list', req.query));
+  // server.get('/companies/img-logo', (req, res) => app.render(req, res, '/companies/list', req.query));
+  // server.get('/companies/prod-proc1', (req, res) => app.render(req, res, '/companies/list', req.query));
+  // server.get('/companies/prod-proc2', (req, res) => app.render(req, res, '/companies/list', req.query));
 
   server.get('/categories', (req, res) => app.render(req, res, '/categories/list', req.query));
 

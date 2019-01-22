@@ -4,17 +4,14 @@ import DefaultLayout from '../layouts/DefaultLayout';
 
 class Error extends React.Component {
   static getInitialProps({ res, err }) {
-    const statusCode = res ? res.statusCode : err ? err.statusCode : null;
+    const errCode = err ? err.statusCode : null;
+    const statusCode = res ? res.statusCode : errCode;
     return { statusCode };
   }
 
   render() {
     const { statusCode } = this.props;
-    return (
-      <p>
-        {statusCode ? `An error ${statusCode} occurred on server` : 'An error occurred on client'}
-      </p>
-    );
+    return <p>{statusCode ? `An error ${statusCode} occurred on server` : 'An error occurred on client'}</p>;
   }
 }
 

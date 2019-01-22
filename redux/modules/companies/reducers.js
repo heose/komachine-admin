@@ -26,15 +26,15 @@ const reducer = handleActions(
       }),
     [FETCH_SUCCESS]: (state, action) =>
       produce(state, draft => {
-        draft.table = { ...state.table, ...action.payload.table };
-        draft.list = action.payload.list;
-        draft.state = action.payload.state;
-        draft.page = action.payload.page;
-        draft.hasPrev = action.payload.hasPrev;
-        draft.hasNext = action.payload.hasNext;
-        draft.isActive = action.payload.isActive;
-        draft.hasRelation = action.payload.hasRelation;
-        draft.isFetching = false;
+        // draft.table = { ...state.table, ...action.payload.table };
+        // draft.list = action.payload.list;
+        // draft.state = action.payload.state;
+        // draft.page = action.payload.page;
+        // draft.hasPrev = action.payload.hasPrev;
+        // draft.hasNext = action.payload.hasNext;
+        // draft.isActive = action.payload.isActive;
+        // draft.hasRelation = action.payload.hasRelation;
+        // draft.isFetching = false;
       }),
     [FETCH_FAILURE]: state =>
       produce(state, draft => {

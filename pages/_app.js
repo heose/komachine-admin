@@ -5,20 +5,17 @@ import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import { dom } from '@fortawesome/fontawesome-svg-core';
-import '../lib/font-awesome';
-import '../lib/fonts';
+import 'lib/font-awesome';
+import 'lib/fonts';
 import makeStore from '../redux/store';
-// import { Provider } from 'mobx-react';
-// import withStore from '../lib/with-mobx-store';
 
 class RootApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
 
     if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
+      pageProps = Component.getInitialProps(ctx);
     }
-
     return { pageProps };
   }
 

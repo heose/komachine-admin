@@ -5,12 +5,11 @@ import { FETCH_REQUEST, fetchSuccess, fetchFailure } from './reducers';
 const api = new CompanyApi();
 export function* fetchCompanies(action) {
   try {
-    const query = action.payload;
-    const { data } = yield call(api.fetchCompanies, query);
-    console.log(data);
+    const { data } = yield call(api.fetchCompanies, action.payload);
+    // console.log(data);
     yield put(fetchSuccess(data.result));
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     yield put(fetchFailure());
   }
 }
