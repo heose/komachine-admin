@@ -8,6 +8,9 @@ const Api = axios.create({
     withCredentials: true,
     Accept: '*/*',
   },
+  responseType: 'json',
 });
+
+Api.interceptors.response.use(res => (res.headers['content-type'] === 'application/json' ? res : Promise.reject(res)));
 
 export default Api;

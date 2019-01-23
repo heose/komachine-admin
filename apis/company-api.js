@@ -2,8 +2,8 @@ import Api from './api';
 
 class CompanyApi {
   fetchCompanies = ({ query, req }) => {
-    const { headers } = req;
-    return Api.get('ko/api/admin/companies', { data: {}, params: query, headers });
+    const { cookie } = req.headers || {};
+    return Api.get('ko/api/admin/companies', { params: query, headers: { cookie } });
   };
 }
 
