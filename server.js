@@ -1,12 +1,16 @@
-const express = require('express');
-const nextjs = require('next');
-const requireAuthentication = require('./lib/require-authentication');
+// const express = require('express');
+// const nextjs = require('next');
+// const requireAuthentication = require('./lib/require-authentication');
+// const cookieParser = require('cookie-parser');
+import express from 'express';
+import nextjs from 'next';
+import cookieParser from 'cookie-parser';
+import requireAuthentication from './lib/require-authentication';
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = nextjs({ dev });
 const handle = app.getRequestHandler();
-const cookieParser = require('cookie-parser');
 
 app.prepare().then(() => {
   const server = express();
@@ -28,13 +32,12 @@ app.prepare().then(() => {
 
   server.all('*', requireAuthentication);
 
-  server.get('/a', (req, res) => app.render(req, res, '/about', req.query));
-
-  //
   // server.get('/companies', (req, res) => app.render(req, res, '/companies/list', req.query));
   // server.get('/companies/img-logo', (req, res) => app.render(req, res, '/companies/list', req.query));
   // server.get('/companies/prod-proc1', (req, res) => app.render(req, res, '/companies/list', req.query));
   // server.get('/companies/prod-proc2', (req, res) => app.render(req, res, '/companies/list', req.query));
+
+  server.get('/login', (req, res) => app.render(req, res, '/login', req.query));
 
   server.get('/categories', (req, res) => app.render(req, res, '/categories/list', req.query));
 

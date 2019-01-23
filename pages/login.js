@@ -7,7 +7,8 @@ import AuthApi from '../apis/auth-api';
 const api = new AuthApi();
 function Login({ next }) {
   const submit = () => {
-    const res = api.login({ email: 'heose@komachine.com', password: '' });
+    console.log('asdf');
+    const res = api.login({ email: 'heose@komachine.com', password: 'magic140715' });
     console.log(res);
     if (next) {
       Router.push(next);
@@ -17,7 +18,7 @@ function Login({ next }) {
   };
   return (
     <div>
-      Login Page
+      Login Page11
       <button type="button" onClick={submit}>
         next
       </button>
