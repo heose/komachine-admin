@@ -2,38 +2,36 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CompanyList from 'components/CompanyList';
 import withLayout from '../../lib/with-layout';
+import DefaultLayout from '../../layouts/DefaultLayout';
 import CompanySVG from '../../lib/svg/company.svg';
 import { fetchRequest } from '../../redux/modules/companies/reducers';
-import DefaultLayout from '../../layouts/DefaultLayout';
 
-class Companies extends React.Component {
-  static async getInitialProps({ req, query, store }) {
-    store.dispatch(fetchRequest({ query, req }));
-    return { query };
-  }
-
-  render() {
-    const { query } = this.props;
-    return (
-      <div>
-        <CompanyList query={query} />
-      </div>
-    );
-  }
+function Companies({ query }) {
+  return (
+    <div>
+      <CompanyList query={query} />
+    </div>
+  );
 }
+
+Companies.getInitialProps = ({ req, query, store }) => {
+  store.dispatch(fetchRequest({ query, req }));
+  return { query };
+};
+
 /**
  * 기업관리 - 기업명, 로고, 웹사이트, 기업활성화, 제품활성화, 기업연동, 멤버등급, 제품수, 카테고리, 수정일
  * 로고    - 기업명, 웹사이트, 로고, 대표이미지, 기업활성화
  * 제품1차 - 기업명, 로고, 웹사이트, 기업활성화, 제품활성화, 우선순위, 1차완료, 제품수, 코멘트, 수정일
  * 제품2차 - 기업명, 로고, 웹사이트, 제품활성화, 우선순위, 제품수, 코멘트, 수정일
  */
-// Companies.propTypes = {
-//   query: PropTypes.objectOf(PropTypes.string),
-// };
+Companies.propTypes = {
+  query: PropTypes.objectOf(PropTypes.string),
+};
 
-// Companies.defaultProps = {
-//   query
-// }
+Companies.defaultProps = {
+  query: {},
+};
 
 const extraProps = {
   sideNavData: {

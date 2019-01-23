@@ -1,5 +1,6 @@
 const express = require('express');
 const nextjs = require('next');
+const requireAuthentication = require('./lib/require-authentication');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
@@ -16,14 +17,14 @@ app.prepare().then(() => {
   //   next();
   // });
 
-  const requireAuthentication = (req, res, next) => {
-    if (!('access_token' in req.cookies)) {
-      const host = dev ? 'http://localhost:8000' : 'https://www.komachine.com';
-      res.redirect(host);
-    } else {
-      next();
-    }
-  };
+  // const requireAuthentication = (req, res, next) => {
+  //   if (!('access_token' in req.cookies)) {
+  //     const host = dev ? 'http://localhost:8000' : 'https://www.komachine.com';
+  //     res.redirect(host);
+  //   } else {
+  //     next();
+  //   }
+  // };
 
   server.all('*', requireAuthentication);
 
