@@ -46,7 +46,7 @@ const extraProps = {
       },
       {
         label: '기업 연동요청',
-        href: '/inquiry/relation',
+        href: '/inquiry/relation111',
         needFullMatch: true,
       },
       {

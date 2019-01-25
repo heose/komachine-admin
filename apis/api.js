@@ -5,15 +5,15 @@ const baseURL = process.env.NODE_ENV === 'production' ? 'https://www.komachine.c
 const Api = axios.create({
   baseURL,
   headers: {
-    withCredentials: true,
     Accept: '*/*',
   },
+  withCredentials: true,
   responseType: 'json',
 });
-// Api.interceptors.request.use(config => {
-//   console.log(config);
-//   return config;
-// });
+Api.interceptors.request.use(config => {
+  console.log(config);
+  return config;
+});
 Api.interceptors.response.use(res => (res.headers['content-type'] === 'application/json' ? res : Promise.reject(res)));
 
 export default Api;

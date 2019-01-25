@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "dev": "node start.js",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node start.js"
+    "start": "NODE_ENV=production node server.js"
   },
   "license": "MIT",
   "dependencies": {
@@ -20,6 +20,7 @@
     "axios": "^0.18.0",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
+    "express-async-handler": "^1.1.4",
     "flag-icon-css": "^3.2.1",
     "fontfaceobserver": "^2.0.13",
     "immer": "^1.8.0",

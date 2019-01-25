@@ -1,11 +1,8 @@
-// const express = require('express');
-// const nextjs = require('next');
-// const requireAuthentication = require('./lib/require-authentication');
-// const cookieParser = require('cookie-parser');
-import express from 'express';
-import nextjs from 'next';
-import cookieParser from 'cookie-parser';
-import requireAuthentication from './lib/require-authentication';
+const express = require('express');
+const nextjs = require('next');
+const cookieParser = require('cookie-parser');
+const asyncHandler = require('express-async-handler');
+const requireAuthentication = require('./lib/require-authentication');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
@@ -21,23 +18,14 @@ app.prepare().then(() => {
   //   next();
   // });
 
-  // const requireAuthentication = (req, res, next) => {
-  //   if (!('access_token' in req.cookies)) {
-  //     const host = dev ? 'http://localhost:8000' : 'https://www.komachine.com';
-  //     res.redirect(host);
-  //   } else {
-  //     next();
-  //   }
-  // };
-
-  server.all('*', requireAuthentication);
+  server.all('*', asyncHandler(requireAuthentication));
 
   // server.get('/companies', (req, res) => app.render(req, res, '/companies/list', req.query));
   // server.get('/companies/img-logo', (req, res) => app.render(req, res, '/companies/list', req.query));
   // server.get('/companies/prod-proc1', (req, res) => app.render(req, res, '/companies/list', req.query));
   // server.get('/companies/prod-proc2', (req, res) => app.render(req, res, '/companies/list', req.query));
 
-  server.get('/login', (req, res) => app.render(req, res, '/login', req.query));
+  // server.get('/login', (req, res) => app.render(req, res, '/login', req.query));
 
   server.get('/categories', (req, res) => app.render(req, res, '/categories/list', req.query));
 
@@ -59,6 +47,17 @@ app.prepare().then(() => {
   server.get('/about/:id', (req, res) => app.render(req, res, '/about', { ...req.params, ...req.query }));
 
   server.get('*', (req, res) => handle(req, res));
+
+  server.use((error, req, res, next) => {
+    console.log('asdfasfd', error);
+    if (res.headersSent) {
+      console.log('herdersents');
+      return next(error);
+    }
+    return app.render(req, res, '/error', { error, status: 500 });
+    // res.status(500);
+    // res.render('error', { error: err });
+  });
 
   server.listen(port, err => {
     if (err) throw err;
