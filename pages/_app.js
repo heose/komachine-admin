@@ -8,6 +8,7 @@ import withReduxSaga from 'next-redux-saga';
 import { dom } from '@fortawesome/fontawesome-svg-core';
 import 'lib/font-awesome';
 import 'lib/fonts';
+import withAuth from 'lib/with-auth';
 import makeStore from '../redux/store';
 
 class RootApp extends App {
@@ -46,4 +47,4 @@ class RootApp extends App {
   }
 }
 
-export default withRedux(makeStore)(withReduxSaga({ async: true })(RootApp));
+export default withAuth(withRedux(makeStore)(withReduxSaga({ async: true })(RootApp)));

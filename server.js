@@ -20,8 +20,13 @@ app.prepare().then(() => {
   //   next();
   // });
 
+<<<<<<< Updated upstream
   server.all('*', asyncHandler(requireAuthentication));
   server.all('/favicon.ico', (req, res) => res.redirect('https://cdn.komachine.com/static/favicon.ico'));
+=======
+  // server.all('*', asyncHandler(requireAuthentication));
+
+>>>>>>> Stashed changes
   // server.get('/companies', (req, res) => app.render(req, res, '/companies/list', req.query));
   // server.get('/companies/img-logo', (req, res) => app.render(req, res, '/companies/list', req.query));
   // server.get('/companies/prod-proc1', (req, res) => app.render(req, res, '/companies/list', req.query));
