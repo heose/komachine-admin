@@ -1,7 +1,9 @@
+/* eslint-disable no-console */
 const express = require('express');
 const nextjs = require('next');
 const cookieParser = require('cookie-parser');
 const asyncHandler = require('express-async-handler');
+const get = require('lodash/get');
 const requireAuthentication = require('./lib/require-authentication');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
@@ -19,7 +21,7 @@ app.prepare().then(() => {
   // });
 
   server.all('*', asyncHandler(requireAuthentication));
-
+  server.all('/favicon.ico', (req, res) => res.redirect('https://cdn.komachine.com/static/favicon.ico'));
   // server.get('/companies', (req, res) => app.render(req, res, '/companies/list', req.query));
   // server.get('/companies/img-logo', (req, res) => app.render(req, res, '/companies/list', req.query));
   // server.get('/companies/prod-proc1', (req, res) => app.render(req, res, '/companies/list', req.query));
@@ -48,15 +50,17 @@ app.prepare().then(() => {
 
   server.get('*', (req, res) => handle(req, res));
 
-  server.use((error, req, res, next) => {
-    console.log('asdfasfd', error);
-    if (res.headersSent) {
-      console.log('herdersents');
-      return next(error);
-    }
-    return app.render(req, res, '/error', { error, status: 500 });
-    // res.status(500);
+  server.use((err, req, res, next) => {
+    console.error(err.stack);
+    const errResponseCode = get(err, 'response.status', 500);
+    const statusCode = err.statusCode || errResponseCode;
+    console.log(statusCode);
+    // if (statusCode === 401) {
+    //   return res.redirect('/login');
+    // }
+    res.status(statusCode).send(`${statusCode}에러가 발생했습니다.`);
     // res.render('error', { error: err });
+    // return app.render(req, res, '/error', { error: err, status: 500 });
   });
 
   server.listen(port, err => {
