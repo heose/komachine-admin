@@ -1,8 +1,5 @@
-import Api from './api';
+import Api, { setCookie } from './api';
 
-class AuthApi {
-  login = data => Api.post('login/', { ...data });
-  refresh = () => Api.post('api/auth/refresh/').then(res => res.status);
-}
-
-export default AuthApi;
+export const login = data => Api.post('login/', { ...data });
+export const tokenRefresh = req => Api.post('api/auth/refresh/', {}, setCookie(req));
+export const tokenVerify = req => Api.post('api/auth/verify/', {}, setCookie(req));

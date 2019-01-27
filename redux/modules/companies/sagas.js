@@ -10,6 +10,7 @@ export function* fetchCompanies(action) {
     yield put(fetchSuccess(data.result));
   } catch (e) {
     // console.log(e);
+    // throw new Error('asd');
     yield put(fetchFailure());
   }
 }

@@ -2,7 +2,6 @@
 const express = require('express');
 const nextjs = require('next');
 const cookieParser = require('cookie-parser');
-const asyncHandler = require('express-async-handler');
 const get = require('lodash/get');
 const requireAuthentication = require('./lib/require-authentication');
 
@@ -20,19 +19,8 @@ app.prepare().then(() => {
   //   next();
   // });
 
-<<<<<<< Updated upstream
-  server.all('*', asyncHandler(requireAuthentication));
-  server.all('/favicon.ico', (req, res) => res.redirect('https://cdn.komachine.com/static/favicon.ico'));
-=======
   // server.all('*', asyncHandler(requireAuthentication));
-
->>>>>>> Stashed changes
-  // server.get('/companies', (req, res) => app.render(req, res, '/companies/list', req.query));
-  // server.get('/companies/img-logo', (req, res) => app.render(req, res, '/companies/list', req.query));
-  // server.get('/companies/prod-proc1', (req, res) => app.render(req, res, '/companies/list', req.query));
-  // server.get('/companies/prod-proc2', (req, res) => app.render(req, res, '/companies/list', req.query));
-
-  // server.get('/login', (req, res) => app.render(req, res, '/login', req.query));
+  server.all('/favicon.ico', (req, res) => res.redirect('https://cdn.komachine.com/static/favicon.ico'));
 
   server.get('/categories', (req, res) => app.render(req, res, '/categories/list', req.query));
 
@@ -59,13 +47,8 @@ app.prepare().then(() => {
     console.error(err.stack);
     const errResponseCode = get(err, 'response.status', 500);
     const statusCode = err.statusCode || errResponseCode;
-    console.log(statusCode);
-    // if (statusCode === 401) {
-    //   return res.redirect('/login');
-    // }
     res.status(statusCode).send(`${statusCode}에러가 발생했습니다.`);
-    // res.render('error', { error: err });
-    // return app.render(req, res, '/error', { error: err, status: 500 });
+    next(err);
   });
 
   server.listen(port, err => {
