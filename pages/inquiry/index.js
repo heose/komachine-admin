@@ -9,14 +9,14 @@ class Inquiry extends React.Component {
     if (props.asPath === '/inquiry') {
       if (props.res) {
         props.res.writeHead(302, {
-          Location: '/inquiry/komachine',
+          Location: '/inquiry?about=komachine',
         });
         props.res.end();
       } else {
-        Router.push('/inquiry/komachine');
+        Router.push('/inquiry?about=komachine');
       }
     }
-    return { a: 'b' };
+    return {};
   }
 
   render() {
@@ -36,23 +36,19 @@ const extraProps = {
     items: [
       {
         label: '문의하기(코머신)',
-        href: '/inquiry/komachine',
-        needFullMatch: true,
+        href: '?about=komachine',
       },
       {
         label: '기업 등록요청',
-        href: '/inquiry/registration',
-        needFullMatch: true,
+        href: '?about=registration',
       },
       {
         label: '기업 연동요청',
-        href: '/inquiry/relation111',
-        needFullMatch: true,
+        href: '?about=relation',
       },
       {
         label: '문의하기(기업)',
-        href: '/inquiry/company',
-        needFullMatch: true,
+        href: '?about=company',
       },
     ],
   },

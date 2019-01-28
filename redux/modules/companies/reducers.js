@@ -26,6 +26,7 @@ const reducer = handleActions(
       }),
     [FETCH_SUCCESS]: (state, action) =>
       produce(state, draft => {
+        draft.state = 'complete';
         // draft.table = { ...state.table, ...action.payload.table };
         // draft.list = action.payload.list;
         // draft.state = action.payload.state;

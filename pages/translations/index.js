@@ -9,11 +9,11 @@ class Translations extends React.Component {
     if (props.asPath === '/translations') {
       if (props.res) {
         props.res.writeHead(302, {
-          Location: '/translations/en',
+          Location: '/translations?lang=en',
         });
         props.res.end();
       } else {
-        Router.push('/translations/en');
+        Router.push('/translations?lang=en');
       }
     }
 
@@ -37,17 +37,17 @@ const extraProps = {
     items: [
       {
         label: '영어',
-        href: '/translations/en',
+        href: '?lang=en',
         needFullMatch: true,
       },
       {
         label: '중국어',
-        href: '/translations/zh-hans',
+        href: '?lang=zh-hans',
         needFullMatch: true,
       },
       {
         label: '베트남어',
-        href: '/translations/vi',
+        href: '?lang=vi',
         needFullMatch: true,
       },
     ],

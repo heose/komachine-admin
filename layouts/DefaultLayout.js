@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import Header from 'components/Header';
 import SideNav from 'components/SideNav';
 import Footer from 'components/Footer';
 import NormalizeCSS from './normalize.css';
 import GlobalStyle from './global-style';
+import * as errorActions from '../redux/modules/error/reducers';
 
 function DefaultLayout({ children, sideNavData, ...props }) {
   return (
@@ -68,4 +71,7 @@ export const Page = styled.div`
   padding: 10px 0 20px 20px;
 `;
 
-export default DefaultLayout;
+export default connect(
+  ({ error }) => ({ ...error }),
+  dispatch => ({ ErrorActions: bindActionCreators(errorActions, dispatch) }),
+)(DefaultLayout);

@@ -9,6 +9,7 @@ import Checkbox from 'components/Checkbox';
 import ToggleBox from 'components/ToggleBox';
 import RadioButton from 'components/RadioButton';
 import DndFileUploader from 'components/DnDFileUploader';
+import withState from 'lib/with-state';
 import { generateQueryStr } from '../utils/query-string-generator';
 import withViewType from '../lib/with-view-type';
 
@@ -110,4 +111,4 @@ const mapStateToProps = state => {
   return { ...companies };
 };
 
-export default connect(mapStateToProps)(CompanyList);
+export default connect(mapStateToProps)(withState('state')(CompanyList));

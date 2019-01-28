@@ -11,7 +11,7 @@ export function* fetchCompanies(action) {
     yield put(fetchSuccess(data.result));
   } catch (e) {
     yield put(fetchFailure());
-    yield put(setErrStatus(e.status));
+    // yield put(setErrStatus(e.status));
   }
 }
 

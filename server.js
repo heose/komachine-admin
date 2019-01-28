@@ -22,22 +22,17 @@ app.prepare().then(() => {
   // server.all('*', asyncHandler(requireAuthentication));
   server.all('/favicon.ico', (req, res) => res.redirect('https://cdn.komachine.com/static/favicon.ico'));
 
-  server.get('/categories', (req, res) => app.render(req, res, '/categories/list', req.query));
+  server.get('/synonyms/ko', (req, res) => app.render(req, res, '/synonyms/index', req.query));
+  server.get('/synonyms/en', (req, res) => app.render(req, res, '/synonyms/index', req.query));
 
-  server.get('/synonyms', (req, res) => app.render(req, res, '/synonyms/list', req.query));
-  server.get('/synonyms/ko', (req, res) => app.render(req, res, '/synonyms/list', req.query));
-  server.get('/synonyms/en', (req, res) => app.render(req, res, '/synonyms/list', req.query));
+  server.get('/translations/en', (req, res) => app.render(req, res, '/translations/index', req.query));
+  server.get('/translations/zh-hans', (req, res) => app.render(req, res, '/translations/index', req.query));
+  server.get('/translations/vi', (req, res) => app.render(req, res, '/translations/index', req.query));
 
-  server.get('/translations', (req, res) => app.render(req, res, '/translations/list', req.query));
-  server.get('/translations/en', (req, res) => app.render(req, res, '/translations/list', req.query));
-  server.get('/translations/zh-hans', (req, res) => app.render(req, res, '/translations/list', req.query));
-  server.get('/translations/vi', (req, res) => app.render(req, res, '/translations/list', req.query));
-
-  server.get('/inquiry', (req, res) => app.render(req, res, '/inquiry/list', req.query));
-  server.get('/inquiry/komachine', (req, res) => app.render(req, res, '/inquiry/list', req.query));
-  server.get('/inquiry/registration', (req, res) => app.render(req, res, '/inquiry/list', req.query));
-  server.get('/inquiry/relation', (req, res) => app.render(req, res, '/inquiry/list', req.query));
-  server.get('/inquiry/company', (req, res) => app.render(req, res, '/inquiry/list', req.query));
+  server.get('/inquiry/komachine', (req, res) => app.render(req, res, '/inquiry/index', req.query));
+  server.get('/inquiry/registration', (req, res) => app.render(req, res, '/inquiry/index', req.query));
+  server.get('/inquiry/relation', (req, res) => app.render(req, res, '/inquiry/index', req.query));
+  server.get('/inquiry/company', (req, res) => app.render(req, res, '/inquiry/index', req.query));
 
   server.get('/about/:id', (req, res) => app.render(req, res, '/about', { ...req.params, ...req.query }));
 
