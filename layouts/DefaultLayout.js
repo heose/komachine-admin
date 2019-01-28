@@ -24,10 +24,23 @@ function DefaultLayout({ children, sideNavData, ...props }) {
 
 DefaultLayout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+  sideNavData: PropTypes.shape({
+    active: PropTypes.bool,
+    parentPageName: PropTypes.string,
+    icon: PropTypes.node,
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string,
+        href: PropTypes.string,
+        needFullMatch: PropTypes.bool,
+      }),
+    ),
+  }),
 };
 
 DefaultLayout.defaultProps = {
   children: null,
+  sideNavData: {},
 };
 
 export const Div = styled.div`

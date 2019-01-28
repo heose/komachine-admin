@@ -44,6 +44,7 @@ app.prepare().then(() => {
   server.get('*', (req, res) => handle(req, res));
 
   server.use((err, req, res, next) => {
+    console.log('asdf');
     console.error(err.stack);
     const errResponseCode = get(err, 'response.status', 500);
     const statusCode = err.statusCode || errResponseCode;

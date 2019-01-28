@@ -22,6 +22,13 @@ const Api = axios.create({
 //   return config;
 // });
 // Api.interceptors.response.use(res => (res.headers['content-type'] === 'application/json' ? res : Promise.reject(res)));
-Api.interceptors.response.use(res => (res.headers['content-type'] === 'application/json' ? res : Promise.reject(res)));
+Api.interceptors.response.use(
+  res => (res.headers['content-type'] === 'application/json' ? res : Promise.reject(res)),
+  err => {
+    const error = new Error(err);
+    error.status = err.response.status;
+    throw error;
+  },
+);
 
 export default Api;

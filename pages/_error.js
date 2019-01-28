@@ -1,4 +1,5 @@
 import React from 'react';
+import ErrorComponent from 'components/Error';
 import withLayout from '../lib/with-layout';
 import DefaultLayout from '../layouts/DefaultLayout';
 
@@ -10,8 +11,7 @@ class Error extends React.Component {
   }
 
   render() {
-    const { statusCode } = this.props;
-    return <p>{statusCode ? `An error ${statusCode} occurred on server` : 'An error occurred on client'}</p>;
+    return <ErrorComponent {...this.props} />;
   }
 }
 

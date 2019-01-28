@@ -15,12 +15,7 @@ function Companies({ query }) {
 }
 
 Companies.getInitialProps = ({ req, query, store }) => {
-  try {
-    store.dispatch(fetchRequest({ query, req }));
-  } catch (e) {
-    console.log('companies-index-page');
-    console.log(e);
-  }
+  store.dispatch(fetchRequest({ query, req }));
   return { query };
 };
 
