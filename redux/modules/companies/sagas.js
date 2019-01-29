@@ -1,7 +1,6 @@
 import { takeLatest, put, call } from 'redux-saga/effects';
 import CompanyApi from '../../../apis/company-api';
 import { FETCH_REQUEST, fetchSuccess, fetchFailure } from './reducers';
-import { setErrStatus } from '../error/reducers';
 
 const api = new CompanyApi();
 export function* fetchCompanies(action) {
@@ -11,6 +10,7 @@ export function* fetchCompanies(action) {
     yield put(fetchSuccess(data.result));
   } catch (e) {
     yield put(fetchFailure());
+    // yield put(progressStateActions.setState(403));
     // yield put(setErrStatus(e.status));
   }
 }

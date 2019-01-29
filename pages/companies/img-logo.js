@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import CompanyList from 'components/CompanyList';
 import withLayout from '../../lib/with-layout';
 import CompanySVG from '../../lib/svg/company.svg';
-import { fetchRequest } from '../../redux/modules/companies/reducers';
+import { companyActions } from '../../redux/modules/companies/reducers';
 import DefaultLayout from '../../layouts/DefaultLayout';
 
 class Companies extends React.Component {
   static async getInitialProps({ req, query, store }) {
-    store.dispatch(fetchRequest({ query, req }));
+    store.dispatch(companyActions.company.fetchRequest({ query, req }));
     return { query };
   }
 
