@@ -4,7 +4,7 @@ import CompanyList from 'components/CompanyList';
 import withLayout from '../../lib/with-layout';
 import DefaultLayout from '../../layouts/DefaultLayout';
 import CompanySVG from '../../lib/svg/company.svg';
-import { fetchRequest } from '../../redux/modules/companies/reducers';
+import { actions } from '../../redux/modules/companies/reducers';
 
 function Companies({ query }) {
   return (
@@ -15,7 +15,7 @@ function Companies({ query }) {
 }
 
 Companies.getInitialProps = ({ req, query, store }) => {
-  store.dispatch(fetchRequest({ query, req }));
+  store.dispatch(actions.company.fetchRequest({ query, req }));
   return { query };
 };
 

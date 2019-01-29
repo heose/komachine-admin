@@ -9,7 +9,7 @@ import Checkbox from 'components/Checkbox';
 import ToggleBox from 'components/ToggleBox';
 import RadioButton from 'components/RadioButton';
 import DndFileUploader from 'components/DnDFileUploader';
-import withState from 'lib/with-state';
+import withStatus from 'lib/with-status';
 import { generateQueryStr } from '../utils/query-string-generator';
 import withViewType from '../lib/with-view-type';
 
@@ -106,9 +106,6 @@ CompanyList.defaultProps = {
   isFetching: false,
 };
 
-const mapStateToProps = state => {
-  const { companies } = state;
-  return { ...companies };
-};
+const mapStateToProps = ({ companies }) => ({ ...companies });
 
-export default connect(mapStateToProps)(withState('state')(CompanyList));
+export default connect(mapStateToProps)(withStatus(CompanyList));
