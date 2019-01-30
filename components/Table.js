@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import get from 'lodash/get';
 
 const TableComponent = ({ headerData, data }) => {
   const header = headerData.map(h => (
@@ -10,7 +11,7 @@ const TableComponent = ({ headerData, data }) => {
   ));
   const body = data.map((row, i) => {
     const cells = headerData.map(h => (
-      <Cell key={h.key}>{typeof h.render === 'function' ? h.render(row) : row[h.render]}</Cell>
+      <Cell key={h.key}>{typeof h.render === 'function' ? h.render(row) : get(row, h.render)}</Cell>
     ));
     return <Row key={row.id || i}>{cells}</Row>;
   });

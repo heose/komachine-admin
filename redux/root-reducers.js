@@ -4,5 +4,5 @@ import companyReducer from './modules/companies/reducers';
 
 export default combineReducers({
   error: errorReducer,
-  companies: companyReducer,
+  company: companyReducer,
 });

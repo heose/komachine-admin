@@ -13,13 +13,13 @@ import withStatus from 'lib/with-status';
 import { generateQueryStr } from '../utils/query-string-generator';
 import withViewType from '../lib/with-view-type';
 
-function CompanyList({ list, table, page, hasPrev, hasNext, isActive, hasRelation, viewType, isFetching }) {
+function CompanyList({ lookups, entities, page, hasPrev, hasNext, isActive, hasRelation, viewType, isFetching }) {
   const prevEnabled = hasPrev ? 'enabled' : 'disabled';
   const nextEnabled = hasNext ? 'enabled' : 'disabled';
   const prevPage = hasPrev ? Number(page) - 1 : Number(page);
   const nextPage = hasNext ? Number(page) + 1 : Number(page);
 
-  const bodyData = list.map(id => table[id]);
+  const bodyData = lookups.map(id => entities[id]);
   const queryMap = { isActive, hasRelation, page };
   const queryStr = generateQueryStr({ isActive, hasRelation });
   const Table = withViewType(viewType);
@@ -83,8 +83,8 @@ function CompanyList({ list, table, page, hasPrev, hasNext, isActive, hasRelatio
 }
 
 CompanyList.propTypes = {
-  table: PropTypes.shape({}),
-  list: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  entities: PropTypes.shape({}),
+  lookups: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   page: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   hasPrev: PropTypes.bool,
   hasNext: PropTypes.bool,
@@ -95,8 +95,8 @@ CompanyList.propTypes = {
 };
 
 CompanyList.defaultProps = {
-  table: {},
-  list: [],
+  entities: {},
+  lookups: [],
   page: '1',
   hasPrev: false,
   hasNext: false,
@@ -106,6 +106,6 @@ CompanyList.defaultProps = {
   isFetching: false,
 };
 
-const mapStateToProps = ({ companies }) => ({ ...companies });
+const mapStateToProps = ({ company }) => ({ ...company });
 
 export default connect(mapStateToProps)(withStatus(CompanyList));

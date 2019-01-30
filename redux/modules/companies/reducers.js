@@ -4,22 +4,22 @@ import { createConsts } from '../../utils';
 // import createStateActions, { progressStateInitial } from '../progress-state/create-actions';
 
 const initialState = {
-  table: {},
-  list: [],
+  entities: {},
+  lookups: [],
   status: '',
+  errorCode: null,
   page: '1',
   hasPrev: false,
   hasNext: false,
   isActive: null,
   hasRelation: null,
   isFetching: false,
-  errorCode: null,
 };
 
 export const actions = createActions({
   COMPANY: {
     FETCH_REQUEST: null,
-    FETCH_SUCCESS: null,
+    FETCH_SUCCESS: ({ entities, result }) => ({ entities: entities.companies, lookups: result.companies }),
     FETCH_FAILURE: null,
   },
 });
@@ -36,12 +36,13 @@ const reducer = handleActions(
     ],
     [
       actions.company.fetchSuccess,
-      state =>
+      (state, { payload: { entities, lookups } }) =>
         produce(state, draft => {
           draft.status = 'complete';
+          draft.entities = { ...state.entities, ...entities };
+          draft.lookups = lookups;
           // draft.table = { ...state.table, ...action.payload.table };
           // draft.list = action.payload.list;
-          // draft.state = action.payload.state;
           // draft.page = action.payload.page;
           // draft.hasPrev = action.payload.hasPrev;
           // draft.hasNext = action.payload.hasNext;
@@ -54,7 +55,7 @@ const reducer = handleActions(
       actions.company.fetchFailure,
       (state, action) =>
         produce(state, draft => {
-          draft.errorCode = action.payload.status;
+          draft.errorCode = action.payload.status || 500;
           draft.status = 'error';
         }),
     ],
