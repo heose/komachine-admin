@@ -1,7 +1,44 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-function Error({ statusCode }) {
-  return <p>{statusCode ? `An error ${statusCode} occurred on server` : 'An error occurred on client'}</p>;
+function Error({ errorCode }) {
+  const errorMap = new Map();
+  errorMap.set(400, 'BAD REQUEST');
+  errorMap.set(401, 'UNAUTHORIZED');
+  errorMap.set(403, 'FORBIDDEN ACCESS');
+  errorMap.set(404, 'PAGE NOT FOUND');
+  errorMap.set(500, 'INTERNAL SERVER ERROR');
+
+  return (
+    <Div>
+      <Code>{errorCode}</Code>
+      <Message>{errorMap.get(errorCode)}</Message>
+    </Div>
+  );
 }
+
+Error.propTypes = {
+  errorCode: PropTypes.number.isRequired,
+};
+
+const Div = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+  margin-top: 20rem;
+  width: 100%;
+`;
+
+const Code = styled.span`
+  font-size: 10rem;
+  font-weight: bolder;
+  color: #707070;
+`;
+const Message = styled.span`
+  font-size: 4rem;
+  color: #505050;
+`;
 
 export default Error;

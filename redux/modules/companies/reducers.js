@@ -32,7 +32,6 @@ const reducer = handleActions(
       state =>
         produce(state, draft => {
           draft.status = 'request';
-          draft.errorCode = 12333;
         }),
     ],
     [
@@ -55,7 +54,6 @@ const reducer = handleActions(
       actions.company.fetchFailure,
       (state, action) =>
         produce(state, draft => {
-          console.log(action.payload.status);
           draft.errorCode = action.payload.status;
           draft.status = 'error';
         }),

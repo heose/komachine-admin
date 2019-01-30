@@ -5,9 +5,9 @@ import DefaultLayout from '../layouts/DefaultLayout';
 
 class Error extends React.Component {
   static getInitialProps({ res, err }) {
-    const errCode = err ? err.statusCode : null;
-    const statusCode = res ? res.statusCode : errCode;
-    return { statusCode };
+    const errStatusCode = err ? err.statusCode : null;
+    const errorCode = res ? res.statusCode : errStatusCode;
+    return { errorCode };
   }
 
   render() {
