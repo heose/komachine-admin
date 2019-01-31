@@ -9,7 +9,7 @@ export const generateQueryStr = queryMap =>
     .join('&');
 
 export const toQueryMap = queryStr => {
-  const [prefix, query] = queryStr.startsWith('?') ? [true, queryStr.slice(1)] : [false, queryStr];
+  const query = queryStr.startsWith('?') ? queryStr.slice(1) : queryStr;
   return query.split('&').reduce((result, q) => {
     const [key, value] = q.split('=');
     if (value) {
