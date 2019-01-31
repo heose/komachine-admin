@@ -80,7 +80,7 @@ export default class Image extends React.Component {
 }
 
 Image.propTypes = {
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
   width: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired,
   minWidth: PropTypes.string,
@@ -89,6 +89,7 @@ Image.propTypes = {
 };
 
 Image.defaultProps = {
+  src: '',
   minWidth: '',
   minHeight: '',
   isFetching: false,

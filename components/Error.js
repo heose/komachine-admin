@@ -34,11 +34,11 @@ const Div = styled.div`
 const Code = styled.span`
   font-size: 10rem;
   font-weight: bolder;
-  color: #707070;
+  color: gray;
 `;
 const Message = styled.span`
   font-size: 4rem;
-  color: #505050;
+  color: gray;
 `;
 
 export default Error;

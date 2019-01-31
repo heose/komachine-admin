@@ -19,7 +19,7 @@ const initialState = {
 export const actions = createActions({
   COMPANY: {
     FETCH_REQUEST: null,
-    FETCH_SUCCESS: ({ entities, result }) => ({ entities: entities.companies, lookups: result.companies }),
+    FETCH_SUCCESS: ({ entities, result }) => ({ entities, lookups: result.company }),
     FETCH_FAILURE: null,
   },
 });

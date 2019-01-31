@@ -1,12 +1,23 @@
-export const generateQueryStr = paramMap =>
-  Object.keys(paramMap)
+export const generateQueryStr = queryMap =>
+  Object.keys(queryMap)
     .reduce((accum, key) => {
-      if (paramMap[key]) {
-        accum.push(`${key}=${paramMap[key]}`);
+      if (queryMap[key]) {
+        accum.push(`${key}=${queryMap[key]}`);
       }
       return accum;
     }, [])
     .join('&');
+
+export const toQueryMap = queryStr => {
+  const [prefix, query] = queryStr.startsWith('?') ? [true, queryStr.slice(1)] : [false, queryStr];
+  return query.split('&').reduce((result, q) => {
+    const [key, value] = q.split('=');
+    if (value) {
+      result[key] = value;
+    }
+    return result;
+  }, {});
+};
 
 export const toMapFromQueryStr = (queryStr, excludes = []) => {
   const toMap = {};

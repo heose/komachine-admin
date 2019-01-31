@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import get from 'lodash/get';
 import Link from 'components/Link';
 import YesOrNoFilter from 'components/YesOrNoFilter';
 import { Button } from 'components/form/button/Button';
@@ -19,7 +20,15 @@ function CompanyList({ lookups, entities, page, hasPrev, hasNext, isActive, hasR
   const prevPage = hasPrev ? Number(page) - 1 : Number(page);
   const nextPage = hasNext ? Number(page) + 1 : Number(page);
 
-  const bodyData = lookups.map(id => entities[id]);
+  const bodyData = [];
+  lookups.forEach(companyId => {
+    const row = entities.company[companyId];
+    const logoId = row.logo.find(id => entities.logo[id].language === 'ko') || row.logo[0];
+    bodyData.push({
+      ...row,
+      logo: get(entities.logo, logoId, ''),
+    });
+  });
   const queryMap = { isActive, hasRelation, page };
   const queryStr = generateQueryStr({ isActive, hasRelation });
   const Table = withViewType(viewType);
