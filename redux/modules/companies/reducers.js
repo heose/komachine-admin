@@ -8,11 +8,6 @@ const initialState = {
   lookups: [],
   status: '',
   errorCode: null,
-  page: '1',
-  hasPrev: false,
-  hasNext: false,
-  isActive: null,
-  hasRelation: null,
   isFetching: false,
 };
 
@@ -41,13 +36,6 @@ const reducer = handleActions(
           draft.status = 'complete';
           draft.entities = { ...state.entities, ...entities };
           draft.lookups = lookups;
-          // draft.table = { ...state.table, ...action.payload.table };
-          // draft.list = action.payload.list;
-          // draft.page = action.payload.page;
-          // draft.hasPrev = action.payload.hasPrev;
-          // draft.hasNext = action.payload.hasNext;
-          // draft.isActive = action.payload.isActive;
-          // draft.hasRelation = action.payload.hasRelation;
           // draft.isFetching = false;
         }),
     ],

@@ -11,15 +11,10 @@ import ToggleBox from 'components/ToggleBox';
 import RadioButton from 'components/RadioButton';
 import DndFileUploader from 'components/DnDFileUploader';
 import withStatus from 'lib/with-status';
-import { generateQueryStr } from '../utils/query-string-generator';
 import withViewType from '../lib/with-view-type';
 
-function CompanyList({ lookups, entities, page, hasPrev, hasNext, isActive, hasRelation, viewType, isFetching }) {
-  const prevEnabled = hasPrev ? 'enabled' : 'disabled';
-  const nextEnabled = hasNext ? 'enabled' : 'disabled';
-  const prevPage = hasPrev ? Number(page) - 1 : Number(page);
-  const nextPage = hasNext ? Number(page) + 1 : Number(page);
-
+function CompanyList({ lookups, entities, query }) {
+  const curPage = Number(get(query, 'page', '1'));
   const bodyData = [];
   lookups.forEach(companyId => {
     const row = entities.company[companyId];
@@ -29,28 +24,27 @@ function CompanyList({ lookups, entities, page, hasPrev, hasNext, isActive, hasR
       logo: get(entities.logo, logoId, ''),
     });
   });
-  const queryMap = { isActive, hasRelation, page };
-  const queryStr = generateQueryStr({ isActive, hasRelation });
-  const Table = withViewType(viewType);
+  const Table = withViewType();
+  console.log(curPage > 1);
   return (
     <div>
-      <Table data={bodyData} isFetching={isFetching} />
+      <Table data={bodyData} />
       <div>
         <Link
-          enabled={prevEnabled}
-          href={`?page=${prevPage}&${queryStr}`}
+          enabled={curPage > 1}
+          href={`?page=${curPage > 1 ? curPage - 1 : 1}`}
           component={Button}
           as="a"
-          theme={{ size: 'small', shape: 'square', enabled: prevEnabled }}
+          theme={{ size: 'small', shape: 'square', enabled: curPage > 1 ? 'enabled' : 'disabled' }}
         >
           이전
         </Link>
         <Link
-          enabled={nextEnabled}
-          href={`?page=${nextPage}&${queryStr}`}
+          enabled
+          href={`?page=${curPage + 1}`}
           component={Button}
           as="a"
-          theme={{ size: 'small', shape: 'square', enabled: nextEnabled }}
+          theme={{ size: 'small', shape: 'square', enabled: true }}
         >
           다음
         </Link>
@@ -85,8 +79,8 @@ function CompanyList({ lookups, entities, page, hasPrev, hasNext, isActive, hasR
       <Link href="/companies/edit" component={Button} as="a" theme={{ size: 'small', shape: 'square', enabled: true }}>
         등록
       </Link>
-      <YesOrNoFilter label="기업활성화여부" queryMap={queryMap} checkKey="isActive" />
-      <YesOrNoFilter label="기업연동여부" queryMap={queryMap} checkKey="hasRelation" />
+      {/* <YesOrNoFilter label="기업활성화여부" queryMap={queryMap} checkKey="isActive" /> */}
+      {/* <YesOrNoFilter label="기업연동여부" queryMap={queryMap} checkKey="hasRelation" /> */}
     </div>
   );
 }
@@ -94,25 +88,13 @@ function CompanyList({ lookups, entities, page, hasPrev, hasNext, isActive, hasR
 CompanyList.propTypes = {
   entities: PropTypes.shape({}),
   lookups: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-  page: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  hasPrev: PropTypes.bool,
-  hasNext: PropTypes.bool,
-  isActive: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
-  hasRelation: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
-  viewType: PropTypes.number,
-  isFetching: PropTypes.bool,
+  query: PropTypes.objectOf(PropTypes.string),
 };
 
 CompanyList.defaultProps = {
   entities: {},
   lookups: [],
-  page: '1',
-  hasPrev: false,
-  hasNext: false,
-  isActive: null,
-  hasRelation: null,
-  viewType: 0,
-  isFetching: false,
+  query: {},
 };
 
 const mapStateToProps = ({ company }) => ({ ...company });
