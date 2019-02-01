@@ -1,7 +1,7 @@
 import React from 'react';
-import ErrorComponent from 'components/Error';
-import withLayout from '../lib/with-layout';
-import DefaultLayout from '../layouts/DefaultLayout';
+import ErrorComponent from '~/components/Error';
+import withLayout from '~/lib/with-layout';
+import DefaultLayout from '~/layouts/DefaultLayout';
 
 class Error extends React.Component {
   static getInitialProps({ res, err }) {

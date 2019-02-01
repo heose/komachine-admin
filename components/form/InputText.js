@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import InputWrapper from 'components/styled/InputWrapper';
+import InputWrapper from '~/components/styled/InputWrapper';
 
 class InputText extends React.Component {
   constructor(props) {

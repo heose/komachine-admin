@@ -2,17 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Link from 'components/Link';
-import YesOrNoFilter from 'components/YesOrNoFilter';
-import { Button } from 'components/form/button/Button';
-import Image from 'components/Image';
-import Checkbox from 'components/Checkbox';
-import ToggleBox from 'components/ToggleBox';
-import RadioButton from 'components/RadioButton';
-import DndFileUploader from 'components/DnDFileUploader';
-import Table from 'components/Table';
-import withStatus from 'lib/with-status';
-import headerDataMap from '../lib/table-header-data/company';
+import Link from '~/components/Link';
+import YesOrNoFilter from '~/components/YesOrNoFilter';
+import { Button } from '~/components/form/button/Button';
+import Image from '~/components/Image';
+import Checkbox from '~/components/Checkbox';
+import ToggleBox from '~/components/ToggleBox';
+import RadioButton from '~/components/RadioButton';
+import DndFileUploader from '~/components/DnDFileUploader';
+import Table from '~/components/Table';
+import withStatus from '~/lib/with-status';
+import headerDataMap from '~/lib/table-header-data/company';
 
 function CompanyList({ lookups, entities, query }) {
   const curPage = Number(get(query, 'page', '1'));

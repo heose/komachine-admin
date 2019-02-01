@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Nav from 'components/SideNav';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
+import Nav from '~/components/SideNav';
+import Header from '~/components/Header';
+import Footer from '~/components/Footer';
 import DefaultLayout, { Div, Central, Page } from '../DefaultLayout';
 
 describe('defaultLayout test', () => {

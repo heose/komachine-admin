@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import Table from 'components/Table';
+import Table from '~/components/Table';
 
 const headerData = [
   { key: 'header1', str: '헤더1', width: '20%', render: 'header1' },

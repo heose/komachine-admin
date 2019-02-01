@@ -1,7 +1,7 @@
 import React from 'react';
-import withLayout from '../../lib/with-layout';
-import SynonymSVG from '../../lib/svg/synonym.svg';
-import DefaultLayout from '../../layouts/DefaultLayout';
+import withLayout from '~/lib/with-layout';
+import SynonymSVG from '~/lib/svg/synonym.svg';
+import DefaultLayout from '~/layouts/DefaultLayout';
 
 class Synonyms extends React.Component {
   static async getInitialProps(props) {

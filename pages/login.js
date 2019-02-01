@@ -1,8 +1,8 @@
 import React from 'react';
 import Router from 'next/router';
-import withLayout from '../lib/with-layout';
-import DefaultLayout from '../layouts/DefaultLayout';
-import { login } from '../apis/auth-api';
+import withLayout from '~/lib/with-layout';
+import DefaultLayout from '~/layouts/DefaultLayout';
+import { login } from '~/apis/auth-api';
 
 function Login({ next }) {
   const submit = () => {

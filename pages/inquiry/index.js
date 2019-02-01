@@ -1,8 +1,8 @@
 import React from 'react';
 import Router from 'next/router';
-import withLayout from '../../lib/with-layout';
-import InquirySVG from '../../lib/svg/inquiry.svg';
-import DefaultLayout from '../../layouts/DefaultLayout';
+import withLayout from '~/lib/with-layout';
+import InquirySVG from '~/lib/svg/inquiry.svg';
+import DefaultLayout from '~/layouts/DefaultLayout';
 
 class Inquiry extends React.Component {
   static async getInitialProps(props) {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import DropDown from 'components/DropDown';
-import InputText from 'components/form/InputText';
-import InputWrapper from 'components/styled/InputWrapper';
+import DropDown from '~/components/DropDown';
+import InputText from '~/components/form/InputText';
+import InputWrapper from '~/components/styled/InputWrapper';
 
 class DropDownText extends Component {
   constructor(props) {

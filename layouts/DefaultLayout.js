@@ -3,12 +3,11 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Header from 'components/Header';
-import SideNav from 'components/SideNav';
-import Footer from 'components/Footer';
-import NormalizeCSS from './normalize.css';
-import GlobalStyle from './global-style';
-import * as errorActions from '../redux/modules/error/reducers';
+import Header from '~/components/Header';
+import SideNav from '~/components/SideNav';
+import Footer from '~/components/Footer';
+import NormalizeCSS from '~/layouts/normalize.css';
+import GlobalStyle from '~/layouts/global-style';
 
 function DefaultLayout({ children, sideNavData, ...props }) {
   return (
@@ -71,7 +70,4 @@ export const Page = styled.div`
   padding: 10px 0 20px 20px;
 `;
 
-export default connect(
-  ({ error }) => ({ ...error }),
-  dispatch => ({ ErrorActions: bindActionCreators(errorActions, dispatch) }),
-)(DefaultLayout);
+export default connect(({ error }) => ({ ...error }))(DefaultLayout);

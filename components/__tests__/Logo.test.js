@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import Logo from 'components/Logo';
+import Logo from '~/components/Logo';
 
 describe('Logo test', () => {
   it('renders without crashing', () => {

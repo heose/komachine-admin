@@ -1,6 +1,6 @@
 import { handleActions, createActions } from 'redux-actions';
 import produce from 'immer';
-import { createConsts } from '../../utils';
+import { createConsts } from '~/redux/utils';
 // import createStateActions, { progressStateInitial } from '../progress-state/create-actions';
 
 const initialState = {

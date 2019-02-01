@@ -1,8 +1,8 @@
 import React from 'react';
 import Router from 'next/router';
-import withLayout from '../../lib/with-layout';
-import TranslationSVG from '../../lib/svg/translation.svg';
-import DefaultLayout from '../../layouts/DefaultLayout';
+import withLayout from '~/lib/with-layout';
+import TranslationSVG from '~/lib/svg/translation.svg';
+import DefaultLayout from '~/layouts/DefaultLayout';
 
 class Translations extends React.Component {
   static async getInitialProps(props) {

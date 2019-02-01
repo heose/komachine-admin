@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Link from 'components/Link';
-import IconButton from 'components/IconButton';
-import SideNavItem from 'components/SideNavItem';
+import Link from '~/components/Link';
+import IconButton from '~/components/IconButton';
+import SideNavItem from '~/components/SideNavItem';
 
 function SideNav({ active, items, icon, ...props }) {
   return (

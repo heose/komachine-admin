@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CompanyList from 'components/CompanyList';
-import withLayout from '../../lib/with-layout';
-import DefaultLayout from '../../layouts/DefaultLayout';
-import CompanySVG from '../../lib/svg/company.svg';
-import { actions } from '../../redux/modules/companies/reducers';
+import CompanyList from '~/components/CompanyList';
+import withLayout from '~/lib/with-layout';
+import DefaultLayout from '~/layouts/DefaultLayout';
+import CompanySVG from '~/lib/svg/company.svg';
+import { actions } from '~/redux/modules/companies/reducers';
 
 function Companies({ query }) {
   return (

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled, { css } from 'styled-components';
 import onClickOutside from 'react-onclickoutside';
-import InputWrapper from 'components/styled/InputWrapper';
+import InputWrapper from '~/components/styled/InputWrapper';
 
 class DropDown extends Component {
   constructor(props) {

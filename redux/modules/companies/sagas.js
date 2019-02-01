@@ -1,5 +1,5 @@
 import { takeLatest, put, call } from 'redux-saga/effects';
-import CompanyApi from '../../../apis/company-api';
+import CompanyApi from '~/apis/company-api';
 import { actions, consts } from './reducers';
 import { normalizeCompanies } from '../../normalizers';
 

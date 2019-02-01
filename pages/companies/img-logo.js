@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CompanyList from 'components/CompanyList';
-import withLayout from '../../lib/with-layout';
-import CompanySVG from '../../lib/svg/company.svg';
-import DefaultLayout from '../../layouts/DefaultLayout';
+import CompanyList from '~/components/CompanyList';
+import withLayout from '~/lib/with-layout';
+import CompanySVG from '~/lib/svg/company.svg';
+import DefaultLayout from '~/layouts/DefaultLayout';
 
 class Companies extends React.Component {
   static async getInitialProps({ req, query, store }) {

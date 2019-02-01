@@ -1,8 +1,8 @@
 import React from 'react';
 import Router from 'next/router';
-import withLayout from '../../lib/with-layout';
-import CategorySVG from '../../lib/svg/category.svg';
-import DefaultLayout from '../../layouts/DefaultLayout';
+import withLayout from '~/lib/with-layout';
+import CategorySVG from '~/lib/svg/category.svg';
+import DefaultLayout from '~/layouts/DefaultLayout';
 
 class CategoriesByCategory extends React.Component {
   static async getInitialProps({ res }) {

@@ -5,10 +5,10 @@ import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import { dom } from '@fortawesome/fontawesome-svg-core';
-import 'lib/font-awesome';
-import 'lib/fonts';
-import withAuth from 'lib/with-auth';
-import makeStore from '../redux/store';
+import '~/lib/font-awesome';
+import '~/lib/fonts';
+import withAuth from '~/lib/with-auth';
+import makeStore from '~/redux/store';
 
 class RootApp extends App {
   static async getInitialProps({ Component, ctx }) {

@@ -2,11 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import GlobalNav from 'components/GlobalNav';
+import GlobalNav from '~/components/GlobalNav';
+import WorkingLogSVG from '~/lib/svg/working-log.svg';
+import ProfileSVG from '~/lib/svg/profile.svg';
 import OptionNav from './OptionNav';
 import IconButton from './IconButton';
-import WorkingLogSVG from '../lib/svg/working-log.svg';
-import ProfileSVG from '../lib/svg/profile.svg';
 
 const Header = () => (
   <Div>

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import InputWrapper from 'components/styled/InputWrapper';
+import InputWrapper from '~/components/styled/InputWrapper';
 
-export class InputButton extends Component {
+class InputButton extends Component {
   state = {};
   render() {
     const { children, width } = this.props;
