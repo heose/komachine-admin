@@ -10,8 +10,9 @@ import Checkbox from 'components/Checkbox';
 import ToggleBox from 'components/ToggleBox';
 import RadioButton from 'components/RadioButton';
 import DndFileUploader from 'components/DnDFileUploader';
+import Table from 'components/Table';
 import withStatus from 'lib/with-status';
-import withViewType from '../lib/with-view-type';
+import headerDataMap from '../lib/table-header-data/company';
 
 function CompanyList({ lookups, entities, query }) {
   const curPage = Number(get(query, 'page', '1'));
@@ -24,11 +25,9 @@ function CompanyList({ lookups, entities, query }) {
       logo: get(entities.logo, logoId, ''),
     });
   });
-  const Table = withViewType();
-  console.log(curPage > 1);
   return (
     <div>
-      <Table data={bodyData} />
+      <Table headerData={headerDataMap('index')} data={bodyData} />
       <div>
         <Link
           enabled={curPage > 1}
