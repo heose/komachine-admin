@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Link from '~/components/Link';
+import Filter from '~/components/Filter';
 import YesOrNoFilter from '~/components/YesOrNoFilter';
 import { Button } from '~/components/form/button/Button';
 import Image from '~/components/Image';
@@ -27,6 +28,7 @@ function CompanyList({ lookups, entities, query }) {
   });
   return (
     <div>
+      <Filter />
       <Table headerData={headerDataMap('index')} data={bodyData} />
       <div>
         <Link
@@ -55,7 +57,9 @@ function CompanyList({ lookups, entities, query }) {
         minWidth="133px"
       />
       <div>
-        <Checkbox name="test" />
+        <Checkbox id="checkbox-test" name="checkbox-test">
+          활성화
+        </Checkbox>
       </div>
       <div>
         <ToggleBox id="111">토글박스</ToggleBox>
