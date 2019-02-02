@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from '~/components/Link';
 import GlobalNavItem from '~/components/GlobalNavItem';
@@ -9,7 +8,7 @@ import SynonymSVG from '../lib/svg/synonym.svg';
 import TranslationSVG from '../lib/svg/translation.svg';
 import InquirySVG from '../lib/svg/inquiry.svg';
 
-function GlobalNav(props) {
+function GlobalNav() {
   const menus = [
     { href: '/companies', label: '기업', icon: <CompanySVG /> },
     { href: '/categories', label: '카테고리', icon: <CategorySVG /> },
