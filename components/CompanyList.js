@@ -28,7 +28,7 @@ function CompanyList({ lookups, entities, query }) {
   });
   return (
     <div>
-      <Filter />
+      <Filter id="filter-company-active" title="기업활성화" name="company_active" />
       <Table headerData={headerDataMap('index')} data={bodyData} />
       <div>
         <Link

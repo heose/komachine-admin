@@ -1,29 +1,28 @@
 import React from 'react';
-import Router, { withRouter } from 'next/router';
+import { withRouter } from 'next/router';
 import styled from 'styled-components';
-import isMatch from 'lodash/isMatch';
+import get from 'lodash/get';
 import Link from '~/components/Link';
 import Checkbox from '~/components/Checkbox';
 
-function Filter({ router, name, value = ['true', 'false'] }) {
-  const omitMap = { company_active: router.query.company_active };
+function Filter({ router, id, title, name, values = ['true', 'false'], labels = ['활성화', '비활성화'] }) {
+  const omitMap = { [name]: get(router.query, name) };
+  const options = [];
+  values.forEach((value, idx) => {
+    options.push(
+      <Option key={`${id}-${value}`}>
+        <Link href={`?${name}=${value}`} omitKeys={['page']} omitMap={omitMap} verifyHref={`?${name}=${value}`}>
+          <Checkbox id={`${id}-${value}`}>{labels[idx]}</Checkbox>
+        </Link>
+      </Option>,
+    );
+  });
   return (
     <Div>
       <Header>
-        <Title>기업활성화</Title>
+        <Title>{title}</Title>
       </Header>
-      <Body>
-        <Option>
-          <Link href="?company_active=true" omitKeys={['page']} omitMap={omitMap} verifyHref="?company_active=true">
-            <Checkbox id="filter-company-active">활성화</Checkbox>
-          </Link>
-        </Option>
-        <Option>
-          <Link href="?company_active=false" omitKeys={['page']} omitMap={omitMap} verifyHref="?company_active=false">
-            <Checkbox id="filter-company-inactive">비활성화</Checkbox>
-          </Link>
-        </Option>
-      </Body>
+      <Body>{options}</Body>
     </Div>
   );
 }
