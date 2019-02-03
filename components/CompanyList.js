@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Link from '~/components/Link';
 import Filter from '~/components/Filter';
-import YesOrNoFilter from '~/components/YesOrNoFilter';
+import FilterGroup from '~/components/FilterGroup';
 import { Button } from '~/components/form/button/Button';
 import Image from '~/components/Image';
 import Checkbox from '~/components/Checkbox';
@@ -26,9 +26,19 @@ function CompanyList({ lookups, entities, query }) {
       logo: get(entities.logo, logoId, ''),
     });
   });
+  const filters = [
+    { id: 'filter-company-active', title: '기업활성화', name: 'company_active' },
+    {
+      id: 'filter-company-relation',
+      title: '기업연동',
+      name: 'related',
+      values: ['approved', 'rejected'],
+      labels: ['완료', '대기'],
+    },
+  ];
   return (
     <div>
-      <Filter id="filter-company-active" title="기업활성화" name="company_active" />
+      <FilterGroup filters={filters} />
       <Table headerData={headerDataMap('index')} data={bodyData} />
       <div>
         <Link
@@ -82,8 +92,6 @@ function CompanyList({ lookups, entities, query }) {
       <Link href="/companies/edit" component={Button} as="a" theme={{ size: 'small', shape: 'square', enabled: true }}>
         등록
       </Link>
-      {/* <YesOrNoFilter label="기업활성화여부" queryMap={queryMap} checkKey="isActive" /> */}
-      {/* <YesOrNoFilter label="기업연동여부" queryMap={queryMap} checkKey="hasRelation" /> */}
     </div>
   );
 }

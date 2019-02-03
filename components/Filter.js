@@ -46,6 +46,7 @@ const Title = styled.span`
   font-size: 1.3rem;
   font-weight: bold;
   color: #707070;
+  margin-left: 15px;
 `;
 
 const Body = styled.div`
@@ -59,6 +60,8 @@ const Option = styled.span`
   height: 30px;
   display: flex;
   align-items: center;
+  margin-left: 16px;
+  font-size: 1.3rem;
 `;
 
 export default withRouter(Filter);
