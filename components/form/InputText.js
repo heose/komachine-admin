@@ -52,7 +52,7 @@ class InputText extends React.Component {
 InputText.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string,
-  type: PropTypes.string,
+  type: PropTypes.oneOf(['text', 'password']),
   width: PropTypes.string,
   isCombine: PropTypes.bool,
   outsideRef: PropTypes.oneOfType([PropTypes.node, PropTypes.object]),

@@ -41,6 +41,7 @@
     "redux": "^4.0.1",
     "redux-actions": "^2.6.4",
     "redux-saga": "^0.16.2",
+    "shortid": "^2.2.14",
     "snapsvg": "^0.5.1",
     "snapsvg-cjs": "^0.0.6",
     "styled-components": "^4.0.2",

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import Link from '~/components/Link';
-import Filter from '~/components/Filter';
 import FilterGroup from '~/components/FilterGroup';
 import { Button } from '~/components/form/button/Button';
 import Image from '~/components/Image';
@@ -12,6 +11,7 @@ import ToggleBox from '~/components/ToggleBox';
 import RadioButton from '~/components/RadioButton';
 import DndFileUploader from '~/components/DnDFileUploader';
 import Table from '~/components/Table';
+import Search from '~/components/Search';
 import withStatus from '~/lib/with-status';
 import headerDataMap from '~/lib/table-header-data/company';
 
@@ -38,6 +38,7 @@ function CompanyList({ lookups, entities, query }) {
   ];
   return (
     <div>
+      <Search />
       <FilterGroup filters={filters} />
       <Table headerData={headerDataMap('index')} data={bodyData} />
       <div>
