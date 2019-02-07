@@ -61,7 +61,8 @@ export const Central = styled.div`
   flex-flow: row nowrap;
   flex: 1 0 auto;
   min-height: 500px;
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
 `;
 
 export const Page = styled.div`

@@ -9,7 +9,7 @@ export function* fetchCompanies(action) {
     const { data } = yield call(api.fetchCompanies, action.payload);
     yield put(actions.company.fetchSuccess(normalizeCompanies(data)));
   } catch (e) {
-    console.log(e);
+    console.error(e);
     yield put(actions.company.fetchFailure(e));
   }
 }
