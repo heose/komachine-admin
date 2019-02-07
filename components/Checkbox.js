@@ -42,12 +42,10 @@ Checkbox.propTypes = {
   name: PropTypes.string,
   isActive: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  changeHandler: PropTypes.func,
 };
 
 Checkbox.defaultProps = {
   isActive: null,
-  changeHandler: null,
   name: '',
   children: '',
 };
