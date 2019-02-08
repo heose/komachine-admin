@@ -5,7 +5,7 @@ import { recomposeQueryStr } from '~/lib/with-link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Search extends React.Component {
-  state = { keyword: this.props.router.query.search };
+  state = { keyword: this.props.router.query.search || '' };
 
   handleKeyUp = e => {
     if (e.key === 'Enter' || e.keyCode === 13) {
