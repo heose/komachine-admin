@@ -14,9 +14,10 @@ import Table from '~/components/Table';
 import Search from '~/components/Search';
 import withStatus from '~/lib/with-status';
 import headerDataMap from '~/lib/table-header-data/company';
+import Paginator from './Paginator';
 
-function CompanyList({ lookups, entities, query }) {
-  const curPage = Number(get(query, 'page', '1'));
+function CompanyList({ lookups, entities, query, pagination }) {
+  const page = Number(get(query, 'page', '1'));
   const bodyData = [];
   lookups.forEach(companyId => {
     const row = entities.company[companyId];
@@ -39,28 +40,28 @@ function CompanyList({ lookups, entities, query }) {
   return (
     <div>
       <Search />
+      <Paginator page={page} {...pagination} />
+      <Link
+        enabled={page > 1}
+        href={`?page=${page > 1 ? page - 1 : 1}`}
+        component={Button}
+        as="a"
+        theme={{ size: 'small', shape: 'square', enabled: page > 1 ? 'enabled' : 'disabled' }}
+      >
+        이전
+      </Link>
+      <Link
+        enabled
+        href={`?page=${page + 1}`}
+        component={Button}
+        as="a"
+        theme={{ size: 'small', shape: 'square', enabled: true }}
+      >
+        다음
+      </Link>
       <FilterGroup filters={filters} />
       <Table headerData={headerDataMap('index')} data={bodyData} />
-      <div>
-        <Link
-          enabled={curPage > 1}
-          href={`?page=${curPage > 1 ? curPage - 1 : 1}`}
-          component={Button}
-          as="a"
-          theme={{ size: 'small', shape: 'square', enabled: curPage > 1 ? 'enabled' : 'disabled' }}
-        >
-          이전
-        </Link>
-        <Link
-          enabled
-          href={`?page=${curPage + 1}`}
-          component={Button}
-          as="a"
-          theme={{ size: 'small', shape: 'square', enabled: true }}
-        >
-          다음
-        </Link>
-      </div>
+      <div />
       <Image
         src="https://cdn.komachine.com/media/2013-Porsche-Cayenne-Gts-1920x2560.jpeg"
         height="100px"

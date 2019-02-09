@@ -14,3 +14,14 @@ export const createConsts = (actions, path = [], accum = {}) =>
     },
     accum,
   );
+
+export const calcPagination = ({ count, previous, next }) => {
+  const perPage = 10;
+  const pageCount = Math.ceil(count / perPage);
+  return {
+    count,
+    hasPrev: !!previous,
+    hasNext: !!next,
+    pageCount,
+  };
+};

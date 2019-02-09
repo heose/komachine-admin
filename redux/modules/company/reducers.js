@@ -5,6 +5,7 @@ import { createConsts } from '~/redux/utils';
 const initialState = {
   entities: {},
   lookups: [],
+  pagination: {},
   status: '',
   errorCode: null,
   isFetching: false,
@@ -13,7 +14,7 @@ const initialState = {
 export const actions = createActions({
   COMPANY: {
     FETCH_REQUEST: null,
-    FETCH_SUCCESS: ({ entities, result }) => ({ entities, lookups: result.company }),
+    FETCH_SUCCESS: ({ entities, result, pagination }) => ({ entities, lookups: result.company, pagination }),
     FETCH_FAILURE: null,
   },
 });
@@ -30,10 +31,11 @@ const reducer = handleActions(
     ],
     [
       actions.company.fetchSuccess,
-      (state, { payload: { entities, lookups } }) =>
+      (state, { payload: { entities, lookups, pagination } }) =>
         produce(state, draft => {
           draft.status = 'complete';
           draft.entities = { ...state.entities, ...entities };
+          draft.pagination = pagination;
           draft.lookups = lookups;
         }),
     ],

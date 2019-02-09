@@ -9,6 +9,7 @@ module.exports = {
   extends: ['airbnb', 'prettier'],
   parser: 'babel-eslint',
   rules: {
+    'no-console': ['warn', { allow: ['warn', 'error'] }],
     'no-param-reassign': ['error', { props: false }],
     'object-curly-newline': ['error', { consistent: true }],
     'react/prop-types': 'error',

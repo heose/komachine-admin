@@ -1,5 +1,5 @@
 import { all, fork } from 'redux-saga/effects';
-import companySagas from './modules/companies/sagas';
+import companySagas from '~/redux/modules/company/sagas';
 
 export default function*() {
   const combinedSagas = [...companySagas].map(saga => fork(saga));
