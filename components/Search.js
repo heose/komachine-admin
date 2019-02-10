@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { withRouter } from 'next/router';
-import { recomposeQueryStr } from '~/lib/with-link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { recomposeQueryStr } from '~/utils/query-string';
 
 class Search extends React.Component {
   state = { keyword: this.props.router.query.search || '' };

@@ -41,24 +41,6 @@ function CompanyList({ lookups, entities, query, pagination }) {
     <div>
       <Search />
       <Paginator page={page} {...pagination} />
-      <Link
-        enabled={page > 1}
-        href={`?page=${page > 1 ? page - 1 : 1}`}
-        component={Button}
-        as="a"
-        theme={{ size: 'small', shape: 'square', enabled: page > 1 ? 'enabled' : 'disabled' }}
-      >
-        이전
-      </Link>
-      <Link
-        enabled
-        href={`?page=${page + 1}`}
-        component={Button}
-        as="a"
-        theme={{ size: 'small', shape: 'square', enabled: true }}
-      >
-        다음
-      </Link>
       <FilterGroup filters={filters} />
       <Table headerData={headerDataMap('index')} data={bodyData} />
       <div />
@@ -91,9 +73,9 @@ function CompanyList({ lookups, entities, query, pagination }) {
         <DndFileUploader />
       </div>
       &nbsp;&nbsp;
-      <Link href="/companies/edit" component={Button} as="a" theme={{ size: 'small', shape: 'square', enabled: true }}>
+      {/* <Link href="/companies/edit" component={Button} as="a" theme={{ size: 'small', shape: 'square', enabled: true }}>
         등록
-      </Link>
+      </Link> */}
     </div>
   );
 }

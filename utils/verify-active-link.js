@@ -1,6 +1,6 @@
 import isMatch from 'lodash/isMatch';
 // import { isMatch } from 'lodash-es'; //왜 이건 안되는거지?..
-import { toMapFromQueryStr } from './query-string-generator';
+import { toMapFromQueryStr } from './query-string';
 
 export default function verifyActiveLink(router, href, needFullMatch = false) {
   if (!router || !router.asPath) {

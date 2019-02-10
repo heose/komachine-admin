@@ -1,3 +1,6 @@
+import isMatch from 'lodash/isMatch';
+import omit from 'lodash/omit';
+
 export const generateQueryStr = queryMap =>
   Object.keys(queryMap)
     .reduce((accum, key) => {
@@ -37,5 +40,21 @@ export const excludeQueryStr = (queryStr, excludes = []) => generateQueryStr(toM
 
 export const updateQueryStr = (queryStr, update = {}) =>
   generateQueryStr({ ...toMapFromQueryStr(queryStr), ...update });
+
+export const recomposeQueryStr = (source, href, ...omitQuerys) => {
+  if (href.startsWith('?')) {
+    const hrefMap = typeof href === 'string' ? toQueryMap(href) : href;
+    let queryMap = { ...source, ...hrefMap };
+    omitQuerys.forEach(query => {
+      if (typeof query === 'object' && isMatch(queryMap, query)) {
+        queryMap = omit(queryMap, Object.keys(query));
+      } else if (Array.isArray(query)) {
+        queryMap = omit(queryMap, query);
+      }
+    });
+    return `?${generateQueryStr(queryMap)}`;
+  }
+  return href;
+};
 
 export default generateQueryStr;

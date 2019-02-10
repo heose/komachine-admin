@@ -3,14 +3,20 @@ import styled, { css } from 'styled-components';
 import Link from '~/components/Link';
 
 function Paginator({ page, hasPrev, hasNext, pageCount }) {
-  console.log(page);
   return (
     <Div>
-      {/* <Link enabled={hasPrev} isActive={hasPrev} href={`?page=${page > 1 ? page - 1 : 1}`}>
-        <Button>Prev</Button>
-      </Link> */}
-      <Link isActive={hasNext} href={`?page=${page < pageCount ? page + 1 : pageCount}`}>
-        <Button enabled={hasNext}>next</Button>
+      <Link href="?page=1" enabled={page > 1}>
+        <Button>처음</Button>
+      </Link>
+      <Link href={`?page=${page > 1 ? page - 1 : 1}`} enabled={hasPrev}>
+        <Button>이전</Button>
+      </Link>
+
+      <Link enabled={hasNext} href={`?page=${page < pageCount ? page + 1 : pageCount}`}>
+        <Button>다음</Button>
+      </Link>
+      <Link href={`?page=${pageCount}`} enabled={page < pageCount}>
+        <Button>마지막</Button>
       </Link>
     </Div>
   );
