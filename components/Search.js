@@ -63,8 +63,6 @@ const Input = styled.input`
   border: 1.05rem solid white;
   border-top: 1.4rem solid white;
   border-left: 4.5rem solid white;
-  /* border-right: 1rem solid white; */
-  /* border-bottom: 0.5rem solid white; */
   font-size: 1.6rem;
   outline: 0;
   border-radius: 10px;
