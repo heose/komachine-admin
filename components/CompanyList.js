@@ -51,6 +51,27 @@ class CompanyList extends React.Component {
     return this.setState(() => ({ selectedIds: this.props.lookups }));
   };
 
+  setCompanyActive = () => {
+    console.log('company active');
+  };
+  setProductActive = () => console.log('product active');
+  deleteCompany = () => console.log('delete company');
+
+  hasSelected = () => !!this.state.selectedIds;
+  getActionMap = () => [
+    {
+      label: '기업활성화',
+      exec: this.setCompanyActive,
+    },
+    {
+      label: '제품활성화',
+      exec: this.setProductActive,
+    },
+    {
+      label: '삭제',
+      exec: this.deleteCompany,
+    },
+  ];
   render() {
     const { lookups, entities, query, pagination, actions } = this.props;
     const page = Number(get(query, 'page', '1'));
@@ -78,6 +99,8 @@ class CompanyList extends React.Component {
       selectRow: this.selectRow,
       isAllSelected: this.isAllSelected,
       selectAllRow: this.selectAllRow,
+      hasSelected: this.hasSelected,
+      getActionMap: this.getActionMap,
     };
     return (
       <div>
