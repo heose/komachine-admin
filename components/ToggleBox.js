@@ -4,12 +4,11 @@ import styled from 'styled-components';
 
 class ToggleBox extends Component {
   state = { checked: true };
-  handleChanged = () => {
-    const { isActive } = this.props;
+  handleChange = () => {
+    const { isActive, toggleHandler } = this.props;
     if (isActive === null) {
       this.setState(state => ({ checked: !state.checked }));
     }
-    const { toggleHandler } = this.props;
     if (toggleHandler && typeof toggleHandler === 'function') {
       toggleHandler();
     }
@@ -20,7 +19,7 @@ class ToggleBox extends Component {
     return (
       <Div>
         <Label>
-          <input type="checkbox" checked={checked} onChange={this.handleChanged} />
+          <input type="checkbox" checked={checked} onChange={this.handleChange} />
           <Wrapper>
             <Button />
             <Span />

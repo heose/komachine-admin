@@ -8,10 +8,18 @@ class Checkbox extends React.Component {
     this.checkboxRef = React.createRef();
   }
   state = { checked: false };
-  handleChange = () => this.setState(state => ({ checked: !state.checked }));
+  handleChange = () => {
+    const { isActive, checkHandler } = this.props;
+    if (isActive === null) {
+      this.setState(state => ({ checked: !state.checked }));
+    }
+    if (checkHandler && typeof checkHandler === 'function') {
+      checkHandler();
+    }
+  };
   render() {
     const { isActive, children } = this.props;
-    const checked = isActive || this.state.checked;
+    const checked = isActive === null ? this.state.checked : isActive;
     return (
       <Div>
         <Label>
@@ -32,11 +40,13 @@ class Checkbox extends React.Component {
 
 Checkbox.propTypes = {
   isActive: PropTypes.bool,
+  checkHandler: PropTypes.func,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 };
 
 Checkbox.defaultProps = {
   isActive: null,
+  checkHandler: null,
   children: '',
 };
 const Div = styled.div`
@@ -71,7 +81,7 @@ const Inner = styled.path`
   stroke: #c8ccd4;
   stroke-width: 2;
   fill-rule: nonzero;
-  fill: none;
+  fill: white;
   input:checked + svg & {
     stroke: #0a87ff;
     fill: #0a87ff;

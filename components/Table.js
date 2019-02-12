@@ -2,35 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import get from 'lodash/get';
-import Checkbox from './Checkbox';
 
-function TableComponent({ headerData, data }) {
-  const header = headerData.map(h => (
+function TableComponent({ renderer, data, actions }) {
+  const header = renderer.map(h => (
     <Th key={h.key} width={h.width}>
-      {h.str}
+      {typeof h.header === 'function' ? h.header(actions) : h.header}
     </Th>
   ));
-
   const body = data.map((row, i) => {
-    const cells = headerData.map(h => (
-      <Cell key={h.key}>{typeof h.render === 'function' ? h.render(row) : get(row, h.render)}</Cell>
+    const cells = renderer.map(h => (
+      <Cell key={h.key}>{typeof h.render === 'function' ? h.render(row, actions) : get(row, h.render)}</Cell>
     ));
-    cells.unshift(
-      <Cell key={`action-${row.id || i}`}>
-        <Checkbox />
-      </Cell>,
-    );
     return <Row key={row.id || i}>{cells}</Row>;
   });
   return (
     <Table>
       <Header>
-        <HeaderRow>
-          <Th key="action-toggle" width="20px">
-            <Checkbox />
-          </Th>
-          {header}
-        </HeaderRow>
+        <HeaderRow>{header}</HeaderRow>
       </Header>
       <Body>{body}</Body>
     </Table>
@@ -38,7 +26,7 @@ function TableComponent({ headerData, data }) {
 }
 
 TableComponent.propTypes = {
-  headerData: PropTypes.arrayOf(
+  renderer: PropTypes.arrayOf(
     PropTypes.shape({
       str: PropTypes.string,
       width: PropTypes.string,
@@ -46,6 +34,11 @@ TableComponent.propTypes = {
     }),
   ).isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  actions: PropTypes.shape({}),
+};
+
+TableComponent.defaultProps = {
+  actions: {},
 };
 
 const Table = styled.table`
