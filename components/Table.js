@@ -4,14 +4,14 @@ import styled from 'styled-components';
 import get from 'lodash/get';
 
 function TableComponent({ renderer, data, actions }) {
-  const header = renderer.map(h => (
-    <Th key={h.key} width={h.width}>
-      {typeof h.header === 'function' ? h.header(actions) : h.header}
+  const header = renderer.map(r => (
+    <Th key={r.key} width={r.width}>
+      {typeof r.header === 'function' ? r.header(actions) : r.header}
     </Th>
   ));
   const body = data.map((row, i) => {
-    const cells = renderer.map(h => (
-      <Cell key={h.key}>{typeof h.render === 'function' ? h.render(row, actions) : get(row, h.render)}</Cell>
+    const cells = renderer.map(r => (
+      <Cell key={r.key}>{typeof r.cell === 'function' ? r.cell(row, actions) : get(row, r.cell)}</Cell>
     ));
     return <Row key={row.id || i}>{cells}</Row>;
   });

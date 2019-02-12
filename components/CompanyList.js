@@ -34,7 +34,7 @@ class CompanyList extends React.Component {
 
   isSelected = id => this.state.selectedIds.includes(id);
 
-  isAllSelected = () => isEqual(this.state.selectedIds, this.props.lookups);
+  isAllSelected = () => isEqual([...this.state.selectedIds].sort(), [...this.props.lookups].sort());
 
   selectRow = id =>
     this.setState(state => {
