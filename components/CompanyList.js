@@ -106,9 +106,14 @@ class CompanyList extends React.Component {
         <DndFileUploader />
       </div> */}
         &nbsp;&nbsp;
-        {/* <Link href="/companies/edit" component={Button} as="a" theme={{ size: 'small', shape: 'square', enabled: true }}>
-        등록
-      </Link> */}
+        <Link
+          href="/companies/edit"
+          component={Button}
+          as="a"
+          theme={{ size: 'small', shape: 'square', enabled: true }}
+        >
+          등록
+        </Link>
       </div>
     );
   }

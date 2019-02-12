@@ -6,7 +6,7 @@ import get from 'lodash/get';
 function TableComponent({ renderer, data, actions }) {
   const header = renderer.map(r => (
     <Th key={r.key} width={r.width}>
-      {typeof r.header === 'function' ? r.header(actions) : r.header}
+      <ThDiv>{typeof r.header === 'function' ? r.header(actions) : r.header}</ThDiv>
     </Th>
   ));
   const body = data.map((row, i) => {
@@ -54,11 +54,12 @@ const Header = styled.thead`
   text-align: center;
 `;
 
-const Th = styled.th`
+const HeaderRow = styled.tr`
   height: 3.7rem;
+`;
+
+const Th = styled.th`
   background-color: #9fabda;
-  vertical-align: middle;
-  text-align: ${({ align }) => align || 'center'};
   width: ${({ width }) => width};
   font-weight: bold;
   font-size: 1.5rem;
@@ -70,11 +71,17 @@ const Th = styled.th`
   }
 `;
 
+const ThDiv = styled.div`
+  width: 100%;
+  height: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Body = styled.tbody`
   background-color: white;
 `;
-
-const HeaderRow = styled.tr``;
 
 const Row = styled.tr`
   &:nth-child(odd) {

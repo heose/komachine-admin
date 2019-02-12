@@ -31,7 +31,7 @@ class Checkbox extends React.Component {
               <Symbol points="4.95121951 9.92998491 8.46616628 13.4137931 15.4878049 6.5862069" />
             </g>
           </svg>
-          <Span>{children}</Span>
+          <Span hasChildren={!!children}>{children}</Span>
         </Label>
       </Div>
     );
@@ -103,10 +103,12 @@ const Symbol = styled.polyline`
 `;
 
 const Span = styled.span`
+  display: none;
   margin-left: 5px;
   margin-top: 2px;
   text-decoration: none;
   color: #707070;
+  ${props => props.hasChildren && `display: inline;`}
 `;
 
 export default Checkbox;
