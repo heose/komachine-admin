@@ -3,19 +3,24 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 class ToggleBox extends Component {
-  state = {};
+  state = { checked: true };
   handleChanged = () => {
-    const { id, toggleHandler } = this.props;
+    const { isActive } = this.props;
+    if (isActive === null) {
+      this.setState(state => ({ checked: !state.checked }));
+    }
+    const { toggleHandler } = this.props;
     if (toggleHandler && typeof toggleHandler === 'function') {
-      toggleHandler(id);
+      toggleHandler();
     }
   };
   render() {
-    const { id, isActive } = this.props;
+    const { isActive } = this.props;
+    const checked = isActive === null ? this.state.checked : isActive;
     return (
       <Div>
         <Label>
-          <input type="checkbox" checked={isActive} onChange={this.handleChanged} />
+          <input type="checkbox" checked={checked} onChange={this.handleChanged} />
           <Wrapper>
             <Button />
             <Span />
@@ -27,13 +32,12 @@ class ToggleBox extends Component {
 }
 
 ToggleBox.propTypes = {
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   toggleHandler: PropTypes.func,
   isActive: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
 };
 
 ToggleBox.defaultProps = {
-  toggleHandler: null,
+  toggleHandler: () => {},
   isActive: null,
 };
 

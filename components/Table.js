@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import get from 'lodash/get';
 
-const TableComponent = ({ headerData, data }) => {
+function TableComponent({ headerData, data }) {
   const header = headerData.map(h => (
     <Th key={h.key} width={h.width}>
       {h.str}
@@ -23,7 +23,7 @@ const TableComponent = ({ headerData, data }) => {
       <Body>{body}</Body>
     </Table>
   );
-};
+}
 
 TableComponent.propTypes = {
   headerData: PropTypes.arrayOf(

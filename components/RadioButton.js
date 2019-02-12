@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-function RadioButton({ id, name, children }) {
+function RadioButton({ name, children }) {
   return (
     <Wrapper>
-      <Label htmlFor={id}>
-        <input type="radio" id={id} name={name} />
+      <Label>
+        <input type="radio" name={name} />
         <Svg width="20px" height="20px" viewBox="0 0 20 20">
           <Circle cx="10" cy="10" r="9" />
           <Inner d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z" />
@@ -19,7 +19,6 @@ function RadioButton({ id, name, children }) {
 }
 
 RadioButton.propTypes = {
-  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   children: PropTypes.string,
 };

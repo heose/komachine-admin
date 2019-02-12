@@ -15,8 +15,21 @@ export function* fetchCompanies(action) {
   }
 }
 
+function* update(action) {
+  try {
+    const { data } = yield call(api.update, action.payload);
+    console.log(data);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 export function* watchFetchCompanies() {
   yield takeLatest(consts.company.fetchRequest, fetchCompanies);
 }
 
-export default [watchFetchCompanies];
+function* watchToggleActive() {
+  yield takeLatest(consts.company.toggleActive, update);
+}
+
+export default [watchFetchCompanies, watchToggleActive];

@@ -16,6 +16,7 @@ export const actions = createActions({
     FETCH_REQUEST: null,
     FETCH_SUCCESS: ({ entities, result, pagination }) => ({ entities, lookups: result.company, pagination }),
     FETCH_FAILURE: null,
+    TOGGLE_ACTIVE: null,
   },
 });
 export const consts = createConsts(actions);
@@ -45,6 +46,13 @@ const reducer = handleActions(
         produce(state, draft => {
           draft.errorCode = action.payload.status || 500;
           draft.status = 'error';
+        }),
+    ],
+    [
+      actions.company.toggleActive,
+      (state, action) =>
+        produce(state, draft => {
+          draft.entities.company[action.payload.id].is_active = action.payload.is_active;
         }),
     ],
   ]),

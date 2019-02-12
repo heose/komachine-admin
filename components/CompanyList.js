@@ -1,4 +1,5 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
@@ -12,11 +13,12 @@ import RadioButton from '~/components/RadioButton';
 import DndFileUploader from '~/components/DnDFileUploader';
 import Table from '~/components/Table';
 import Search from '~/components/Search';
+import Paginator from '~/components/Paginator';
 import withStatus from '~/lib/with-status';
 import headerDataMap from '~/lib/table-header-data/company';
-import Paginator from './Paginator';
+import { actions as companyActions } from '~/redux/modules/company/reducers';
 
-function CompanyList({ lookups, entities, query, pagination }) {
+function CompanyList({ lookups, entities, query, pagination, actions }) {
   const page = Number(get(query, 'page', '1'));
   const bodyData = [];
   lookups.forEach(companyId => {
@@ -42,8 +44,7 @@ function CompanyList({ lookups, entities, query, pagination }) {
       <Search />
       <Paginator page={page} {...pagination} />
       <FilterGroup filters={filters} />
-      <Table headerData={headerDataMap('index')} data={bodyData} />
-      <div />
+      <Table headerData={headerDataMap('index', actions)} data={bodyData} />
       <Image
         src="https://cdn.komachine.com/media/2013-Porsche-Cayenne-Gts-1920x2560.jpeg"
         height="100px"
@@ -55,19 +56,11 @@ function CompanyList({ lookups, entities, query, pagination }) {
           활성화
         </Checkbox>
       </div>
+      <div>{/* <ToggleBox>토글박스</ToggleBox> */}</div>
       <div>
-        <ToggleBox id="111">토글박스</ToggleBox>
-      </div>
-      <div>
-        <RadioButton id="rb-1" name="rb-test">
-          라디오버튼1
-        </RadioButton>
-        <RadioButton id="rb-2" name="rb-test">
-          라디오버튼2
-        </RadioButton>
-        <RadioButton id="rb-3" name="rb-test">
-          라디오버튼3
-        </RadioButton>
+        <RadioButton name="rb-test">라디오버튼1</RadioButton>
+        <RadioButton name="rb-test">라디오버튼2</RadioButton>
+        <RadioButton name="rb-test">라디오버튼3</RadioButton>
       </div>
       <div>
         <DndFileUploader />
@@ -83,15 +76,25 @@ function CompanyList({ lookups, entities, query, pagination }) {
 CompanyList.propTypes = {
   entities: PropTypes.shape({}),
   lookups: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  pagination: PropTypes.shape({}),
   query: PropTypes.objectOf(PropTypes.string),
+  actions: PropTypes.shape({}),
 };
 
 CompanyList.defaultProps = {
   entities: {},
   lookups: [],
+  pagination: {},
   query: {},
+  actions: {},
 };
 
 const mapStateToProps = ({ company }) => ({ ...company });
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(companyActions.company, dispatch),
+});
 
-export default connect(mapStateToProps)(withStatus(CompanyList));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withStatus(CompanyList));
