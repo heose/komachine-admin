@@ -30,9 +30,8 @@ function CompanyList({ lookups, entities, query, pagination, actions }) {
     });
   });
   const filters = [
-    { id: 'filter-company-active', title: '기업활성화', name: 'company_active' },
+    { title: '기업활성화', name: 'company_active' },
     {
-      id: 'filter-company-relation',
       title: '기업연동',
       name: 'related',
       values: ['approved', 'rejected'],
@@ -45,18 +44,18 @@ function CompanyList({ lookups, entities, query, pagination, actions }) {
       <Paginator page={page} {...pagination} />
       <FilterGroup filters={filters} />
       <Table headerData={headerDataMap('index', actions)} data={bodyData} />
-      <Image
+      {/* <Image
         src="https://cdn.komachine.com/media/2013-Porsche-Cayenne-Gts-1920x2560.jpeg"
         height="100px"
         width="auto"
         minWidth="133px"
       />
       <div>
-        <Checkbox id="checkbox-test" name="checkbox-test">
-          활성화
-        </Checkbox>
+        <Checkbox>활성화</Checkbox>
       </div>
-      <div>{/* <ToggleBox>토글박스</ToggleBox> */}</div>
+      <div>
+        <ToggleBox>토글박스</ToggleBox>
+      </div>
       <div>
         <RadioButton name="rb-test">라디오버튼1</RadioButton>
         <RadioButton name="rb-test">라디오버튼2</RadioButton>
@@ -64,7 +63,7 @@ function CompanyList({ lookups, entities, query, pagination, actions }) {
       </div>
       <div>
         <DndFileUploader />
-      </div>
+      </div> */}
       &nbsp;&nbsp;
       {/* <Link href="/companies/edit" component={Button} as="a" theme={{ size: 'small', shape: 'square', enabled: true }}>
         등록

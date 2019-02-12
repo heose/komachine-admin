@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import shortid from 'shortid';
 import Filter from '~/components/Filter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -10,7 +11,7 @@ class FilterGroup extends React.Component {
   handleClick = () => this.setState(state => ({ isActive: !state.isActive }));
   render() {
     const { filters } = this.props;
-    const filterItems = filters.map(filter => <Filter key={filter.id} {...filter} />);
+    const filterItems = filters.map(filter => <Filter key={shortid.generate()} {...filter} />);
     return (
       <Div>
         <Button onClick={this.handleClick}>

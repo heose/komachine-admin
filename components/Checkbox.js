@@ -10,24 +10,17 @@ class Checkbox extends React.Component {
   state = { checked: false };
   handleChange = () => this.setState(state => ({ checked: !state.checked }));
   render() {
-    const { id = 'cbx', name, isActive, children } = this.props;
+    const { isActive, children } = this.props;
     const checked = isActive || this.state.checked;
     return (
       <Div>
-        <Label htmlFor={id}>
-          <input
-            type="checkbox"
-            name={name}
-            id={id}
-            ref={this.checkboxRef}
-            checked={checked}
-            onChange={this.handleChange}
-          />
-          <svg id="cbx2" width="20px" height="20px" viewBox="0 0 20 20">
-            <g id="cbx-group" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <Label>
+          <input type="checkbox" ref={this.checkboxRef} checked={checked} onChange={this.handleChange} />
+          <svg width="20px" height="20px" viewBox="0 0 20 20">
+            <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
               <Inner d="M4,1 L16,1 C17.6568542,1 19,2.34314575 19,4 L19,16 C19,17.6568542 17.6568542,19 16,19 L4,19 C2.34314575,19 1,17.6568542 1,16 L1,4 C1,2.34314575 2.34314575,1 4,1 Z" />
               <Outer d="M4,1 L16,1 C17.6568542,1 19,2.34314575 19,4 L19,16 C19,17.6568542 17.6568542,19 16,19 L4,19 C2.34314575,19 1,17.6568542 1,16 L1,4 C1,2.34314575 2.34314575,1 4,1 Z" />
-              <Symbol id="check-symbol" points="4.95121951 9.92998491 8.46616628 13.4137931 15.4878049 6.5862069" />
+              <Symbol points="4.95121951 9.92998491 8.46616628 13.4137931 15.4878049 6.5862069" />
             </g>
           </svg>
           <Span>{children}</Span>
@@ -38,15 +31,12 @@ class Checkbox extends React.Component {
 }
 
 Checkbox.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string,
   isActive: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 };
 
 Checkbox.defaultProps = {
   isActive: null,
-  name: '',
   children: '',
 };
 const Div = styled.div`

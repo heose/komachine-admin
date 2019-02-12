@@ -2,17 +2,18 @@ import React from 'react';
 import { withRouter } from 'next/router';
 import styled from 'styled-components';
 import get from 'lodash/get';
+import shortid from 'shortid';
 import Link from '~/components/Link';
 import Checkbox from '~/components/Checkbox';
 
-function Filter({ router, id, title, name, values = ['true', 'false'], labels = ['활성화', '비활성화'] }) {
+function Filter({ router, title, name, values = ['true', 'false'], labels = ['활성화', '비활성화'] }) {
   const omitMap = { [name]: get(router.query, name) };
   const options = [];
   values.forEach((value, idx) => {
     options.push(
-      <Option key={`${id}-${value}`}>
+      <Option key={shortid.generate()}>
         <Link href={`?${name}=${value}`} omitKeys={['page']} omitMap={omitMap} verifyHref={`?${name}=${value}`}>
-          <Checkbox id={`${id}-${value}`}>{labels[idx]}</Checkbox>
+          <Checkbox>{labels[idx]}</Checkbox>
         </Link>
       </Option>,
     );

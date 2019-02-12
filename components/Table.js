@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import get from 'lodash/get';
+import Checkbox from './Checkbox';
 
 function TableComponent({ headerData, data }) {
   const header = headerData.map(h => (
@@ -9,16 +10,27 @@ function TableComponent({ headerData, data }) {
       {h.str}
     </Th>
   ));
+
   const body = data.map((row, i) => {
     const cells = headerData.map(h => (
       <Cell key={h.key}>{typeof h.render === 'function' ? h.render(row) : get(row, h.render)}</Cell>
     ));
+    cells.unshift(
+      <Cell key={`action-${row.id || i}`}>
+        <Checkbox />
+      </Cell>,
+    );
     return <Row key={row.id || i}>{cells}</Row>;
   });
   return (
     <Table>
       <Header>
-        <HeaderRow>{header}</HeaderRow>
+        <HeaderRow>
+          <Th key="action-toggle" width="20px">
+            <Checkbox />
+          </Th>
+          {header}
+        </HeaderRow>
       </Header>
       <Body>{body}</Body>
     </Table>
