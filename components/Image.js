@@ -44,7 +44,7 @@ export default class Image extends React.Component {
     const { width, height, src, minWidth, minHeight } = this.props;
     const regexp = /^(.*)\.([^.]*)$/;
     const match = regexp.exec(src);
-    const tinySrc = `${match[1]}_tiny.${match[2]}`;
+    const tinySrc = match && match.length > 2 ? `${match[1]}_tiny.${match[2]}` : '';
     let origin = null;
     if (tinyState !== 'loading') {
       origin = (
