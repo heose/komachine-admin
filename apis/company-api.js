@@ -8,6 +8,7 @@ class CompanyApi {
   };
 
   update = data => Api.put(`ko/api/admin/companies/${data.id}/`, data);
+  activateCompanies = data => Api.put('/bulk/activate/companies/', data);
 }
 
 export default CompanyApi;

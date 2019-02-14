@@ -53,6 +53,9 @@ class CompanyList extends React.Component {
 
   setCompanyActive = () => {
     console.log('company active');
+    console.log(this.props.actions);
+    this.setState(() => ({ selectedIds: [] }));
+    this.props.actions.activateCompanies({ companies: this.state.selectedIds });
   };
   setProductActive = () => console.log('product active');
   deleteCompany = () => console.log('delete company');

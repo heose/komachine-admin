@@ -17,6 +17,7 @@ export const actions = createActions({
     FETCH_SUCCESS: ({ entities, result, pagination }) => ({ entities, lookups: result.company, pagination }),
     FETCH_FAILURE: null,
     TOGGLE_ACTIVE: null,
+    ACTIVATE_COMPANIES: null,
   },
 });
 export const consts = createConsts(actions);
@@ -53,6 +54,15 @@ const reducer = handleActions(
       (state, action) =>
         produce(state, draft => {
           draft.entities.company[action.payload.id].is_active = action.payload.is_active;
+        }),
+    ],
+    [
+      actions.company.activateCompanies,
+      (state, action) =>
+        produce(state, draft => {
+          action.payload.companies.forEach(id => {
+            draft.entities.company[id].is_active = true;
+          });
         }),
     ],
   ]),
