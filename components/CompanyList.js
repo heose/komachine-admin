@@ -21,16 +21,16 @@ import { actions as companyActions } from '~/redux/modules/company/reducers';
 
 class CompanyList extends React.Component {
   static getDerivedStateFromProps(props, state) {
-    if (props.query.page !== state.page) {
+    if (props.query !== state.query) {
       return {
         selectedIds: [],
-        page: props.query.page,
+        query: props.query,
       };
     }
     return null;
   }
 
-  state = { selectedIds: [], page: '1' };
+  state = { selectedIds: [], query: {} };
 
   isSelected = id => this.state.selectedIds.includes(id);
 
