@@ -19,18 +19,27 @@ function Login({ next }) {
     //   Router.push('/');
     // }
   };
+
   return (
     <div>
-      Login Page
-      <button type="button" onClick={submit}>
+      {/* <button type="button" onClick={submit}>
         login
-      </button>
+      </button> */}
+      <div>
+        <a href="/auth/google">구글로 로그인</a>
+      </div>
+      <div>
+        <a href="/auth/facebook">페이스북으로 로그인</a>
+      </div>
     </div>
   );
 }
 
-Login.getInitialProps = ({ query }) => ({
-  next: query.next,
-});
+Login.getInitialProps = props => {
+  console.log(props);
+  return {
+    next: props.query.next,
+  };
+};
 
 export default withLayout(DefaultLayout)(Login);

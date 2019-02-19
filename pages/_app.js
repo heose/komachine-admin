@@ -37,4 +37,5 @@ class RootApp extends App {
   }
 }
 
-export default withAuth(withRedux(makeStore)(withReduxSaga({ async: true })(RootApp)));
+// export default withAuth(withRedux(makeStore)(withReduxSaga({ async: true })(RootApp)));
+export default withRedux(makeStore)(withReduxSaga({ async: true })(RootApp));
