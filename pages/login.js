@@ -35,11 +35,8 @@ function Login({ next }) {
   );
 }
 
-Login.getInitialProps = props => {
-  console.log(props);
-  return {
-    next: props.query.next,
-  };
-};
+Login.getInitialProps = props => ({
+  next: props.query.next,
+});
 
 export default withLayout(DefaultLayout)(Login);
